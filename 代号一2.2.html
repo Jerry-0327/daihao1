@@ -371,8 +371,6 @@ localStorage.removeItem('lsjlbg1');
 				ying1 = ying;
 				cz1 = cz;
 lsjlbg1=lsjlbg;
-				document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
-cjbg();
 			}
 
 			function jcsj() {
@@ -505,8 +503,6 @@ cjbg();
 				timer.reset();
 				timer.reset();
 				document.getElementById("sjj").textContent = '总局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
-				document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
-				//cklscz.disabled=false;
 				document.getElementById("cklscz1").style.display = "block";
 				setItem();
 			}
@@ -583,7 +579,7 @@ if (jn2[9] == 1) {
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
 				jnxs();
 				document.getElementById("sjj").textContent = '总局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
-				document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
+				
 				timer.reset();
 				timer.start();
 			}
@@ -650,7 +646,6 @@ if (jn2[9] == 1) {
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
 				jnxs();
 				document.getElementById("sjj").textContent = '总局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
-				document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
 				timer.reset();
 				t1.disabled = true;
 				t2.disabled = true;
@@ -997,11 +992,11 @@ jj9.disabled = true;
 				}
 				aa1 = a1;
 				aa2 = a2;
- if((d1=== 2 || d1===3) && jn2[9]===1 && d2===1){
+ if ((d1 === 2 || d1 === 3) && jn2[9] === 1 && d2 === 1) { 
 e1=e1-e2;
 e2=0;
 } 
-if((d2===2 || d2===3) && jn3[9]===1 && d1===1){
+if ((d2 === 2 || d2 === 3) && jn3[9] === 1 && d1 === 1) {
 e2=e2-e1;
 e1=0;
 }
