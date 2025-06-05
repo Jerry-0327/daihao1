@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>历史记录</title>
+    <style>
+		#lsjl{
+        background: rgba(255,255,255,0.9);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 15px 0;
+        border: 1px solid #eee;
+		}
+		
+		body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        
+		
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+		.bu {
+            padding: 5px 10px;
+            font-size: 8px;
+            cursor: pointer;
+        }
+		
+		.login-btn {
+            background: linear-gradient(45deg, #00a3ff, #0066ff);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div id="lsjl">
+				<p id="sjjjj" style="display: inline-block; width: 200px;"></p><button onclick="removeItem()" class="bu">清除</button>
+
+<div id="tableContainer"></div>
+<p></p>
+<button onclick="fh()" class="login-btn">返回</button>
+</div>
+    
+   
+    
+    <script>
+var zong1 = Number(localStorage.getItem('zong1'));
+			var ying1 = Number(localStorage.getItem('ying1'));
+			var cz1 = Number(localStorage.getItem('cz1')) - 1;
+var lsjlbg1=JSON.parse(localStorage.getItem('lsjlbg1')) || [];
+       function fh(){
+window.location.href = "代号一2.2.html";
+}
+function cjbg() {
+	document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
+    const container = document.getElementById("tableContainer");
+    container.innerHTML = ""; // 清空旧内容
+
+    if (lsjlbg1.length === 0) {
+        container.innerHTML = "<p>暂无历史记录</p>";
+        return;
+    }
+
+    const table = document.createElement("table");
+    table.border = "1";
+    table.style.width = "100%";
+
+    // 创建表头
+    const thead = table.createTHead();
+    const headerRow = thead.insertRow();
+    ["模式", "结果", "时间"].forEach(headerText => {
+        const th = document.createElement("th");
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+    });
+
+    // 填充数据
+    const tbody = table.createTBody();
+    lsjlbg1.forEach(item => {
+        const row = tbody.insertRow();
+        [item.模式, item.结果, item.时间].forEach(value => {
+            const cell = row.insertCell();
+            cell.textContent = value;
+        });
+    });
+
+    container.appendChild(table);
+}
+window.onload=cjbg;
+    </script>
+</body>
+</html>

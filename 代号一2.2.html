@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>代号一</title>
 		<style>
-		#yx, #zy,#lsjl{
+		#yx, #zy{
         background: rgba(255,255,255,0.9);
         border-radius: 10px;
         padding: 20px;
@@ -139,13 +139,7 @@
 	</div>
 
 
-<div id="lsjl">
-				<p id="sjjjj" style="display: inline-block; width: 200px;"></p><button onclick="removeItem()" class="bu">清除</button>
 
-<div id="tableContainer"></div>
-<p></p>
-<button onclick="fh()" class="login-btn">返回</button>
-</div>
 
 
 	
@@ -165,7 +159,7 @@ window.open("https://space.bilibili.com/500196629")
 			
 			document.getElementById("content").style.display = "block";
 			document.getElementById("yx").style.display = "none";
-document.getElementById("lsjl").style.display = "none";
+
 			function yx() {
 				document.getElementById("yx").style.display = "block";
 				document.getElementById("zy").style.display = "none";
@@ -187,47 +181,14 @@ document.getElementById("lsjl").style.display = "none";
 			function fh() {
 				
 				document.getElementById("content").style.display = "block";
-document.getElementById("lsjl").style.display = "none";
+
 			}
-function lsjl() {
-				
-				document.getElementById("content").style.display = "none";
-document.getElementById("lsjl").style.display = "block";
-cjbg();
-			}
-function cjbg() {
-    const container = document.getElementById("tableContainer");
-    container.innerHTML = ""; // 清空旧内容
 
-    if (lsjlbg1.length === 0) {
-        container.innerHTML = "<p>暂无历史记录</p>";
-        return;
-    }
 
-    const table = document.createElement("table");
-    table.border = "1";
-    table.style.width = "100%";
 
-    // 创建表头
-    const thead = table.createTHead();
-    const headerRow = thead.insertRow();
-    ["模式", "结果", "时间"].forEach(headerText => {
-        const th = document.createElement("th");
-        th.textContent = headerText;
-        headerRow.appendChild(th);
-    });
 
-    // 填充数据
-    const tbody = table.createTBody();
-    lsjlbg1.forEach(item => {
-        const row = tbody.insertRow();
-        [item.模式, item.结果, item.时间].forEach(value => {
-            const cell = row.insertCell();
-            cell.textContent = value;
-        });
-    });
-
-    container.appendChild(table);
+function lsjl(){
+window.location.href = "历史记录.html";
 }
 			var t1 = document.getElementById('h1');
 			var t2 = document.getElementById('h2');
