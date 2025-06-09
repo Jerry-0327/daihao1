@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>代号一</title>
+		<style>
+		#yx, #zy{
+        background: rgba(255,255,255,0.9);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 15px 0;
+        border: 1px solid #eee;
+		}
+		
+		body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #3498db;
+        }
+		#shijian {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #3498db;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+		.bu {
+            padding: 5px 10px;
+            font-size: 8px;
+            cursor: pointer;
+        }
+		h4{
+		margin-top:0px;
+		margin-bottom:0px;
+		}
+		.login-btn {
+            background: linear-gradient(45deg, #00a3ff, #0066ff);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+    </style>
+	</head>
+	<body>
+
+		<h1>☠️代号一☠️</h1>
+		<div id='content'>
+			
+			<div id='zy'>
+				<p style="display: inline-block; width: 150px;">更改模式</p><br><button onclick="ew()" class="bu" id='ms1'>额外模式</button><button
+				 onclick="pt()" class="bu" id='ms2'>普通模式</button><button onclick="ksu()" class="bu" id='ms3'>快速模式</button>
+<br>
+				<p style="display: inline-block; width: 150px;">是否开启隐藏数据</p><button onclick="yck()" class="bu" id='yc1'>是</button><button
+				 onclick="ycg()" class="bu" id='yc2'>否</button>
+<br>
+				<input type="number" id="set" placeholder="设定血量">
+				<button onclick="check()">确认</button>
+<p></p>
+				<input type="number" id="set1" placeholder="设定时间">
+				<button onclick="chec()">确认</button>
+				<p id='jcsj'>基础血量1，基础时间10秒</p>
+				<button onclick="lsjl()">查看历史记录</button>
+<p></p>
+				<button onclick="gz()">查看规则</button>
+				<p></p>
+				<button onclick="yx()" class="login-btn">开始游戏</button>
+			</div>
+
+	</div>
+
+
+
+
+
+	
+		</div>
+<button style="padding: 0px 0px;font-size: 4px;" onclick="hsdwx()">查看作者</button>
+		<script>
+function hsdwx(){
+window.open("https://space.bilibili.com/500196629")
+}
+
+
+			document.getElementById("content").style.display = "block";
+			document.getElementById("jcsj").style.display = "block";
+
+
+		
+
+			function zy() {
+				document.getElementById("zy").style.display = "block";
+				document.getElementById("yx").style.display = "none";
+			}
+			function yx(){
+				setItem();
+				window.location.href="代号一2.3.html"
+			}
+			function gz() {
+			window.location.href = "游戏规则.html";
+			}
+
+			function fh() {
+				
+				document.getElementById("content").style.display = "block";
+
+			}
+
+
+
+
+function lsjl(){
+window.location.href = "历史记录.html";
+}
+			
+			var bb1 = document.getElementById('ms1');
+			var bb2 = document.getElementById('ms2');
+			var bb5 = document.getElementById('ms3');
+			var bb3 = document.getElementById('yc1');
+			var bb4 = document.getElementById('yc2');
+			
+			bb1.disabled = false;
+			bb2.disabled = true;
+			bb5.disabled = false;
+			bb3.disabled = false;
+			bb4.disabled = true;
+			
+			function ew() {
+				hd = true;
+				ksms = false;
+				bb1.disabled = true;
+				bb2.disabled = false;
+				bb5.disabled = false;
+mqms="额外模式";
+			}
+
+			function pt() {
+				hd = false;
+				ksms = false;
+				bb1.disabled = false;
+				bb2.disabled = true;
+				bb5.disabled = false;
+mqms="普通模式";
+			}
+
+			function ksu() {
+				hd = false;
+				ksms = true;
+				bb1.disabled = false;
+				bb2.disabled = false;
+				bb5.disabled = true;
+mqms="快速模式";
+			}
+
+			function yck() {
+				bb3.disabled = true;
+				bb4.disabled = false;
+				lscz = false;
+
+			}
+
+			function ycg() {
+				bb3.disabled = false;
+				bb4.disabled = true;
+				lscz = true;
+
+			}
+			function check() {
+				aa = parseFloat(document.getElementById('set').value);
+				if (isNaN(aa) || aa <= 0) {
+					aa = 1;
+					alert("错误，请填写大于0的数字")
+				}
+			
+				document.getElementById('set').value = '';
+				jcsj();
+			}
+			
+			function chec() {
+				var sss = parseFloat(document.getElementById('set1').value);
+				if (isNaN(sss)) {
+					sss = 10;
+				}
+				szsj = sss * 1000;
+				if (szsj <= 0) {
+					szsj = 10000;
+					alert("错误，请填写大于0的数字")
+				}
+			
+				document.getElementById('set1').value = '';
+				jcsj();
+			}
+			var hd = false;
+			var ksms = false;
+			var aa = 1;
+			var szsj = 10000;
+			var mqms="普通模式";
+			var lscz = true;
+
+
+
+			function millisecondsToSeconds(milliseconds) {
+				return milliseconds / 1000;
+			}
+
+			function setItem() {
+				sessionStorage.setItem('hd', JSON.stringify(hd)); // 对象→JSON字符串
+				sessionStorage.setItem('ksms', JSON.stringify(ksms));
+				sessionStorage.setItem('aa', String(aa)); // 数字→字符串
+				sessionStorage.setItem('szsj', String(szsj));
+				sessionStorage.setItem('mqms', JSON.stringify(mqms)); // 对象→JSON字符串
+				sessionStorage.setItem('lscz', JSON.stringify(lscz));
+			}
+
+			function st() {
+			  // 检查关键值是否存在
+			  if (!sessionStorage.getItem('hd')) {
+			    // 设置默认值
+			    hd = false;
+			    ksms = false;
+			    aa = 1;
+			    szsj = 10000;
+			    mqms = "普通模式";
+			    lscz = true;
+			  } else {
+			    // 安全解析存储的值
+			    try {
+			      hd = JSON.parse(sessionStorage.getItem('hd'));
+			    } catch {
+			      hd = false;
+			    }
+			    
+			    try {
+			      ksms = JSON.parse(sessionStorage.getItem('ksms'));
+			    } catch {
+			      ksms = false;
+			    }
+			    
+			    try {
+			      lscz = JSON.parse(sessionStorage.getItem('lscz'));
+			    } catch {
+			      lscz = true;
+			    }
+			    
+			    // 处理数字类型
+			    const storedAa = sessionStorage.getItem('aa');
+			    aa = storedAa && !isNaN(storedAa) ? Number(storedAa) : 1;
+			    
+			    const storedSzsj = sessionStorage.getItem('szsj');
+			    szsj = storedSzsj && !isNaN(storedSzsj) ? Number(storedSzsj) : 10000;
+			    
+			    // 处理字符串类型
+			    try {
+			      mqms = JSON.parse(sessionStorage.getItem('mqms'));
+			    } catch {
+			      mqms = "普通模式";
+			    }
+			  }
+			  
+			  // 更新UI显示
+			  jcsj();
+			  
+			  // 根据当前模式更新按钮状态
+			  if (mqms === "额外模式") ew();
+			  else if (mqms === "快速模式") ksu();
+			  else pt();
+			  
+			  // 更新隐藏数据按钮状态
+			  if (lscz) ycg();
+			  else yck();
+			}
+
+			function jcsj() {
+				document.getElementById("jcsj").textContent = '基础血量' + aa + '，基础时间' + szsj / 1000 + '秒';
+			}
+			window.onload=st;
+
+			function ks() {
+				var totalMilliseconds = szsj;
+				var remainingMilliseconds = totalMilliseconds;
+				var display = document.querySelector("#timer span");
+				var timerId = null; // 用于存储定时器ID
+
+				function updateTimer() {
+					if (remainingMilliseconds > 0) {
+						remainingMilliseconds -= 10; // 每次更新减少10毫秒（注意这里为了简化直接减少了10毫秒）
+						display.textContent = (remainingMilliseconds / 1000).toFixed(2); // 转换为秒并保留两位小数
+						timerId = setTimeout(updateTimer, 10); // 重新设置定时器
+					} else {
+						display.textContent = "0.00"; // 倒计时结束
+						// 可以在这里添加其他倒计时结束后的逻辑
+						// ...
+						document.getElementById('result').textContent = '你输了';
+						jz();
+					}
+				}
+
+				return {
+					start: function() {
+						if (timerId !== null) {
+							clearTimeout(timerId); // 如果定时器已经启动，先停止它
+						}
+						remainingMilliseconds = totalMilliseconds; // 重置剩余时间
+						display.textContent = (totalMilliseconds / 1000).toFixed(2); // 重置显示
+						timerId = setTimeout(updateTimer, 10); // 开始新的倒计时
+					},
+					reset: function() {
+						if (timerId !== null) {
+							clearTimeout(timerId); // 停止定时器
+							totalMilliseconds = szsj;
+							remainingMilliseconds = totalMilliseconds;
+							timerId = null; // 可选：将定时器ID重置为null，表示没有定时器在运行
+						}
+						// 注意：reset方法本身不重置剩余时间或重新开始计时器，它只是停止它
+						// 如果你想要在reset后立即开始一个新的计时器，你应该在调用reset之后立即调用start
+					}
+				};
+			}
+
+			// 使用
+			var timer = ks();
+
+
+
+			// 假设我们有一个倒计时，从3000毫秒（即3秒）开始
+
+		</script>
+
+	</body>
+</html>
