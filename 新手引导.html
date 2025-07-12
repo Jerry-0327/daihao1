@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>新手引导</title>
+	<style>
+		#zy{
+		background: rgba(255,255,255,0.9);
+		border-radius: 10px;
+		padding: 20px;
+		margin: 15px 0;
+		border: 1px solid #eee;
+		}
+		body {
+		    font-family: Arial, sans-serif;
+		    text-align: center;
+		    padding: 20px;
+		}
+		
+		#result {
+		    margin-top: 20px;
+		    font-size: 20px;
+		    color: #3498db;
+		}
+		#shijian {
+		    margin-top: 20px;
+		    font-size: 20px;
+		    color: #3498db;
+		}
+		button {
+		    padding: 10px 20px;
+		    font-size: 16px;
+		    cursor: pointer;
+		}
+		.bu {
+		    padding: 5px 10px;
+		    font-size: 8px;
+		    cursor: pointer;
+		}
+		h4{
+		margin-top:0px;
+		margin-bottom:0px;
+		}
+		.login-btn {
+		    background: linear-gradient(45deg, #00a3ff, #0066ff);
+		    color: white;
+		    width: 100%;
+		    padding: 12px;
+		    border: none;
+		    border-radius: 5px;
+		    font-size: 16px;
+		    cursor: pointer;
+		    transition: opacity 0.3s;
+		}
+		img {
+		  border: 3px solid #333; /* 3像素宽，实线，深灰色 */
+		}
+	</style>
+	</head>
+	<body>
+		<div id="zy">
+		<h1>☠️代号一☠️</h1>
+		<h1>主界面</h1>
+		<img src="主界面.png" width="400px">
+		<p>通过“更改模式”下面的按钮更改模式，具体模式的内容见“查看规则”</p>
+		<p>“隐藏数据”开启时，血量能量和“查看历史出招”按钮将不可被查看</p>
+		<p>通过“设定血量”和“设定时间”来修改基础血量和时间</p>
+		<p>通过“查看历史记录”按钮进入历史记录界面查看记录</p>
+		<p>通过“查看规则”按钮进入游戏规则界面查看规则</p>
+		<p>按下“开始游戏”按钮进入游戏界面</p>
+		<h1>选择技能界面</h1>
+		<img src="技能选择.png" width="400px">
+		<p>进入游戏界面时，如果选择的模式需要选择技能，下移选择技能后方可开始游戏，你选技能对方也有技能，你不选对方也不选</p>
+		<h1>游戏界面</h1>
+		<img src="游戏界面.png" width="400px">
+		<p>通过按钮选择招式来进行游戏</p>
+		<p>非隐藏数据时，下方可以查看双方血量和能量</p>
+		<button onclick="gz()">查看规则</button>
+		<p></p>
+		<button onclick="ks()" class="login-btn">开始游戏</button>
+		<p></p>
+		<button onclick="fh()">返回</button>
+		</div>
+	</body>
+	<script>
+		function gz()
+		{
+			window.location.href = "游戏规则.html";
+		}
+		function fh()
+		{
+			window.location.href = "主页.html";
+		}
+		function ks()
+		{
+			window.location.href = "代号一2.3.html";
+		}
+	</script>
+</html>

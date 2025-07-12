@@ -246,8 +246,6 @@
 			var ksms = false;
 			var aa = 1;
 			var szsj = 10000;
-			var mqms="普通模式";
-			var lscz = true;
 			
 				try {
 			      hd = JSON.parse(sessionStorage.getItem('hd'));
@@ -429,7 +427,7 @@
 				t16.disabled = true;
 				timer.reset();
 				timer.reset();
-				document.getElementById("sjj").textContent = '总局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				document.getElementById("cklscz1").style.display = "block";
 				setItem();
 			}
@@ -505,7 +503,7 @@
 				document.getElementById("sj").textContent = '你血' + a1 + ',敌血' + a2 + ',你能' + b1 + ',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
 				jnxs();
-				document.getElementById("sjj").textContent = '总局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				
 				timer.reset();
 				timer.start();
@@ -557,7 +555,7 @@
 				document.getElementById("sj").textContent = '你血' + a1 + ',敌血' + a2 + ',你能' + b1 + ',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
 				jnxs();
-				document.getElementById("sjj").textContent = '总局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				timer.reset();
 				t1.disabled = true;
 				t2.disabled = true;
@@ -599,9 +597,11 @@
 				if (!lscz) {
 					//cklscz.disabled=true;
 					document.getElementById("cklscz1").style.display = "none";
+					document.getElementById("sj").style.display = "none";
 				} else {
 					//cklscz.disabled=false;
 					document.getElementById("cklscz1").style.display = "block";
+					document.getElementById("sj").style.display = "block";
 				}
 				if (ksms) {
 					ssss(0);

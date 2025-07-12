@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>游戏规则</title>
     <style>
 		#yx, #zy, #yxgz,#lsjl{
         background: rgba(255,255,255,0.9);
@@ -68,6 +68,10 @@
 <body>
 
 <div id='yxgz'>
+			<p style='text-align: left;font-size: 30px;'>模式</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>普通模式:</span>可使用招式：能量，防御，一发，二发，三发，炸弹，能量防，反弹，刀，绷带，可选择技能 </p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>快速模式:</span>可使用招式：能量，防御，一发，反弹，刀，不可选择技能 </p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>额外模式:</span>可使用全部招式，可选择技能</p>
 			<p style='text-align: left;font-size: 30px;'>招式</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>能量:</span>获得一点能量。 </p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>防御:</span>抵消所有枪类伤害。 </p>
@@ -86,16 +90,20 @@
 			<p style='text-align: left;'><span style='font-size: 20px' ;>损血回能:</span>失去0.5血，获得2点能量。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>损血加伤:</span>失去0.5血，下次造成伤害时伤害加1点。</p>
 			<p style='text-align: left;font-size: 30px;'>技能</p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>快速炸弹:</span>炸弹只消耗两点能量，并且伤害加0.5
-				<p style='text-align: left;'><span style='font-size: 20px' ;>先天:</span>开局一点能量</p>
-				<p style='text-align: left;'><span style='font-size: 20px' ;>高级能量:</span>你使用一次能量招式获得1.5个能量</p>
-				<p style='text-align: left;'><span style='font-size: 20px' ;>热血:</span>1.5倍基础血量，但你不能使用绷带</p>
-				<p style='text-align: left;'><span style='font-size: 20px' ;>空城:</span>免疫刀类伤害。</p>
-				<p style='text-align: left;'><span style='font-size: 20px' ;>嗜己:</span>你的伤害翻倍，血量减半，无法使用绷带。</p>
-				<p style='text-align: left;'><span style='font-size: 20px' ;>白银狮子:</span>你每回合最多受到一半基础血量的伤害。</p>
-				<p style='text-align: left;'><span style='font-size: 20px' ;>反伤:</span>当对方伤害被抵消时，反伤50%伤害。</p>
-      <p style='text-align: left;'><span style='font-size: 20px' ;>能量刀:</span>刀类伤害穿透反弹且你的刀类伤害可以抵消伤害。</p>
-				<button  class="login-btn" onclick="fh()">返回</button>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>快速炸弹:</span>炸弹只消耗两点能量，并且伤害加0.5。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>先天:</span>开局一点能量。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>高级能量:</span>你使用一次能量招式获得1.5个能量。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>热血:</span>1.5倍基础血量，但你不能使用绷带。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>空城:</span>免疫刀类伤害。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>嗜己:</span>你的伤害翻倍，血量减半，无法使用绷带。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>白银狮子:</span>你每回合最多受到一半基础血量的伤害。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>反伤:</span>当对方伤害被抵消时，反伤50%伤害。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>能量刀:</span>刀类伤害穿透反弹且你的刀类伤害可以抵消伤害。</p>
+			<p style='text-align: left;font-size: 30px;'>基本规则</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>1.游戏流程:</span>每回合根据能量数选择招式，选择后根据效果结算。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>2.胜利条件:</span>对方血量归零你获胜，你血量或者时间归零落败。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>3.伤害结算:</span>当刀类伤害遇到枪类或爆炸伤害时，刀类伤害失效，只造成枪类或爆炸伤害。枪类遇到爆炸伤害时，若伤害量相同，则枪类伤害失效，只造成爆炸伤害；若不同，则抵消相同部分，造成剩下的伤害。</p>
+			<button  class="login-btn" onclick="fh()">返回</button>
 <script>
 function fh(){
 window.location.href = "主页.html";
