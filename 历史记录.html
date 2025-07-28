@@ -66,49 +66,49 @@
 			localStorage.removeItem('lsjlbg1');
 			window.location.href="历史记录.html";
 		}
-var zong1 = Number(localStorage.getItem('zong1'));
-			var ying1 = Number(localStorage.getItem('ying1'));
-			var cz1 = Number(localStorage.getItem('cz1'));
-var lsjlbg1=JSON.parse(localStorage.getItem('lsjlbg1')) || [];
+		var zong1 = Number(localStorage.getItem('zong1'));
+		var ying1 = Number(localStorage.getItem('ying1'));
+		var cz1 = Number(localStorage.getItem('cz1'));
+		var lsjlbg1=JSON.parse(localStorage.getItem('lsjlbg1')) || [];
        function fh(){
-window.location.href = "主页.html";
-}
-function cjbg() {
-	document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
-    const container = document.getElementById("tableContainer");
-    container.innerHTML = ""; // 清空旧内容
+			window.location.href = "主页.html";
+		}
+		function cjbg() {
+		document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
+		const container = document.getElementById("tableContainer");
+		container.innerHTML = ""; // 清空旧内容
 
-    if (lsjlbg1.length === 0) {
-        container.innerHTML = "<p>暂无历史记录</p>";
-        return;
-    }
+		if (lsjlbg1.length === 0) {
+			container.innerHTML = "<p>暂无历史记录</p>";
+			return;
+		}
 
-    const table = document.createElement("table");
-    table.border = "1";
-    table.style.width = "100%";
+		const table = document.createElement("table");
+		table.border = "1";
+		table.style.width = "100%";
 
-    // 创建表头
-    const thead = table.createTHead();
-    const headerRow = thead.insertRow();
-    ["模式", "结果", "时间"].forEach(headerText => {
-        const th = document.createElement("th");
-        th.textContent = headerText;
-        headerRow.appendChild(th);
-    });
+		// 创建表头
+		const thead = table.createTHead();
+		const headerRow = thead.insertRow();
+		["模式", "结果", "时间"].forEach(headerText => {
+			const th = document.createElement("th");
+			th.textContent = headerText;
+			headerRow.appendChild(th);
+		});
 
-    // 填充数据
-    const tbody = table.createTBody();
-    lsjlbg1.forEach(item => {
-        const row = tbody.insertRow();
-        [item.模式, item.结果, item.时间].forEach(value => {
-            const cell = row.insertCell();
-            cell.textContent = value;
-        });
-    });
+		// 填充数据
+		const tbody = table.createTBody();
+		lsjlbg1.forEach(item => {
+			const row = tbody.insertRow();
+			[item.模式, item.结果, item.时间].forEach(value => {
+				const cell = row.insertCell();
+				cell.textContent = value;
+			});
+		});
 
-    container.appendChild(table);
-}
-window.onload=cjbg;
+		container.appendChild(table);
+	}
+	window.onload=cjbg;
     </script>
 </body>
 </html>
