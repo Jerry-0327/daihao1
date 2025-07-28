@@ -59,6 +59,13 @@
    
     
     <script>
+		function removeItem() {
+			localStorage.removeItem('zong1');
+			localStorage.removeItem('ying1');
+			localStorage.removeItem('cz1');
+			localStorage.removeItem('lsjlbg1');
+			window.location.href="历史记录.html";
+		}
 var zong1 = Number(localStorage.getItem('zong1'));
 			var ying1 = Number(localStorage.getItem('ying1'));
 			var cz1 = Number(localStorage.getItem('cz1'));
