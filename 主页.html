@@ -66,6 +66,8 @@
 			<div id='zy'>
 				<p style="display: inline-block; width: 150px;">更改模式</p><br><button onclick="ew()" class="bu" id='ms1'>额外模式</button><button
 				 onclick="pt()" class="bu" id='ms2'>普通模式</button><button onclick="ksu()" class="bu" id='ms3'>快速模式</button>
+				 <br />
+				 <button onclick="tz()" class="bu" id='ms4'>挑战模式</button>
 <br>
 				<p style="display: inline-block; width: 150px;">是否开启隐藏数据</p><button onclick="yck()" class="bu" id='yc1'>是</button><button
 				 onclick="ycg()" class="bu" id='yc2'>否</button>
@@ -110,8 +112,14 @@ window.open("https://space.bilibili.com/500196629")
 				document.getElementById("yx").style.display = "none";
 			}
 			function yx(){
+				zong1=Number(localStorage.getItem('zong1'));
 				setItem();
-				window.location.href="代号一2.3.html"
+				if(zong1<=5){
+					window.location.href="新手引导.html"
+				}else{
+					window.location.href="代号一2.3.html"
+				}
+				
 			}
 			function gz() {
 			window.location.href = "游戏规则.html";
@@ -181,6 +189,9 @@ mqms="快速模式";
 				bb4.disabled = true;
 				lscz = true;
 
+			}
+			function tz() {
+				window.location.href = "挑战选择.html";
 			}
 			function check() {
 				aa = parseFloat(document.getElementById('set').value);
