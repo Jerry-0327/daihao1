@@ -166,7 +166,11 @@
 				document.getElementById("h10").style.display = "inline-block";
 				document.getElementById("h11").style.display = "inline-block";
 				document.getElementById("h12").style.display = "inline-block";
-				document.getElementById("h13").style.display = "inline-block";
+				if(aa>=3){
+					document.getElementById("h13").style.display = "inline-block";
+				}else{
+					document.getElementById("h13").style.display = "none";
+				}
 				document.getElementById("h14").style.display = "inline-block";
 				document.getElementById("h15").style.display = "inline-block";
 				document.getElementById("h16").style.display = "inline-block";
@@ -179,7 +183,11 @@
 				document.getElementById("h5").style.display = "inline-block";
 				document.getElementById("h6").style.display = "inline-block";
 				document.getElementById("h8").style.display = "inline-block";
-				document.getElementById("h13").style.display = "inline-block";
+				if(aa>=3){
+					document.getElementById("h13").style.display = "inline-block";
+				}else{
+					document.getElementById("h13").style.display = "none";
+				}
 				document.getElementById("h10").style.display = "none";
 				document.getElementById("h11").style.display = "none";
 				document.getElementById("h12").style.display = "none";
@@ -690,7 +698,7 @@
 					choices.push('刀');
 					choices.push('一发');
 					if (ksms === false) {
-						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
+						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0) && aa>=3) {
 							choices.push('绷带');
 						}
 						if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
