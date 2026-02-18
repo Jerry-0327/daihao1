@@ -63,7 +63,6 @@
 			<div id='yx'>
 
 				<p id='msms'></p>
-				<h2 id="ttzms"></h2>
 				<p>请选择：</p>
 				<h4>经济招式</h4>
 				<button onclick="p('能量')" id="h1" style="disabled:true;">能量</button>
@@ -113,34 +112,24 @@
 					<button onclick="ssss(9)" id="j9">能量刀</button>
 				</div>
 				<p></p>
-				<button onclick="ss()" id="cz">重置</button>
+				<button onclick="ss()">重置</button>
 
 				<p id="sjj"></p>
-				<button onclick="zy()" class="login-btn">返回选择</button>
+				<button onclick="zy()" class="login-btn">返回主页</button>
 			</div>
 		</div>
 		<script>
-			
+
 			document.getElementById("h10").style.display = "none";
 			document.getElementById("h11").style.display = "none";
 			document.getElementById("h12").style.display = "none";
-			document.getElementById("h13").style.display = "none";
 			document.getElementById("h14").style.display = "none";
 			document.getElementById("h15").style.display = "none";
 			document.getElementById("h16").style.display = "none";
 			document.getElementById("content").style.display = "block";
 			document.getElementById("yx").style.display = "block";
-			document.getElementById("j1").style.display = "none";
-			document.getElementById("j2").style.display = "none";
-			document.getElementById("j3").style.display = "none";
-			document.getElementById("j4").style.display = "none";
-			document.getElementById("j5").style.display = "none";
-			document.getElementById("j6").style.display = "none";
-			document.getElementById("j7").style.display = "none";
-			document.getElementById("j8").style.display = "none";
-			document.getElementById("j9").style.display = "none";
 			function zy(){
-				window.location.href="挑战选择.html";
+				window.location.href="主页.html";
 			}
 			var t1 = document.getElementById('h1');
 			var t2 = document.getElementById('h2');
@@ -168,9 +157,77 @@
 			var jj7 = document.getElementById('j7');
 			var jj8 = document.getElementById('j8');
 			var jj9 = document.getElementById('j9');
-			var czcz = document.getElementById('cz');
-			czcz.disabled=true;
 			document.getElementById("cklscz1").style.display = "block";
+			function ew() {
+				document.getElementById("h4").style.display = "inline-block";
+				document.getElementById("h5").style.display = "inline-block";
+				document.getElementById("h6").style.display = "inline-block";
+				document.getElementById("h8").style.display = "inline-block";
+				document.getElementById("h10").style.display = "inline-block";
+				document.getElementById("h11").style.display = "inline-block";
+				document.getElementById("h12").style.display = "inline-block";
+				if(aa>=3){
+					document.getElementById("h13").style.display = "inline-block";
+				}else{
+					document.getElementById("h13").style.display = "none";
+				}
+				document.getElementById("h14").style.display = "inline-block";
+				document.getElementById("h15").style.display = "inline-block";
+				document.getElementById("h16").style.display = "inline-block";
+				document.getElementById("jnjn").style.display = "block";
+				document.getElementById("msms").textContent = '目前模式：额外模式';
+			}
+
+			function pt() {
+				document.getElementById("h4").style.display = "inline-block";
+				document.getElementById("h5").style.display = "inline-block";
+				document.getElementById("h6").style.display = "inline-block";
+				document.getElementById("h8").style.display = "inline-block";
+				if(aa>=3){
+					document.getElementById("h13").style.display = "inline-block";
+				}else{
+					document.getElementById("h13").style.display = "none";
+				}
+				document.getElementById("h10").style.display = "none";
+				document.getElementById("h11").style.display = "none";
+				document.getElementById("h12").style.display = "none";
+				document.getElementById("h14").style.display = "none";
+				document.getElementById("h15").style.display = "none";
+				document.getElementById("h16").style.display = "none";
+				document.getElementById("jnjn").style.display = "block";
+				document.getElementById("msms").textContent = '目前模式：普通模式';
+			}
+
+			function ksu() {
+				document.getElementById("h4").style.display = "none";
+				document.getElementById("h5").style.display = "none";
+				document.getElementById("h6").style.display = "none";
+				document.getElementById("h8").style.display = "none";
+				document.getElementById("h13").style.display = "none";
+				document.getElementById("h10").style.display = "none";
+				document.getElementById("h11").style.display = "none";
+				document.getElementById("h12").style.display = "none";
+				document.getElementById("h14").style.display = "none";
+				document.getElementById("h15").style.display = "none";
+				document.getElementById("h16").style.display = "none";
+				document.getElementById("jnjn").style.display = "none";
+				document.getElementById("msms").textContent = '目前模式：快速模式';
+			}
+			function xl() {
+				document.getElementById("h4").style.display = "none";
+				document.getElementById("h5").style.display = "none";
+				document.getElementById("h6").style.display = "none";
+				document.getElementById("h8").style.display = "none";
+				
+				document.getElementById("h10").style.display = "none";
+				document.getElementById("h11").style.display = "none";
+				document.getElementById("h12").style.display = "none";
+				document.getElementById("h14").style.display = "none";
+				document.getElementById("h15").style.display = "inline-block";
+				document.getElementById("h16").style.display = "inline-block";
+				document.getElementById("jnjn").style.display = "none";
+				document.getElementById("msms").textContent = '目前模式：血量模式';
+			}
 			var a1 = 1;
 			var aa1 = 0;
 			var b1 = 0;
@@ -204,25 +261,52 @@
 			var lsjlbg1=JSON.parse(localStorage.getItem('lsjlbg1')) || [];
 			var hd = false;
 			var ksms = false;
+			var xlms = false;
 			var aa = 1;
-			var szsj = 30000;
+			var szsj = 10000;
+			var mqms="普通模式";
 			var lscz = true;
 			var hd = false;
 			var ksms = false;
 			var aa = 1;
-			var tzms = Number(localStorage.getItem('tzms'));
-			var mqms ="";
-			   // 处理数字类型
+			var szsj = 10000;
+			
+				try {
+			      hd = JSON.parse(sessionStorage.getItem('hd'));
+			    } catch {
+			      hd = false;
+			    }
+			    
+			    try {
+			      ksms = JSON.parse(sessionStorage.getItem('ksms'));
+			    } catch {
+			      ksms = false;
+			    }
+			    try {
+			      xlms = JSON.parse(sessionStorage.getItem('xlms'));
+			    } catch {
+			      xlms = false;
+			    }
+				
+			    try {
+			      lscz = JSON.parse(sessionStorage.getItem('lscz'));
+			    } catch {
+			      lscz = true;
+			    }
+			    
+			    // 处理数字类型
 			    const storedAa = sessionStorage.getItem('aa');
 			    aa = storedAa && !isNaN(storedAa) ? Number(storedAa) : 1;
-				const storedtzms = sessionStorage.getItem('tzms');
-				tzms = storedtzms && !isNaN(storedtzms) ? Number(storedtzms) : 1;
 			    
 			    const storedSzsj = sessionStorage.getItem('szsj');
-			    szsj = storedSzsj && !isNaN(storedSzsj) ? Number(storedSzsj) : 30000;
-				
-			
-			 
+			    szsj = storedSzsj && !isNaN(storedSzsj) ? Number(storedSzsj) : 10000;
+			    
+			    // 处理字符串类型
+			    try {
+			      mqms = JSON.parse(sessionStorage.getItem('mqms'));
+			    } catch {
+			      mqms = "普通模式";
+			    }
 
 			function millisecondsToSeconds(milliseconds) {
 				return milliseconds / 1000;
@@ -233,7 +317,6 @@
 				localStorage.setItem('ying1', String(ying1));
 				localStorage.setItem('cz1', String(cz1));
 				localStorage.setItem('lsjlbg1', JSON.stringify(lsjlbg1));
-				localStorage.setItem('tzjg', JSON.stringify(tzjg));
 			}
 
 			function removeItem() {
@@ -373,7 +456,7 @@
 				t16.disabled = true;
 				timer.reset();
 				timer.reset();
-				//document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				document.getElementById("cklscz1").style.display = "block";
 				setItem();
 			}
@@ -448,8 +531,8 @@
 			function j() {
 				document.getElementById("sj").textContent = '你血' + a1 + ',敌血' + a2 + ',你能' + b1 + ',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
-				//jnxs();
-				//document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+				jnxs();
+				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				
 				timer.reset();
 				timer.start();
@@ -457,12 +540,26 @@
 			function cklscz() {
 				alert("你的出招：" + lscz1 + "‖对手出招：" + lscz2)
 			}
-
+			function csh(){
+				if(hd){
+					ew();
+				}else if(ksms){
+					ksu();
+				}else if(xlms){
+					xl();
+				}
+			}
 			function ss() {
+				csh();
 				var lsjlbg = [];
-				sz();
+				a1 = aa;
+				b1 = 0;
+				c1 = 1;
 				d1 = 0;
 				e1 = 0;
+				a2 = aa;
+				b2 = 0;
+				c2 = 1;
 				d2 = 0;
 				e2 = 0;
 				f2 = '';
@@ -484,8 +581,8 @@
 				setItem()
 				document.getElementById("sj").textContent = '你血' + a1 + ',敌血' + a2 + ',你能' + b1 + ',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
-				//jnxs();
-				//document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+				jnxs();
+				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				timer.reset();
 				t1.disabled = true;
 				t2.disabled = true;
@@ -524,7 +621,21 @@
 				jj7.disabled = false;
 				jj8.disabled = false;
 				jj9.disabled = false;
-
+				if (!lscz) {
+					//cklscz.disabled=true;
+					document.getElementById("cklscz1").style.display = "none";
+					document.getElementById("sj").style.display = "none";
+				} else {
+					//cklscz.disabled=false;
+					document.getElementById("cklscz1").style.display = "block";
+					document.getElementById("sj").style.display = "block";
+				}
+				if (ksms) {
+					ssss(0);
+				}
+				if (xlms) {
+					ssss(0);
+				}
 			}
 
 			function ssss(jn1) {
@@ -546,49 +657,17 @@
 				}
 				s();
 			}
-			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0];
-			function sz(){
-				if (tzms==1)
-				{
-					a1=1;
-					a2=3;
-					b1=0;
-					b2=0;
-					c1=1;
-					c2=1;
-					mqms="血量挑战";
-				}
-				if (tzms==2)
-				{
-					a1=1;
-					a2=1;
-					b1=0;
-					b2=3;
-					c1=0;
-					c2=1;
-					mqms="能量挑战";
-				}
-				if (tzms==3)
-				{
-					a1=1;
-					a2=1;
-					b1=0;
-					b2=0;
-					c1=0;
-					c2=1;
-					document.getElementById("h3").style.display = "none";
-					document.getElementById("h4").style.display = "none";
-					document.getElementById("h5").style.display = "none";
-					document.getElementById("h6").style.display = "none";
-					document.getElementById("h8").style.display = "none";
-					document.getElementById("h9").style.display = "none";
-					mqms="冷兵器挑战";
-				}
-				document.getElementById("ttzms").textContent=mqms;
-			}
+
 			function s() {
+
+				a1 = aa;
+				b1 = 0;
+				c1 = 1;
 				d1 = 0;
 				e1 = 0;
+				a2 = aa;
+				b2 = 0;
+				c2 = 1;
 				d2 = 0;
 				e2 = 0;
 				f2 = '';
@@ -598,7 +677,24 @@
 				jn1 = 0;
 				sxjs1 = true;
 				sxjs2 = true;
-				sz();
+				if (jn3[2] === 1) {
+					b1 = 1;
+				}
+				if (jn2[2] === 1) {
+					b2 = 1;
+				}
+				if (jn3[4] === 1) {
+					a1 = 1.5 * aa;
+				}
+				if (jn2[4] === 1) {
+					a2 = 1.5 * aa;
+				}
+				if (jn3[6] === 1) {
+					a1 = aa / 2;
+				}
+				if (jn2[6] === 1) {
+					a2 = aa / 2;
+				}
 				g();
 				j();
 				document.getElementById("result").textContent = '';
@@ -624,7 +720,7 @@
 					choices.push('刀');
 					choices.push('一发');
 					if (ksms === false) {
-						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
+						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0) && aa>=3) {
 							choices.push('绷带');
 						}
 						if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
@@ -658,22 +754,31 @@
 							}
 						}
 					}
-				
 				}
 				f2 = choices[Math.floor(Math.random() * choices.length)];
-				if (tzms==3){
-					choices1 = ['能量'];
-					if(b1>=1&&c2>=1){
-						choices1.push('反弹');
+				if(xlms){
+					const choices = ['能量'];
+					if (a2 > 0.5 && Math.random() > 0.5) {
+						choices.push('损血回能');
+						if (sxjs2) {
+							choices.push('损血加伤');
+						}
 					}
-					if(b2>=1){
-						choices1.push('一发');
-						choices1.push('刀');
+					if (b1 >= 1) {
+						choices.push('防御');
+						if (c2 >= 1 &&Math.random() > 0.7) {
+							choices.push('反弹');
+						}
 					}
-				f2 = choices1[Math.floor(Math.random() * choices1.length)];
+					if (b2 >= 1) {
+						choices.push('刀');
+						choices.push('一发');
+						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
+							choices.push('绷带');
+						}
+					}
+					f2 = choices[Math.floor(Math.random() * choices.length)];
 				}
-
-
 
 				if (f1 === '能量') {
 					lscz1 += "能量，"
@@ -1096,8 +1201,6 @@ lsjlbg1.push(yxjg);
 					ying++;
 					zong1++;
 					ying1++;
-					tzjg[tzms-1]=1;
-					localStorage.setItem('tzjg', JSON.stringify(tzjg));
 					document.getElementById('result').textContent = '你赢了';
 let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
 lsjlbg.push(yxjg);

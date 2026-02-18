@@ -64,8 +64,11 @@
 		<div id='content'>
 			
 			<div id='zy'>
-				<p style="display: inline-block; width: 150px;">更改模式</p><br><button onclick="ew()" class="bu" id='ms1'>额外模式</button><button
-				 onclick="pt()" class="bu" id='ms2'>普通模式</button><button onclick="ksu()" class="bu" id='ms3'>快速模式</button>
+				<p style="display: inline-block; width: 150px;">更改模式</p><br>
+				<button onclick="ew()" class="bu" id='ms1'>额外模式</button>
+				<button onclick="pt()" class="bu" id='ms2'>普通模式</button>
+				<button onclick="ksu()" class="bu" id='ms3'>快速模式</button>
+				<button onclick="xl()" class="bu" id='ms4'>血量模式</button>
 				 <br />
 				 <button onclick="tz()" class="bu" id='ms4'>挑战模式</button>
 <br>
@@ -73,7 +76,7 @@
 				 onclick="ycg()" class="bu" id='yc2'>否</button>
 <br>
 				<input type="number" id="set" placeholder="设定血量">
-				<button onclick="check()">确认</button>
+				<button onclick="check()" id="bxl">确认</button>
 <p></p>
 				<input type="number" id="set1" placeholder="设定时间">
 				<button onclick="chec()">确认</button>
@@ -117,7 +120,7 @@ window.open("https://space.bilibili.com/500196629")
 				if(zong1<=5){
 					window.location.href="新手引导.html"
 				}else{
-					window.location.href="代号一2.3.html"
+					window.location.href="代号一2.4.html"
 				}
 				
 			}
@@ -141,42 +144,65 @@ window.location.href = "历史记录.html";
 			var bb1 = document.getElementById('ms1');
 			var bb2 = document.getElementById('ms2');
 			var bb5 = document.getElementById('ms3');
+			var bb6 = document.getElementById('ms4');
 			var bb3 = document.getElementById('yc1');
 			var bb4 = document.getElementById('yc2');
-			
+			var bbxl = document.getElementById('bxl');
 			bb1.disabled = false;
 			bb2.disabled = true;
 			bb5.disabled = false;
 			bb3.disabled = false;
 			bb4.disabled = true;
-			
+			bb6.disabled = false;
+			bbxl.disabled = false;
 			function ew() {
 				hd = true;
 				ksms = false;
+				xlms=false;
+				bbxl.disabled = false;
 				bb1.disabled = true;
 				bb2.disabled = false;
 				bb5.disabled = false;
+				bb6.disabled = false;
 mqms="额外模式";
 			}
 
 			function pt() {
 				hd = false;
 				ksms = false;
+				xlms=false;
+				bbxl.disabled = false;
 				bb1.disabled = false;
 				bb2.disabled = true;
 				bb5.disabled = false;
+				bb6.disabled = false;
 mqms="普通模式";
 			}
 
 			function ksu() {
 				hd = false;
 				ksms = true;
+				xlms=false;
+				bbxl.disabled = false;
 				bb1.disabled = false;
 				bb2.disabled = false;
 				bb5.disabled = true;
+				bb6.disabled = false;
 mqms="快速模式";
 			}
-
+			function xl() {
+							hd = false;
+							ksms = false;
+							xlms=true;
+							bbxl.disabled = true;
+							bb1.disabled = false;
+							bb2.disabled = false;
+							bb5.disabled = false;
+							bb6.disabled = true;
+							aa=2;
+							jcsj();
+			mqms="血量模式";
+						}
 			function yck() {
 				bb3.disabled = true;
 				bb4.disabled = false;
@@ -220,6 +246,7 @@ mqms="快速模式";
 			}
 			var hd = false;
 			var ksms = false;
+			var xlms = false;
 			var aa = 1;
 			var szsj = 10000;
 			var mqms="普通模式";
@@ -238,6 +265,7 @@ mqms="快速模式";
 				sessionStorage.setItem('szsj', String(szsj));
 				sessionStorage.setItem('mqms', JSON.stringify(mqms)); // 对象→JSON字符串
 				sessionStorage.setItem('lscz', JSON.stringify(lscz));
+				sessionStorage.setItem('xlms', JSON.stringify(xlms)); // 对象→JSON字符串
 			}
 
 			function st() {
@@ -246,6 +274,7 @@ mqms="快速模式";
 			    // 设置默认值
 			    hd = false;
 			    ksms = false;
+				xlms = false;
 			    aa = 1;
 			    szsj = 10000;
 			    mqms = "普通模式";
@@ -270,6 +299,11 @@ mqms="快速模式";
 			      lscz = true;
 			    }
 			    
+				try {
+				  xlms = JSON.parse(sessionStorage.getItem('xlms'));
+				} catch {
+				  xlms = false;
+				}
 			    // 处理数字类型
 			    const storedAa = sessionStorage.getItem('aa');
 			    aa = storedAa && !isNaN(storedAa) ? Number(storedAa) : 1;
@@ -291,6 +325,7 @@ mqms="快速模式";
 			  // 根据当前模式更新按钮状态
 			  if (mqms === "额外模式") ew();
 			  else if (mqms === "快速模式") ksu();
+			  else if (mqms === "血量模式") xl();
 			  else pt();
 			  
 			  // 更新隐藏数据按钮状态
