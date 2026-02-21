@@ -119,10 +119,14 @@
 		<p style="color: red;display: none;" id="t3">已挑战成功</p>
 		<p>在此模式下，你只能使用能量，防御，刀，对方能使用能量，反弹，一发，刀</p>
 		<button onclick="tz(3)">开始挑战</button>
+		<h1>爆炸挑战</h1>
+		<p style="color: red;display: none;" id="t4">已挑战成功</p>
+		<p>在此模式下，对方拥有“快速炸弹”、“先天”、“高级能量”，且伤害招式只能使用炸弹，双方开局三血</p>
+		<button onclick="tz(4)">开始挑战</button>
 		<p></p>
 		<button onclick="zy()" class="login-btn">返回主页</button>
 		<script>
-			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0];
+			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0,0];
 			var tzms=0;
 			if(tzjg[0]==1){
 				document.getElementById("t1").style.display = "block";
@@ -132,6 +136,9 @@
 			}
 			if(tzjg[2]==1){
 				document.getElementById("t3").style.display = "block";
+			}
+			if(tzjg[3]==1){
+				document.getElementById("t4").style.display = "block";
 			}
 			function setItem() {
 				sessionStorage.setItem('tzms', String(tzms));

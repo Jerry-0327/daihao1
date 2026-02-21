@@ -448,7 +448,7 @@
 			function j() {
 				document.getElementById("sj").textContent = '你血' + a1 + ',敌血' + a2 + ',你能' + b1 + ',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
-				//jnxs();
+				jnxs();
 				//document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				
 				timer.reset();
@@ -484,7 +484,7 @@
 				setItem()
 				document.getElementById("sj").textContent = '你血' + a1 + ',敌血' + a2 + ',你能' + b1 + ',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
-				//jnxs();
+				jnxs();
 				//document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				timer.reset();
 				t1.disabled = true;
@@ -533,7 +533,9 @@
 				if(tzms==3){
 					ssss(0);
 				}
-
+				if(tzms==4){
+					ssss(0);
+				}
 			}
 
 			function ssss(jn1) {
@@ -552,6 +554,12 @@
 					jn2[0] = 1;
 				} else {
 					jn2[Math.floor(Math.random() * 9) + 1] = 1;
+				}
+				if(tzms==4){
+					jn2[0]=0;
+					jn2[1]=1;
+					jn2[2]=1;
+					jn2[3]=1;
 				}
 				s();
 			}
@@ -599,7 +607,7 @@
 					a1=3;
 					a2=3;
 					b1=0;
-					b2=0;
+					b2=1;
 					c1=1;
 					c2=1;
 					mqms="爆炸挑战";
@@ -649,7 +657,7 @@
 						}
 						if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
 							choices.push('能量防');
-						} else if (b1 >= 3) {
+						} else if (b1 >= 3 && Math.random() > 0.7) {
 							choices.push('能量防');
 						}
 
@@ -692,7 +700,30 @@
 					}
 				f2 = choices1[Math.floor(Math.random() * choices1.length)];
 				}
-
+				if (tzms==4){
+					choices2 = ['能量'];
+					if (b2 >= 1) {
+						
+							if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
+								choices2.push('绷带');
+							}
+							if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
+								choices2.push('能量防');
+							} else if (b1 >= 3 && Math.random() > 0.7) {
+								choices2.push('能量防');
+							}
+					
+							if (b2 >= 2 && jn2[1] === 1) {
+								choices2.push('炸弹');
+							}
+							if (b2 >= 3) {
+								choices2.push('炸弹');
+							}
+						
+					
+					}
+				f2 = choices2[Math.floor(Math.random() * choices2.length)];
+				}
 
 
 				if (f1 === '能量') {
@@ -1116,23 +1147,14 @@ a1=a1-e2;
 									ying++;
 									zong1++;
 									ying1++;
+									tzjg[tzms-1]=1;
+									localStorage.setItem('tzjg', JSON.stringify(tzjg));
 									document.getElementById('result').textContent = '你赢了';
 				let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
 				lsjlbg.push(yxjg);
 				lsjlbg1.push(yxjg);
 									jz();
-								} else if (a2 <= 0 && a2 > 0) {
-				
-									zong++;
-									ying++;
-									zong1++;
-									ying1++;
-									document.getElementById('result').textContent = '你赢了';
-				let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
-				lsjlbg.push(yxjg);
-				lsjlbg1.push(yxjg);
-									jz();
-								} else if (a2 <= 0 && a1 <= 0) {
+								}else if (a2 <= 0 && a1 <= 0) {
 				
 									zong++;
 									zong1++;
