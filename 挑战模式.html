@@ -524,6 +524,15 @@
 				jj7.disabled = false;
 				jj8.disabled = false;
 				jj9.disabled = false;
+				if(tzms==1){
+					ssss(0);
+				}
+				if(tzms==2){
+					ssss(0);
+				}
+				if(tzms==3){
+					ssss(0);
+				}
 
 			}
 
@@ -557,6 +566,7 @@
 					c1=1;
 					c2=1;
 					mqms="血量挑战";
+					
 				}
 				if (tzms==2)
 				{
@@ -583,6 +593,16 @@
 					document.getElementById("h8").style.display = "none";
 					document.getElementById("h9").style.display = "none";
 					mqms="冷兵器挑战";
+				}
+				if (tzms==4)
+				{
+					a1=3;
+					a2=3;
+					b1=0;
+					b2=0;
+					c1=1;
+					c2=1;
+					mqms="爆炸挑战";
 				}
 				document.getElementById("ttzms").textContent=mqms;
 			}
@@ -1101,7 +1121,7 @@ a1=a1-e2;
 				lsjlbg.push(yxjg);
 				lsjlbg1.push(yxjg);
 									jz();
-								} else if (a2 <= 0 a2 > 0) {
+								} else if (a2 <= 0 && a2 > 0) {
 				
 									zong++;
 									ying++;
