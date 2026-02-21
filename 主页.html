@@ -65,18 +65,25 @@
 			
 			<div id='zy'>
 				<p style="display: inline-block; width: 150px;">更改模式</p><br>
+				<button onclick="mms(1)" class="bu" id='mms1'>正常模式</button>
+				<button onclick="mms(2)" class="bu" id='mms2'>能量模式</button>
+				<br>
 				<button onclick="ew()" class="bu" id='ms1'>额外模式</button>
 				<button onclick="pt()" class="bu" id='ms2'>普通模式</button>
 				<button onclick="ksu()" class="bu" id='ms3'>快速模式</button>
 				<button onclick="xl()" class="bu" id='ms4'>血量模式</button>
+				<button onclick="nl1()" class="bu" id='ms5'>能量模式1</button>
 				 <br />
-				 <button onclick="tz()" class="bu" id='ms4'>挑战模式</button>
+				 <button onclick="tz()" class="bu">挑战模式</button>
 <br>
 				<p style="display: inline-block; width: 150px;">是否开启隐藏数据</p><button onclick="yck()" class="bu" id='yc1'>是</button><button
 				 onclick="ycg()" class="bu" id='yc2'>否</button>
 <br>
-				<input type="number" id="set" placeholder="设定血量">
-				<button onclick="check()" id="bxl">确认</button>
+				<div id="sdxl">
+					<input type="number" id="set" placeholder="设定血量">
+					<button onclick="check()" id="bxl">确认</button>
+				</div>
+
 <p></p>
 				<input type="number" id="set1" placeholder="设定时间">
 				<button onclick="chec()">确认</button>
@@ -117,15 +124,25 @@ window.open("https://space.bilibili.com/500196629")
 			function yx(){
 				zong1=Number(localStorage.getItem('zong1'));
 				setItem();
-				if(zong1<=5){
-					window.location.href="新手引导.html"
-				}else{
-					window.location.href="代号一2.4.html"
+				if(ms==1){
+					if(zong1<=5){
+						window.location.href="新手引导.html"
+					}else{
+						window.location.href="代号一2.4.html"
+					}
+				}
+				if(ms==2){
+					window.location.href="能量模式.html"
 				}
 				
 			}
 			function gz() {
-			window.location.href = "游戏规则.html";
+				if(ms==1){
+					window.location.href = "游戏规则.html";
+				}
+				if(ms==2){
+					window.location.href = "能量模式规则.html";
+				}
 			}
 
 			function fh() {
@@ -137,16 +154,19 @@ window.open("https://space.bilibili.com/500196629")
 
 
 
-function lsjl(){
-window.location.href = "历史记录.html";
-}
-			
+			function lsjl(){
+				window.location.href = "历史记录.html";
+			}
+			var ms=1;
 			var bb1 = document.getElementById('ms1');
 			var bb2 = document.getElementById('ms2');
 			var bb5 = document.getElementById('ms3');
 			var bb6 = document.getElementById('ms4');
+			var bb7 = document.getElementById('ms5');
 			var bb3 = document.getElementById('yc1');
 			var bb4 = document.getElementById('yc2');
+			var bbb1 = document.getElementById('mms1');
+			var bbb2 = document.getElementById('mms2');
 			var bbxl = document.getElementById('bxl');
 			bb1.disabled = false;
 			bb2.disabled = true;
@@ -154,7 +174,11 @@ window.location.href = "历史记录.html";
 			bb3.disabled = false;
 			bb4.disabled = true;
 			bb6.disabled = false;
+			bb7.disabled = true;
 			bbxl.disabled = false;
+			bbb1.disabled = true;
+			bbb2.disabled = false;
+			bb7.style.display="none";
 			function ew() {
 				hd = true;
 				ksms = false;
@@ -203,6 +227,42 @@ mqms="快速模式";
 							jcsj();
 			mqms="血量模式";
 						}
+			function nl1() {
+								hd = false;
+								ksms = false;
+								xlms=false;
+								jcsj();
+				mqms="能量模式1";
+			}
+			function mms(x){
+				if(x==1){
+					bb1.style.display="inline-block";
+					bb2.style.display="inline-block";
+					bb5.style.display="inline-block";
+					bb6.style.display="inline-block";
+					bb7.style.display="none"
+					bbb1.disabled=true;
+					bbb2.disabled=false;
+					ms=1;
+					document.getElementById('sdxl').style.display="block";
+					pt();
+					jcsj();
+				}
+				if(x==2){
+					bb1.style.display="none";
+					bb2.style.display="none";
+					bb5.style.display="none";
+					bb6.style.display="none";
+					bb7.style.display="inline-block"
+					bbb1.disabled=false;
+					bbb2.disabled=true;
+					ms=2
+					alert("能量模式规则请在选择能量模式的情况下点击查看规则查看")
+					nl1();
+					document.getElementById("jcsj").textContent ='基础时间' + szsj / 1000 + '秒';
+					document.getElementById('sdxl').style.display="none";
+				}
+			}
 			function yck() {
 				bb3.disabled = true;
 				bb4.disabled = false;
@@ -334,7 +394,7 @@ mqms="快速模式";
 			}
 
 			function jcsj() {
-				document.getElementById("jcsj").textContent = '基础血量' + aa + '，基础时间' + szsj / 1000 + '秒';
+				document.getElementById("jcsj").textContent = '基础时间' + szsj / 1000 + '秒';
 			}
 			window.onload=st;
 

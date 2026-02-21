@@ -69,10 +69,7 @@
 
 <div id='yxgz'>
 			<p style='text-align: left;font-size: 30px;'>模式</p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>普通模式:</span>可使用招式：能量，防御，一发，二发，三发，炸弹，能量防，反弹，刀，绷带（基础血量>=3），可选择技能 </p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>快速模式:</span>可使用招式：能量，防御，一发，反弹，刀，不可选择技能 </p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>额外模式:</span>可使用全部招式，可选择技能</p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>血量模式:</span>可使用招式：能量，防御，一发，反弹，刀，绷带，损血回能，损血加伤，不可选择技能</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>能量模式1:</span>可使用招式：能量，防御，一发，二发，三发，炸弹，能量防，反弹，不可选择技能。能量目标为五。</p>
 			<p style='text-align: left;font-size: 30px;'>招式</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>能量:</span>获得一点能量。 </p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>防御:</span>抵消所有枪类伤害。 </p>
@@ -102,10 +99,8 @@
 			<p style='text-align: left;'><span style='font-size: 20px' ;>能量刀:</span>刀类伤害穿透反弹且你的刀类伤害可以抵消伤害。</p>
 			<p style='text-align: left;font-size: 30px;'>基本规则</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>1.游戏流程:</span>每回合根据能量数选择招式，选择后根据效果结算。</p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>2.胜利条件:</span>对方血量归零你获胜，你血量或者时间归零落败。</p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>3.伤害结算:</span>当刀类伤害遇到枪类或爆炸伤害时，刀类伤害失效，只造成枪类或爆炸伤害。枪类遇到爆炸伤害时，若伤害量相同，则枪类伤害失效，只造成爆炸伤害；若不同，则抵消相同部分，造成剩下的伤害。</p>
-			<button onclick="xsyd()">新手引导</button>
-			<p style="padding: 1px;"></p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>2.胜利条件:</span>当你的能量数到达目标你获胜，对方能量达到目标或者时间归零落败。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>3.能量结算:</span>枪类遇到爆炸伤害时，若伤害量相同，则枪类伤害失效，只造成爆炸伤害；若不同，则抵消相同部分，造成剩下的伤害。在此基础上，每受到一点枪类伤害扣两点能量，每受到一点爆炸伤害扣五点能量。</p>
 			<button  class="login-btn" onclick="fh()">返回</button>
 <script>
 function fh(){

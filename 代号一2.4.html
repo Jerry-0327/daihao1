@@ -547,6 +547,8 @@
 					ksu();
 				}else if(xlms){
 					xl();
+				}else{
+					pt();
 				}
 			}
 			function ss() {
@@ -725,7 +727,7 @@
 						}
 						if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
 							choices.push('能量防');
-						} else if (b1 >= 3) {
+						} else if (b1 >= 3 && Math.random() > 0.8) {
 							choices.push('能量防');
 						}
 
@@ -1195,7 +1197,7 @@ let yxjg={模式:mqms,结果:'负',时间:new Date().toLocaleString()};
 lsjlbg.push(yxjg);
 lsjlbg1.push(yxjg);
 					jz();
-				} else if (a2 <= 0) {
+				} else if (a2 <= 0 && a1 > 0) {
 
 					zong++;
 					ying++;
@@ -1203,6 +1205,26 @@ lsjlbg1.push(yxjg);
 					ying1++;
 					document.getElementById('result').textContent = '你赢了';
 let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
+lsjlbg.push(yxjg);
+lsjlbg1.push(yxjg);
+					jz();
+				} else if (a2 <= 0 a2 > 0) {
+
+					zong++;
+					ying++;
+					zong1++;
+					ying1++;
+					document.getElementById('result').textContent = '你赢了';
+let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
+lsjlbg.push(yxjg);
+lsjlbg1.push(yxjg);
+					jz();
+				} else if (a2 <= 0 && a1 <= 0) {
+
+					zong++;
+					zong1++;
+					document.getElementById('result').textContent = '平局';
+let yxjg={模式:mqms,结果:'平局',时间:new Date().toLocaleString()};
 lsjlbg.push(yxjg);
 lsjlbg1.push(yxjg);
 					jz();
