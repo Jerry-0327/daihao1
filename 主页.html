@@ -207,11 +207,13 @@ mqms="普通模式";
 				hd = false;
 				ksms = true;
 				xlms=false;
-				bbxl.disabled = false;
+				bbxl.disabled = true;
 				bb1.disabled = false;
 				bb2.disabled = false;
 				bb5.disabled = true;
 				bb6.disabled = false;
+				aa=1;
+				jcsj();
 mqms="快速模式";
 			}
 			function xl() {
@@ -394,7 +396,13 @@ mqms="快速模式";
 			}
 
 			function jcsj() {
-				document.getElementById("jcsj").textContent = '基础时间' + szsj / 1000 + '秒';
+				if(ms==1){
+					document.getElementById("jcsj").textContent = '基础血量' + aa + '，基础时间' + szsj / 1000 + '秒';
+				}
+				if(ms==2){
+					document.getElementById("jcsj").textContent = '基础时间' + szsj / 1000 + '秒';
+				}
+				
 			}
 			window.onload=st;
 
