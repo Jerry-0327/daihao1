@@ -84,7 +84,7 @@
 			<p style='text-align: left;'><span style='font-size: 20px' ;>反弹:</span>反弹枪类伤害与爆炸伤害，抵消刀类伤害。每局每人只能用一次。 </p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>刀:</span>造成0.5点刀类伤害。用1点能量。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>绷带:</span>回复已损失的1点生命，若无损失或本回合受伤，无效。用1点能量。仅基础血量大于等于3时可使用。</p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>黑洞:</span>获得对方本轮得到或使用的能量并抵消伤害（刀除外）。若对方使用反弹，则反弹次数加一。用2点能量。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>黑洞:</span>获得对方本轮得到或使用的能量并抵消枪类、爆炸伤害。若对方使用反弹，则反弹次数加一。用2点能量。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>四发:</span>造成4点枪类伤害。用4点能量。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>火炮:</span>造成2点爆炸伤害。用5点能量。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>剑:</span>造成1点刀类伤害。用2点能量。</p>
@@ -98,12 +98,12 @@
 			<p style='text-align: left;'><span style='font-size: 20px' ;>空城:</span>免疫刀类伤害。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>嗜己:</span>你的伤害翻倍，血量减半，无法使用绷带。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>白银狮子:</span>你每回合最多受到一半基础血量的伤害。</p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>反伤:</span>当对方伤害被抵消时，反伤50%伤害。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>反伤:</span>当对方伤害被抵消或失效时，反伤50%伤害。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>能量刀:</span>刀类伤害穿透反弹且你的刀类伤害可以抵消伤害。</p>
 			<p style='text-align: left;font-size: 30px;'>基本规则</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>1.游戏流程:</span>每回合根据能量数选择招式，选择后根据效果结算。</p>
 			<p style='text-align: left;'><span style='font-size: 20px' ;>2.胜利条件:</span>对方血量归零你获胜，你血量或者时间归零落败。</p>
-			<p style='text-align: left;'><span style='font-size: 20px' ;>3.伤害结算:</span>当刀类伤害遇到枪类或爆炸伤害时，刀类伤害失效，只造成枪类或爆炸伤害。枪类遇到爆炸伤害时，若枪类伤害小于爆炸伤害，则枪类伤害失效，只造成爆炸伤害；若大于，则抵消相同部分，造成剩下的伤害。</p>
+			<p style='text-align: left;'><span style='font-size: 20px' ;>3.伤害结算:</span>(1)同类型伤害抵消(2)当对方有未抵消的枪类或爆炸伤害时，你的刀类伤害失效；当对方的爆炸伤害大于等于你的枪类伤害时，你的枪类伤害失效；当你的爆炸伤害小于对方枪类伤害时，抵消相同部分(3)结算防御招式对伤害的抵消(4)造成剩余伤害</p>
 			<button onclick="xsyd()">新手引导</button>
 			<p style="padding: 1px;"></p>
 			<button  class="login-btn" onclick="fh()">返回</button>
