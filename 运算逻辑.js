@@ -2,6 +2,8 @@ var xl1=0;//血量
 var xl2=0;
 var yxl1=0;//原血量
 var yxl2=0;
+var xlsx1=0;//血量上限
+var xlsx2=0;
 var nl1=0;//能量
 var nl2=0;
 var ft1=0;//反弹
@@ -11,8 +13,8 @@ var cz2="";
 var lscz1="";//历史出招
 var lscz2="";
 
-var sxjs1=true;//损血加伤
-var sxjs2=true;
+var asxjs1=true;//损血加伤
+var asxjs2=true;
 var q1=0//枪类伤害
 var q2=0;
 var bz1=0;//爆炸伤害
@@ -34,7 +36,7 @@ var nlbl=1;//能量倍率
 var dx1=0;
 var dx2=0;
 
-function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,jn1,jn2,cz1,cz2,nlbl) {
+function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2,jn1,jn2,cz1,cz2,xlsx1,xlsx2,nlbl) {
 	//变量初始化
 	q1=0//枪类伤害
 	q2=0;
@@ -197,7 +199,7 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,jn1,jn2,cz1,cz2,nlbl) {
 		d1=0;
 		xl1 = xl1 - 0.5;
 		hn1=0;
-		sxjs1 = false;
+		asxjs1 = false;
 	}
 	//对方出招初始化
 	if (cz2 === '能量') {
@@ -342,7 +344,7 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,jn1,jn2,cz1,cz2,nlbl) {
 		d2=0;
 		xl2 = xl2 - 0.5;
 		hn2=0;
-		sxjs2 = false;
+		asxjs2 = false;
 	}
 	//嗜己
 	if(jn1[6]==1){
@@ -564,24 +566,32 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,jn1,jn2,cz1,cz2,nlbl) {
 	}else{
 		xl1=xl1-q2-bz2-d2-fs2;
 	}
-	if(xl1!=yxl1 && !sxjs1){
+	if((q2>0 || bz2>0 || d2>0) && !asxjs2){
 		xl1=xl1-1;
+		asxjs2=true;
 	}
-	if(jn1[7]==1 && xl1<(yxl1/2)){
-		xl1=yxl1/2;
+	if(jn1[7]==1 && (yxl1-xl1)>xlsx1/2){
+		xl1=yxl1-xlsx1/2;
 	}
 	xl1=xl1+zl1;
+	if(xl1>xlsx1){
+		xl1=xlsx1;
+	}
 	if(jn2[5]==1){
 		xl2=xl2-q1-bz1-fs1;
 	}else{
 		xl2=xl2-q1-bz1-d1-fs1;
 	}
-	if(xl2!=yxl2 && !sxjs2){
+	if((q1>0 || bz1>0 || d1>0) && !asxjs1){
 		xl2=xl2-1;
+		asxjs1=true;
 	}
-	if(jn2[7]==1 && xl2<(yxl2/2)){
-		xl2=yxl2/2;
+	if(jn2[7]==1 && (yxl2-xl2)>xlsx2/2){
+		xl2=yxl2-xlsx2/2;
 	}
 	xl2=xl2+zl2;
-	return[xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2];
+	if(xl2>xlsx2){
+		xl2=xlsx2;
+	}
+	return[xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2];
 }
