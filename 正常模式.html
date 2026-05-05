@@ -231,12 +231,14 @@
 			}
 			var a1 = 1;
 			var aa1 = 0;
+			var aaa1=0;
 			var b1 = 0;
 			var c1 = 1;
 			var d1 = 0;
 			var e1 = 0;
 			var a2 = 1;
 			var aa2 = 0;
+			var aaa2=0;
 			var b2 = 0;
 			var c2 = 1;
 			var d2 = 0;
@@ -561,6 +563,8 @@
 				d1 = 0;
 				e1 = 0;
 				a2 = aa;
+				aaa1=aa;
+				aaa2=aa;
 				b2 = 0;
 				c2 = 1;
 				d2 = 0;
@@ -582,7 +586,7 @@
 				cz++;
 				cz1++;
 				setItem()
-				document.getElementById("sj").textContent = '你血' + a1 + ',敌血' + a2 + ',你能' + b1 + ',敌能' + b2;
+				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' +aaa2 + ',你能' + b1 + ',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
 				jnxs();
 				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
@@ -782,7 +786,7 @@
 					}
 					f2 = choices[Math.floor(Math.random() * choices.length)];
 				}
-				[a1,a2,b1,b2,lscz1,lscz2,c1,c2]=yunsan(a1,a2,b1,b2,lscz1,lscz2,c1,c2,jn3,jn2,f1,f2,1);
+				[a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2]=yunsan(a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2,jn3,jn2,f1,f2,aaa1,aaa2,1);
 				f3=f1;
 				g();
 				j();
