@@ -13,8 +13,8 @@ var cz2="";
 var lscz1="";//历史出招
 var lscz2="";
 
-var asxjs1=true;//损血加伤
-var asxjs2=true;
+var ys_sxjs1=true;//损血加伤
+var ys_sxjs2=true;
 var q1=0//枪类伤害
 var q2=0;
 var bz1=0;//爆炸伤害
@@ -35,8 +35,9 @@ var hn2=0;
 var nlbl=1;//能量倍率
 var dx1=0;
 var dx2=0;
+var ys_ms='';
 
-function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2,jn1,jn2,cz1,cz2,xlsx1,xlsx2,nlbl) {
+function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,ys_sxjs1,ys_sxjs2,jn1,jn2,cz1,cz2,xlsx1,xlsx2,nlbl,ys_ms) {
 	//变量初始化
 	q1=0//枪类伤害
 	q2=0;
@@ -106,16 +107,16 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2,jn1,jn2,cz1,cz
 		lx1 = "爆炸";
 		if (jn2[1] === 1) {
 			q1=0;
-			bz1=1;
-			d1=0;
-			nl1 = nl1 - 3;
-			hn1=3;
-		}else{
-			q1=0;
 			bz1=1.5;
 			d1=0;
 			nl1 = nl1 - 2;
 			hn1=2;
+		}else{
+			q1=0;
+			bz1=1;
+			d1=0;
+			nl1 = nl1 - 3;
+			hn1=3;
 		}
 	} else if (cz1 === '刀') {
 		lscz1 += "刀，"
@@ -199,7 +200,7 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2,jn1,jn2,cz1,cz
 		d1=0;
 		xl1 = xl1 - 0.5;
 		hn1=0;
-		asxjs1 = false;
+		ys_sxjs1 = false;
 	}
 	//对方出招初始化
 	if (cz2 === '能量') {
@@ -251,16 +252,16 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2,jn1,jn2,cz1,cz
 		lx2 = "爆炸";
 		if (jn2[1] === 1) {
 			q2=0;
-			bz2=1;
-			d2=0;
-			nl2 = nl2 - 3;
-			hn2=3;
-		}else{
-			q2=0;
 			bz2=1.5;
 			d2=0;
 			nl2 = nl2 - 2;
 			hn2=2;
+		}else{
+			q2=0;
+			bz2=1;
+			d2=0;
+			nl2 = nl2 - 3;
+			hn2=3;
 		}
 	} else if (cz2 === '刀') {
 		lscz2 += "刀，"
@@ -344,7 +345,7 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2,jn1,jn2,cz1,cz
 		d2=0;
 		xl2 = xl2 - 0.5;
 		hn2=0;
-		asxjs2 = false;
+		ys_sxjs2 = false;
 	}
 	//嗜己
 	if(jn1[6]==1){
@@ -561,37 +562,43 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2,jn1,jn2,cz1,cz
 		fs2=fs2+dx2/2;
 	}
 	//伤害结算
-	if(jn1[5]==1){
-		xl1=xl1-q2-bz2-fs2;
-	}else{
-		xl1=xl1-q2-bz2-d2-fs2;
+	if(ys_ms=='正常模式'){
+		if(jn1[5]==1){
+			xl1=xl1-q2-bz2-fs2;
+		}else{
+			xl1=xl1-q2-bz2-d2-fs2;
+		}
+		if((q2>0 || bz2>0 || d2>0) && !ys_sxjs2){
+			xl1=xl1-1;
+			ys_sxjs2=true;
+		}
+		if(jn1[7]==1 && (yxl1-xl1)>xlsx1/2){
+			xl1=yxl1-xlsx1/2;
+		}
+		xl1=xl1+zl1;
+		if(xl1>xlsx1){
+			xl1=xlsx1;
+		}
+		if(jn2[5]==1){
+			xl2=xl2-q1-bz1-fs1;
+		}else{
+			xl2=xl2-q1-bz1-d1-fs1;
+		}
+		if((q1>0 || bz1>0 || d1>0) && !ys_sxjs1){
+			xl2=xl2-1;
+			ys_sxjs1=true;
+		}
+		if(jn2[7]==1 && (yxl2-xl2)>xlsx2/2){
+			xl2=yxl2-xlsx2/2;
+		}
+		xl2=xl2+zl2;
+		if(xl2>xlsx2){
+			xl2=xlsx2;
+		}
+	}else if(ys_ms=='能量模式'){
+		nl1=nl1-q2*2-bz2*5;
+		nl2=nl2-q1*2-bz1*5;
 	}
-	if((q2>0 || bz2>0 || d2>0) && !asxjs2){
-		xl1=xl1-1;
-		asxjs2=true;
-	}
-	if(jn1[7]==1 && (yxl1-xl1)>xlsx1/2){
-		xl1=yxl1-xlsx1/2;
-	}
-	xl1=xl1+zl1;
-	if(xl1>xlsx1){
-		xl1=xlsx1;
-	}
-	if(jn2[5]==1){
-		xl2=xl2-q1-bz1-fs1;
-	}else{
-		xl2=xl2-q1-bz1-d1-fs1;
-	}
-	if((q1>0 || bz1>0 || d1>0) && !asxjs1){
-		xl2=xl2-1;
-		asxjs1=true;
-	}
-	if(jn2[7]==1 && (yxl2-xl2)>xlsx2/2){
-		xl2=yxl2-xlsx2/2;
-	}
-	xl2=xl2+zl2;
-	if(xl2>xlsx2){
-		xl2=xlsx2;
-	}
-	return[xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,asxjs1,asxjs2];
+	
+	return[xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,ys_sxjs1,ys_sxjs2];
 }
