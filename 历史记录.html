@@ -5,34 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>历史记录</title>
     <style>
-		#lsjl{
-        background: rgba(255,255,255,0.9);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 15px 0;
-        border: 1px solid #eee;
-		}
-		
-		body {
+        /* ===== 原有样式（未做任何修改） ===== */
+        #lsjl {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid #eee;
+        }
+
+        body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
         }
 
-        
-		
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
         }
-		.bu {
+        .bu {
             padding: 5px 10px;
             font-size: 8px;
             cursor: pointer;
         }
-		
-		.login-btn {
+
+        .login-btn {
             background: linear-gradient(45deg, #00a3ff, #0066ff);
             color: white;
             width: 100%;
@@ -43,72 +42,281 @@
             cursor: pointer;
             transition: opacity 0.3s;
         }
+
+        /* ===== 新增：筛选控件样式（不影响任何原有样式） ===== */
+        .filter-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0 15px 0;
+            padding: 12px 16px;
+            background: rgba(240, 248, 255, 0.7);
+            border-radius: 8px;
+            border: 1px solid #e0e8f0;
+        }
+        .filter-area select,
+        .filter-area input {
+            padding: 6px 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            background: white;
+            outline: none;
+            min-width: 100px;
+        }
+        .filter-area select:focus,
+        .filter-area input:focus {
+            border-color: #0066ff;
+            box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.15);
+        }
+        .filter-area input {
+            min-width: 140px;
+        }
+        .filter-btn {
+            padding: 6px 20px;
+            background: linear-gradient(45deg, #00a3ff, #0066ff);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            transition: opacity 0.2s;
+        }
+        .filter-btn:hover {
+            opacity: 0.85;
+        }
+        .filter-reset-btn {
+            padding: 6px 20px;
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            transition: background 0.2s;
+        }
+        .filter-reset-btn:hover {
+            background: #e0e0e0;
+        }
+        .filter-label {
+            font-size: 14px;
+            color: #555;
+            font-weight: bold;
+            margin-right: 2px;
+        }
+        .filter-stats {
+            font-size: 13px;
+            color: #888;
+            margin-left: 6px;
+        }
+
+        /* 让表格更美观（不改变原有样式，仅对表格内容做微调） */
+        #tableContainer table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 14px;
+        }
+        #tableContainer th {
+            background: #f0f6ff;
+            font-weight: bold;
+            padding: 8px;
+        }
+        #tableContainer td {
+            padding: 6px 8px;
+        }
+        #tableContainer tr:nth-child(even) {
+            background: #fafcff;
+        }
+        /* ===== 新增样式结束 ===== */
     </style>
 </head>
 <body>
-	<h1>☠️代号一☠️</h1>
+    <h1>☠️代号一☠️</h1>
 
     <div id="lsjl">
-				<p id="sjjjj" style="display: inline-block; width: 200px;"></p><button onclick="removeItem()" class="bu">清除</button>
+        <p id="sjjjj" style="display: inline-block; width: 200px;"></p>
+        <button onclick="removeItem()" class="bu">清除</button>
 
-<div id="tableContainer"></div>
-<p></p>
-<button onclick="fh()" class="login-btn">返回</button>
-</div>
-    
-   
-    
+        <!-- ===== 新增：筛选控件 ===== -->
+        <div class="filter-area" id="filterArea">
+            <span class="filter-label">模式</span>
+            <select id="filterMode">
+                <option value="">全部</option>
+            </select>
+
+            <span class="filter-label">结果</span>
+            <select id="filterResult">
+                <option value="">全部</option>
+            </select>
+			<!--
+            <span class="filter-label">时间</span>
+            <input type="text" id="filterTime" placeholder="输入关键词搜索…" />
+
+            <button class="filter-btn" onclick="applyFilter()">筛选</button>
+            <button class="filter-reset-btn" onclick="resetFilter()">重置</button>
+            <span class="filter-stats" id="filterStats">共 0 条</span>
+			-->
+        </div>
+
+        <div id="tableContainer"></div>
+        <p></p>
+        <button onclick="fh()" class="login-btn">返回</button>
+    </div>
+
     <script>
-		function removeItem() {
-			localStorage.removeItem('zong1');
-			localStorage.removeItem('ying1');
-			localStorage.removeItem('cz1');
-			localStorage.removeItem('lsjlbg1');
-			window.location.href="历史记录.html";
-		}
-		var zong1 = Number(localStorage.getItem('zong1'));
-		var ying1 = Number(localStorage.getItem('ying1'));
-		var cz1 = Number(localStorage.getItem('cz1'));
-		var lsjlbg1=JSON.parse(localStorage.getItem('lsjlbg1')) || [];
-       function fh(){
-			window.location.href = "主页.html";
-		}
-		function cjbg() {
-		document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
-		const container = document.getElementById("tableContainer");
-		container.innerHTML = ""; // 清空旧内容
+        // ===== 原有全局变量 =====
+        var zong1 = Number(localStorage.getItem('zong1'));
+        var ying1 = Number(localStorage.getItem('ying1'));
+        var cz1 = Number(localStorage.getItem('cz1'));
+        var lsjlbg1 = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
 
-		if (lsjlbg1.length === 0) {
-			container.innerHTML = "<p>暂无历史记录</p>";
-			return;
-		}
+        // ===== 新增：用于筛选的数据副本 =====
+        var allData = []; // 原始数据（只读）
+        var filteredData = []; // 筛选后的数据
 
-		const table = document.createElement("table");
-		table.border = "1";
-		table.style.width = "100%";
+        // ===== 原有函数（未修改） =====
+        function removeItem() {
+            localStorage.removeItem('zong1');
+            localStorage.removeItem('ying1');
+            localStorage.removeItem('cz1');
+            localStorage.removeItem('lsjlbg1');
+            window.location.href = "历史记录.html";
+        }
 
-		// 创建表头
-		const thead = table.createTHead();
-		const headerRow = thead.insertRow();
-		["模式", "结果", "时间"].forEach(headerText => {
-			const th = document.createElement("th");
-			th.textContent = headerText;
-			headerRow.appendChild(th);
-		});
+        function fh() {
+            window.location.href = "主页.html";
+        }
 
-		// 填充数据
-		const tbody = table.createTBody();
-		lsjlbg1.forEach(item => {
-			const row = tbody.insertRow();
-			[item.模式, item.结果, item.时间].forEach(value => {
-				const cell = row.insertCell();
-				cell.textContent = value;
-			});
-		});
+        // ===== 新增：渲染表格（支持传入数据） =====
+        function renderTable(data) {
+            var container = document.getElementById("tableContainer");
+            container.innerHTML = "";
 
-		container.appendChild(table);
-	}
-	window.onload=cjbg;
+            if (!data || data.length === 0) {
+                container.innerHTML = "<p style='color:#999;padding:20px 0;'>暂无匹配的记录</p>";
+                document.getElementById("filterStats").textContent = "共 0 条";
+                return;
+            }
+
+            var table = document.createElement("table");
+            table.border = "1";
+            table.style.width = "100%";
+
+            // 表头
+            var thead = table.createTHead();
+            var headerRow = thead.insertRow();
+            ["模式", "结果", "时间"].forEach(function(headerText) {
+                var th = document.createElement("th");
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+
+            // 数据行
+            var tbody = table.createTBody();
+            data.forEach(function(item) {
+                var row = tbody.insertRow();
+                [item.模式, item.结果, item.时间].forEach(function(value) {
+                    var cell = row.insertCell();
+                    cell.textContent = value || "-";
+                });
+            });
+
+            container.appendChild(table);
+            document.getElementById("filterStats").textContent = "共 " + data.length + " 条";
+        }
+
+        // ===== 新增：初始化筛选下拉选项 =====
+        function initFilterOptions() {
+            var modeSet = new Set();
+            var resultSet = new Set();
+
+            allData.forEach(function(item) {
+                if (item.模式) modeSet.add(item.模式);
+                if (item.结果) resultSet.add(item.结果);
+            });
+
+            var modeSelect = document.getElementById("filterMode");
+            var resultSelect = document.getElementById("filterResult");
+
+            // 保留"全部"选项
+            modeSelect.innerHTML = '<option value="">全部</option>';
+            resultSelect.innerHTML = '<option value="">全部</option>';
+
+            // 按字母顺序排序后添加
+            var sortedModes = Array.from(modeSet).sort();
+            var sortedResults = Array.from(resultSet).sort();
+
+            sortedModes.forEach(function(m) {
+                var opt = document.createElement("option");
+                opt.value = m;
+                opt.textContent = m;
+                modeSelect.appendChild(opt);
+            });
+
+            sortedResults.forEach(function(r) {
+                var opt = document.createElement("option");
+                opt.value = r;
+                opt.textContent = r;
+                resultSelect.appendChild(opt);
+            });
+        }
+
+        // ===== 新增：应用筛选 =====
+        function applyFilter() {
+            var mode = document.getElementById("filterMode").value;
+            var result = document.getElementById("filterResult").value;
+            var time = document.getElementById("filterTime").value.trim().toLowerCase();
+
+            filteredData = allData.filter(function(item) {
+                var matchMode = mode === "" || item.模式 === mode;
+                var matchResult = result === "" || item.结果 === result;
+                var matchTime = time === "" || (item.时间 && item.时间.toLowerCase().includes(time));
+                return matchMode && matchResult && matchTime;
+            });
+
+            renderTable(filteredData);
+        }
+
+        // ===== 新增：重置筛选 =====
+        function resetFilter() {
+            document.getElementById("filterMode").value = "";
+            document.getElementById("filterResult").value = "";
+            document.getElementById("filterTime").value = "";
+            filteredData = allData.slice(); // 复制所有数据
+            renderTable(filteredData);
+        }
+
+        // ===== 改造后的 cjbg（保持原有统计信息显示，增加筛选初始化） =====
+        function cjbg() {
+            // 1. 更新统计信息（原有逻辑）
+            document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
+
+            // 2. 读取数据（原有逻辑）
+            allData = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
+
+            // 3. 初始化下拉选项
+            initFilterOptions();
+
+            // 4. 默认显示全部数据
+            filteredData = allData.slice();
+            renderTable(filteredData);
+        }
+
+        // ===== 页面加载时执行 =====
+        window.onload = cjbg;
+
+        // ===== 新增：当筛选条件变化时（可选：自动筛选） =====
+        // 如果希望下拉框/输入框变化时自动筛选，可以取消下面注释
+        /*
+        document.getElementById('filterMode').addEventListener('change', applyFilter);
+        document.getElementById('filterResult').addEventListener('change', applyFilter);
+        document.getElementById('filterTime').addEventListener('input', applyFilter);
+        */
     </script>
 </body>
 </html>

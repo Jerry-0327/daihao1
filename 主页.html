@@ -12,13 +12,49 @@
         margin: 15px 0;
         border: 1px solid #eee;
 		}
-		
+		.bb {
+		    position: fixed;    /* 固定定位，相对于浏览器视口 */
+		    bottom: 30px;       /* 距离底部 30px */
+		    right: 30px;        /* 距离右侧 30px */
+		    z-index: 9999;      /* 较大的层级，确保不被其他元素遮挡 */
+		    
+		    /* 以下是美化样式（按需修改）
+		    background-color: #007bff;
+		    color: #fff;
+		    padding: 12px 24px;
+		    border-radius: 30px;
+		    font-size: 16px;
+		    font-family: "Microsoft YaHei", sans-serif;
+		    box-shadow: 0 4px 12px rgba(0,0,0,0.15); */
+		  }
 		body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
         }
-
+		.btn-wrapper {
+		      position: relative;      /* 父容器相对定位 */
+		      display: inline-block;
+		      margin-bottom: 20px;     /* 方便展示下方的控制按钮 */
+		    }
+		.dot {
+		      position: absolute;      /* 绝对定位 */
+		      top: -6px;              /* 右上角偏移 */
+		      right: -6px;
+		      width: 12px;
+		      height: 12px;
+		      background-color: #ff4d4f;
+		      border-radius: 50%;
+		      border: 2px solid #fff;  /* 白色描边，更清晰 */
+		      box-shadow: 0 0 4px rgba(255, 77, 79, 0.5);
+		      
+		      /* 添加过渡效果，让显隐更平滑（可选）
+		      transition: opacity 0.25s ease, transform 0.25s ease; */
+		    }
+			.dot.hidden {
+			      
+			      display: none;
+			    }
         #result {
             margin-top: 20px;
             font-size: 20px;
@@ -64,17 +100,19 @@
 		<div id='content'>
 			
 			<div id='zy'>
-				<p style="display: inline-block; width: 150px;">更改模式</p><br>
+				<h2 style="display: inline-block; width: 150px;">更改模式</h2><br>
+				<p>主模式选择</p>
 				<button onclick="mms(1)" class="bu" id='mms1'>正常模式</button>
 				<button onclick="mms(2)" class="bu" id='mms2'>能量模式</button>
-				<br>
-				<button onclick="ew()" class="bu" id='ms1'>额外模式</button>
+				<button onclick="tz()" class="bu">挑战模式</button>
+				<p>子模式选择</p>
 				<button onclick="pt()" class="bu" id='ms2'>普通模式</button>
+				<button onclick="ew()" class="bu" id='ms1'>额外模式</button>			
 				<button onclick="ksu()" class="bu" id='ms3'>快速模式</button>
 				<button onclick="xl()" class="bu" id='ms4'>血量模式</button>
 				<button onclick="nl1()" class="bu" id='ms5'>能量模式1</button>
-				 <br />
-				 <button onclick="tz()" class="bu">挑战模式</button>
+				 
+				 
 <br>
 				<p style="display: inline-block; width: 150px;">是否开启隐藏数据</p><button onclick="yck()" class="bu" id='yc1'>是</button><button
 				 onclick="ycg()" class="bu" id='yc2'>否</button>
@@ -89,8 +127,14 @@
 				<button onclick="chec()">确认</button>
 				<p id='jcsj'>基础血量1，基础时间10秒</p>
 				<button onclick="lsjl()">查看历史记录</button>
-<p></p>
+				<p></p>
 				<button onclick="gz()">查看规则</button>
+				<p></p>
+				<div class="btn-wrapper">
+					<button onclick="gx()">查看更新</button>
+					<span class="dot" id="redDot"></span>  <!-- 红点元素 -->
+				</div>
+				
 				<p></p>
 				<button onclick="yx()" class="login-btn">开始游戏</button>
 			</div>
@@ -104,13 +148,35 @@
 	
 		</div>
 <button style="padding: 0px 0px;font-size: 4px;" onclick="hsdwx()">查看作者</button>
+<p class="bb">1.0.0</p>
 		<script>
 
 function hsdwx(){
 window.open("https://space.bilibili.com/500196629")
 }
 
-
+			const dot = document.getElementById('redDot');
+			function bbgx(){
+				
+				if (!localStorage.getItem('bb100')) {
+				  // 设置默认值
+				  bb100=false
+				} else {
+				  // 安全解析存储的值
+				  try {
+				    bb100 = JSON.parse(localStorage.getItem('bb100'));
+				  } catch {
+				    bb100 = false;
+				  }
+				  
+				  }
+				  
+				if(bb100){
+				  			dot.classList.add('hidden');
+				}
+			}
+			
+			
 			document.getElementById("content").style.display = "block";
 			document.getElementById("jcsj").style.display = "block";
 
@@ -144,11 +210,17 @@ window.open("https://space.bilibili.com/500196629")
 					window.location.href = "能量模式规则.html";
 				}
 			}
+			function gx() {
+				bb100=true;
+				localStorage.setItem('bb100', JSON.stringify(bb100));
+				dot.classList.add('hidden');
+				window.location.href="更新.html";
+			}
 
 			function fh() {
 				
+				
 				document.getElementById("content").style.display = "block";
-
 			}
 
 
@@ -323,6 +395,7 @@ mqms="快速模式";
 			function setItem() {
 				sessionStorage.setItem('hd', JSON.stringify(hd)); // 对象→JSON字符串
 				sessionStorage.setItem('ksms', JSON.stringify(ksms));
+				sessionStorage.setItem('bb100', JSON.stringify(bb100));
 				sessionStorage.setItem('aa', String(aa)); // 数字→字符串
 				sessionStorage.setItem('szsj', String(szsj));
 				sessionStorage.setItem('mqms', JSON.stringify(mqms)); // 对象→JSON字符串
@@ -341,6 +414,7 @@ mqms="快速模式";
 			    szsj = 10000;
 			    mqms = "普通模式";
 			    lscz = true;
+				bb100=false;
 			  } else {
 			    // 安全解析存储的值
 			    try {
@@ -366,6 +440,11 @@ mqms="快速模式";
 				} catch {
 				  xlms = false;
 				}
+				try {
+				    bb100 = JSON.parse(sessionStorage.getItem('bb100'));
+				  } catch {
+				    bb100 = false;
+				  }
 			    // 处理数字类型
 			    const storedAa = sessionStorage.getItem('aa');
 			    aa = storedAa && !isNaN(storedAa) ? Number(storedAa) : 1;
@@ -393,6 +472,18 @@ mqms="快速模式";
 			  // 更新隐藏数据按钮状态
 			  if (lscz) ycg();
 			  else yck();
+			  
+			  
+			  if (!localStorage.getItem('bb100')) {
+			  	bb100=false;
+			  } else {
+			    // 安全解析存储的值
+			    try {
+			      bb100 = JSON.parse(localStorage.getItem('bb100'));
+			    } catch {
+			      hd = false;
+			    }
+				}
 			}
 
 			function jcsj() {
@@ -404,7 +495,10 @@ mqms="快速模式";
 				}
 				
 			}
-			window.onload=st;
+			window.onload = function() {
+			    st();
+			    bbgx();
+			};
 
 			function ks() {
 				var totalMilliseconds = szsj;

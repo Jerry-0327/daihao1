@@ -718,16 +718,18 @@
 				}
 				if (tzms==4){
 					choices2 = ['能量'];
+					if (b1 >= 1 &&Math.random() > (0.5+0.2*(b2-b1))) {
+						choices.push('防御');
+						if (c2 >= 1 &&Math.random() > 0.7) {
+							choices.push('反弹');
+						}
+					}
 					if (b2 >= 1) {
 						
 							if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
 								choices2.push('绷带');
 							}
-							if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
-								choices2.push('能量防');
-							} else if (b1 >= 3 && Math.random() > 0.7) {
-								choices2.push('能量防');
-							}
+							
 					
 							if (b2 >= 2 && jn2[1] === 1) {
 								choices2.push('炸弹');
