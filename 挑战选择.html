@@ -4,55 +4,6 @@
 		<meta charset="utf-8">
 		<title>挑战选择</title>
 		<style>
-		#zy{
-		background: rgba(255,255,255,0.9);
-		border-radius: 10px;
-		padding: 20px;
-		margin: 15px 0;
-		border: 1px solid #eee;
-		}
-		body {
-		    font-family: Arial, sans-serif;
-		    text-align: center;
-		    padding: 20px;
-		}
-		
-		#result {
-		    margin-top: 20px;
-		    font-size: 20px;
-		    color: #3498db;
-		}
-		#shijian {
-		    margin-top: 20px;
-		    font-size: 20px;
-		    color: #3498db;
-		}
-		button {
-		    padding: 10px 20px;
-		    font-size: 16px;
-		    cursor: pointer;
-		}
-		.bu {
-		    padding: 5px 10px;
-		    font-size: 8px;
-		    cursor: pointer;
-		}
-		h4{
-		margin-top:0px;
-		margin-bottom:0px;
-		}
-		.login-btn {
-		    background: linear-gradient(45deg, #00a3ff, #0066ff);
-		    color: white;
-		    width: 100%;
-		    padding: 12px;
-		    border: none;
-		    border-radius: 5px;
-		    font-size: 16px;
-		    cursor: pointer;
-		    transition: opacity 0.3s;
-		}
-		<style>
 			#zy{
 			background: rgba(255,255,255,0.9);
 			border-radius: 10px;
@@ -101,32 +52,63 @@
 			    cursor: pointer;
 			    transition: opacity 0.3s;
 			}
+			div{
+				display: block;
+				border: 1px solid #000000;
+				
+				background-color: #e9e9e9;
+				
+			}
 		</style>
 	</head>
 	<body>
 		<h1>☠️代号一☠️</h1>
 		<h1>基本介绍</h1>
 		<p>在挑战模式下，你会以普通模式的招式或者以特定的招式去迎战，而对手会获得各种强化，你无法使用绷带</p>
-		<h1>血量挑战</h1>
-		<p style="color: red;display: none;" id="t1">已挑战成功</p>
-		<p>在此模式下，你与对方皆是普通模式的招式，但对方3血，你1血</p>
-		<button onclick="tz(1)">开始挑战</button>
-		<h1>能量挑战</h1>
-		<p style="color: red;display: none;" id="t2">已挑战成功</p>
-		<p>在此模式下，你与对方皆是普通模式的招式，但你无法使用反弹，对方开局3能量</p>
-		<button onclick="tz(2)">开始挑战</button>
-		<h1>冷兵器挑战</h1>
-		<p style="color: red;display: none;" id="t3">已挑战成功</p>
-		<p>在此模式下，你只能使用能量，防御，刀，对方能使用能量，反弹，一发，刀</p>
-		<button onclick="tz(3)">开始挑战</button>
-		<h1>爆炸挑战</h1>
-		<p style="color: red;display: none;" id="t4">已挑战成功</p>
-		<p>在此模式下，对方拥有“快速炸弹”、“先天”、“高级能量”，且伤害招式只能使用炸弹，你伤害招式只能使用一发，双方开局三血</p>
-		<button onclick="tz(4)">开始挑战</button>
+		<div>
+			<h1>血量挑战</h1>
+			<p style="color: red;display: none;" id="t1">已挑战成功</p>
+			<p>在此模式下，你与对方皆是普通模式的招式，但对方3血，你1血</p>
+			<button onclick="tz(1)">开始挑战</button>
+			<p></p>
+		</div>
+		<p></p>
+		<div>
+			<h1>能量挑战</h1>
+			<p style="color: red;display: none;" id="t2">已挑战成功</p>
+			<p>在此模式下，你与对方皆是普通模式的招式，但你无法使用反弹，对方开局3能量</p>
+			<button onclick="tz(2)">开始挑战</button>
+			<p></p>
+		</div>
+		<p></p>
+		<div>
+			<h1>冷兵器挑战</h1>
+			<p style="color: red;display: none;" id="t3">已挑战成功</p>
+			<p>在此模式下，你只能使用能量，防御，刀，对方能使用能量，反弹，一发，刀</p>
+			<button onclick="tz(3)">开始挑战</button>
+			<p></p>
+		</div>
+		<p></p>
+		<div id="lbqtz2" style="display: none;">
+			<h1>冷兵器挑战2</h1>
+			<p style="color: red;display: none;" id="t5">已挑战成功</p>
+			<p>在此模式下，你只能使用能量，防御，刀，剑，对方能使用能量，反弹，一发，刀，二发，剑，双方开局两血</p>
+			<button onclick="tz(5)">开始挑战</button>
+			<p></p>
+		</div>
+		<p></p>
+		<div>
+			<h1>爆炸挑战</h1>
+			<p style="color: red;display: none;" id="t4">已挑战成功</p>
+			<p>在此模式下，对方拥有“快速炸弹”、“先天”、“高级能量”，且伤害招式只能使用炸弹，你伤害招式只能使用一发，双方开局三血</p>
+			<button onclick="tz(4)">开始挑战</button>
+			<p></p>
+		</div>
+		
 		<p></p>
 		<button onclick="zy()" class="login-btn">返回主页</button>
 		<script>
-			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0,0];
+			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0,0,0];
 			var tzms=0;
 			if(tzjg[0]==1){
 				document.getElementById("t1").style.display = "block";
@@ -139,6 +121,10 @@
 			}
 			if(tzjg[3]==1){
 				document.getElementById("t4").style.display = "block";
+				document.getElementById("lbqtz2").style.display = "block";
+			}
+			if(tzjg[4]==1){
+				document.getElementById("t5").style.display = "block";
 			}
 			function setItem() {
 				sessionStorage.setItem('tzms', String(tzms));
@@ -151,7 +137,34 @@
 				setItem();
 				window.location.href="挑战模式.html";
 			}
-
+			const pressedKeys = new Set();
+			
+			document.addEventListener('keydown', (event) => {
+			    // 1. 忽略长按导致的重复触发
+			    if (event.repeat) return;
+			
+			    // 2. 记录按下的物理按键（推荐使用 code）
+			    pressedKeys.add(event.code);
+			
+			    // 3. 判断是否同时按下了 T 和 Z
+			    if (pressedKeys.has('KeyT') && pressedKeys.has('KeyZ')) {
+			        // 触发后立即清空，防止按住不放时疯狂弹窗
+			        pressedKeys.clear();
+			        
+			        // 阻止浏览器可能的默认行为（通常 T/Z 没默认行为，但加着无妨）
+			        event.preventDefault();
+			        
+			        // ★ 在这里写下你要执行的业务逻辑 ★
+			        tzjg=[1,1,1,1,1];
+					localStorage.setItem('tzjg', JSON.stringify(tzjg));
+					location.reload();
+			    }
+			});
+			
+			document.addEventListener('keyup', (event) => {
+			    // 手指松开时，从集合中移除该键
+			    pressedKeys.delete(event.code);
+			});
 		</script>
 	</body>
 </html>

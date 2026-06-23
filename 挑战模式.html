@@ -170,7 +170,7 @@
 			var jj8 = document.getElementById('j8');
 			var jj9 = document.getElementById('j9');
 			var czcz = document.getElementById('cz');
-			czcz.disabled=true;
+			//czcz.disabled=true;
 			document.getElementById("cklscz1").style.display = "block";
 			var a1 = 1;
 			var aa1 = 0;
@@ -539,6 +539,9 @@
 				if(tzms==4){
 					ssss(0);
 				}
+				if(tzms==5){
+					ssss(0);
+				}
 			}
 
 			function ssss(jn1) {
@@ -566,7 +569,7 @@
 				}
 				s();
 			}
-			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0];
+			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0,0,0];
 			function sz(){
 				if (tzms==1)
 				{
@@ -628,6 +631,25 @@
 				
 					mqms="爆炸挑战";
 				}
+				if (tzms==5)
+				{
+					a1=2;
+					aaa1=2;
+					a2=2;
+					aaa2=2;
+					b1=0;
+					b2=0;
+					c1=0;
+					c2=1;
+					document.getElementById("h3").style.display = "none";
+					document.getElementById("h4").style.display = "none";
+					document.getElementById("h5").style.display = "none";
+					document.getElementById("h6").style.display = "none";
+					document.getElementById("h8").style.display = "none";
+					document.getElementById("h9").style.display = "none";
+					document.getElementById("h14").style.display = "inline-block";
+					mqms="冷兵器挑战2";
+				}
 				document.getElementById("ttzms").textContent=mqms;
 			}
 			function s() {
@@ -651,73 +673,78 @@
 			}
 
 			function p(f1) {
-				const choices = ['能量'];
-				if (a2 > 0.5 && Math.random() > 0.4 && hd === true) {
-					choices.push('损血回能');
-					if (sxjs2) {
-						choices.push('损血加伤');
+				if(tzms==1 || tzms==2){
+					const choices = ['能量'];
+					if (a2 > 0.5 && Math.random() > 0.4 && hd === true) {
+						choices.push('损血回能');
+						if (sxjs2) {
+							choices.push('损血加伤');
+						}
 					}
+					if (b1 >= 1 &&Math.random() > (0.5+0.2*(b2-b1))) {
+						choices.push('防御');
+						if (c2 >= 1 &&Math.random() > 0.7) {
+							choices.push('反弹');
+						}
+					}
+					if (b2 >= 1 &&Math.random() > 0.2) {
+						choices.push('刀');
+						choices.push('一发');
+						if (ksms === false) {
+							if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
+								choices.push('绷带');
+							}
+							if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
+								choices.push('能量防');
+							} else if (b1 >= 3 && Math.random() > 0.7) {
+								choices.push('能量防');
+							}
+					
+							if (b2 >= 2&&Math.random() > 0.1) {
+								choices.push('二发');
+								if (hd === true) {
+									choices.push('黑洞');
+									choices.push('剑');
+								}
+							}
+							if (b2 >= 2 && jn2[1] === 1) {
+								choices.push('炸弹');
+							}
+							if (b2 >= 3) {
+								choices.push('炸弹');
+								choices.push('三发');
+							}
+							if (b2 >= 4) {
+								if (hd === true) {
+									choices.push('四发');
+								}
+							}
+							if (b2 >= 5) {
+								if (hd === true) {
+									choices.push('火炮');
+								}
+							}
+						}
+					
+					}
+					f2 = choices[Math.floor(Math.random() * choices.length)];
+					
 				}
-				if (b1 >= 1 &&Math.random() > (0.5+0.2*(b2-b1))) {
-					choices.push('防御');
-					if (c2 >= 1 &&Math.random() > 0.7) {
+				
+				if (tzms==3){
+					const choices = ['能量'];
+					if(b1>=1&&c2>=1){
 						choices.push('反弹');
 					}
-				}
-				if (b2 >= 1 &&Math.random() > 0.2) {
-					choices.push('刀');
-					choices.push('一发');
-					if (ksms === false) {
-						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
-							choices.push('绷带');
-						}
-						if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
-							choices.push('能量防');
-						} else if (b1 >= 3 && Math.random() > 0.7) {
-							choices.push('能量防');
-						}
-
-						if (b2 >= 2&&Math.random() > 0.1) {
-							choices.push('二发');
-							if (hd === true) {
-								choices.push('黑洞');
-								choices.push('剑');
-							}
-						}
-						if (b2 >= 2 && jn2[1] === 1) {
-							choices.push('炸弹');
-						}
-						if (b2 >= 3) {
-							choices.push('炸弹');
-							choices.push('三发');
-						}
-						if (b2 >= 4) {
-							if (hd === true) {
-								choices.push('四发');
-							}
-						}
-						if (b2 >= 5) {
-							if (hd === true) {
-								choices.push('火炮');
-							}
-						}
+					if(b2>=1){
+						choices.push('一发');
+						choices.push('刀');
 					}
+				f2 = choices[Math.floor(Math.random() * choices.length)];
 				
 				}
-				f2 = choices[Math.floor(Math.random() * choices.length)];
-				if (tzms==3){
-					choices1 = ['能量'];
-					if(b1>=1&&c2>=1){
-						choices1.push('反弹');
-					}
-					if(b2>=1){
-						choices1.push('一发');
-						choices1.push('刀');
-					}
-				f2 = choices1[Math.floor(Math.random() * choices1.length)];
-				}
 				if (tzms==4){
-					choices2 = ['能量'];
+					const choices = ['能量'];
 					if (b1 >= 1 &&Math.random() > (0.5+0.2*(b2-b1))) {
 						choices.push('防御');
 						if (c2 >= 1 &&Math.random() > 0.7) {
@@ -727,22 +754,38 @@
 					if (b2 >= 1) {
 						
 							if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
-								choices2.push('绷带');
+								choices.push('绷带');
 							}
 							
 					
 							if (b2 >= 2 && jn2[1] === 1) {
-								choices2.push('炸弹');
+								choices.push('炸弹');
 							}
 							if (b2 >= 3) {
-								choices2.push('炸弹');
+								choices.push('炸弹');
 							}
 						
 					
 					}
-				f2 = choices2[Math.floor(Math.random() * choices2.length)];
+				f2 = choices[Math.floor(Math.random() * choices.length)];
+				
 				}
-
+				if (tzms==5){
+					const choices = ['能量'];
+					if(b1>=1&&c2>=1){
+						choices.push('反弹');
+					}
+					if(b2>=1){
+						choices.push('一发');
+						choices.push('刀');
+					}
+					if(b2>=2){
+						choices.push('二发');
+						choices.push('剑');
+					}
+				f2 = choices[Math.floor(Math.random() * choices.length)];
+				
+				}
 				[a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2]=yunsan(a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2,jn3,jn2,f1,f2,aaa1,aaa2,1,"正常模式");
 				f3=f1;
 				

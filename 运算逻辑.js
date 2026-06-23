@@ -506,7 +506,7 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,ys_sxjs1,ys_sxjs2,jn1,jn2,cz
 		fs1+=bz2;
 		q2=0;
 		bz2=0;
-		q2=0;
+		d2=0;
 	}
 	if(cz1=="黑洞"){
 		dx1+=q2;
@@ -545,7 +545,7 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,ys_sxjs1,ys_sxjs2,jn1,jn2,cz
 		fs2+=bz1;
 		q1=0;
 		bz1=0;
-		q1=0;
+		d1=0;
 	}
 	if(cz2=="黑洞"){
 		dx2+=q1;

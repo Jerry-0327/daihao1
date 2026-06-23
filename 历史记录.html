@@ -132,6 +132,15 @@
         #tableContainer tr:nth-child(even) {
             background: #fafcff;
         }
+
+        /* ===== 新增：胜率显示样式 ===== */
+        #shenglv {
+            margin: 6px 0 0 0;
+            font-size: 15px;
+            color: #1a3c6e;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
         /* ===== 新增样式结束 ===== */
     </style>
 </head>
@@ -139,28 +148,19 @@
     <h1>☠️代号一☠️</h1>
 
     <div id="lsjl">
-        <p id="sjjjj" style="display: inline-block; width: 200px;"></p>
-        <button onclick="removeItem()" class="bu">清除</button>
+        <p id="sjjjj" style="display: inline-block; width: 400px;"></p>
+        <!--<button onclick="removeItem()" class="bu">清除</button>-->
 
-        <!-- ===== 新增：筛选控件 ===== -->
+        <!-- ===== 新增：胜率显示（位于统计信息下方） ===== -->
+        <p id="shenglv">当前模式胜率: 0% (0/0)</p>
+
+        <!-- ===== 修改后的筛选区：只保留模式 ===== -->
         <div class="filter-area" id="filterArea">
             <span class="filter-label">模式</span>
             <select id="filterMode">
                 <option value="">全部</option>
             </select>
-
-            <span class="filter-label">结果</span>
-            <select id="filterResult">
-                <option value="">全部</option>
-            </select>
-			<!--
-            <span class="filter-label">时间</span>
-            <input type="text" id="filterTime" placeholder="输入关键词搜索…" />
-
-            <button class="filter-btn" onclick="applyFilter()">筛选</button>
-            <button class="filter-reset-btn" onclick="resetFilter()">重置</button>
             <span class="filter-stats" id="filterStats">共 0 条</span>
-			-->
         </div>
 
         <div id="tableContainer"></div>
@@ -230,71 +230,63 @@
             document.getElementById("filterStats").textContent = "共 " + data.length + " 条";
         }
 
-        // ===== 新增：初始化筛选下拉选项 =====
+        // ===== 新增：初始化模式下拉选项（只保留模式） =====
         function initFilterOptions() {
             var modeSet = new Set();
-            var resultSet = new Set();
-
             allData.forEach(function(item) {
                 if (item.模式) modeSet.add(item.模式);
-                if (item.结果) resultSet.add(item.结果);
             });
 
             var modeSelect = document.getElementById("filterMode");
-            var resultSelect = document.getElementById("filterResult");
-
-            // 保留"全部"选项
             modeSelect.innerHTML = '<option value="">全部</option>';
-            resultSelect.innerHTML = '<option value="">全部</option>';
 
-            // 按字母顺序排序后添加
             var sortedModes = Array.from(modeSet).sort();
-            var sortedResults = Array.from(resultSet).sort();
-
             sortedModes.forEach(function(m) {
                 var opt = document.createElement("option");
                 opt.value = m;
                 opt.textContent = m;
                 modeSelect.appendChild(opt);
             });
-
-            sortedResults.forEach(function(r) {
-                var opt = document.createElement("option");
-                opt.value = r;
-                opt.textContent = r;
-                resultSelect.appendChild(opt);
-            });
         }
 
-        // ===== 新增：应用筛选 =====
-        function applyFilter() {
+        // ===== 新增：计算并更新胜率 =====
+        function updateShenglv(mode) {
+            var data = allData;
+            if (mode !== "") {
+                data = data.filter(function(item) {
+                    return item.模式 === mode;
+                });
+            }
+            var total = data.length;
+            var win = data.filter(function(item) {
+                return item.结果 === "胜";
+            }).length;
+            var rate = total === 0 ? 0 : (win / total * 100);
+            var modeDisplay = mode === "" ? "全部" : mode;
+            document.getElementById("shenglv").textContent =
+                "当前模式胜率: " + rate.toFixed(1) + "% (" + win + "/" + total + ")";
+        }
+
+        // ===== 新增：统一更新显示（筛选 + 表格 + 胜率） =====
+        function updateDisplay() {
             var mode = document.getElementById("filterMode").value;
-            var result = document.getElementById("filterResult").value;
-            var time = document.getElementById("filterTime").value.trim().toLowerCase();
 
+            // 筛选数据
             filteredData = allData.filter(function(item) {
-                var matchMode = mode === "" || item.模式 === mode;
-                var matchResult = result === "" || item.结果 === result;
-                var matchTime = time === "" || (item.时间 && item.时间.toLowerCase().includes(time));
-                return matchMode && matchResult && matchTime;
+                return mode === "" || item.模式 === mode;
             });
 
+            // 渲染表格
             renderTable(filteredData);
-        }
 
-        // ===== 新增：重置筛选 =====
-        function resetFilter() {
-            document.getElementById("filterMode").value = "";
-            document.getElementById("filterResult").value = "";
-            document.getElementById("filterTime").value = "";
-            filteredData = allData.slice(); // 复制所有数据
-            renderTable(filteredData);
+            // 更新胜率
+            updateShenglv(mode);
         }
 
         // ===== 改造后的 cjbg（保持原有统计信息显示，增加筛选初始化） =====
         function cjbg() {
             // 1. 更新统计信息（原有逻辑）
-            document.getElementById("sjjjj").textContent = '总局数' + zong1 + '你赢了' + ying1 + '局重置' + cz1 + '次';
+            document.getElementById("sjjjj").textContent = '总局数' + zong1 + '局,你赢了' + ying1 + '局，共重置' + cz1 + '次';
 
             // 2. 读取数据（原有逻辑）
             allData = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
@@ -305,18 +297,16 @@
             // 4. 默认显示全部数据
             filteredData = allData.slice();
             renderTable(filteredData);
+
+            // 5. 更新胜率
+            updateShenglv("");
         }
 
         // ===== 页面加载时执行 =====
         window.onload = cjbg;
 
-        // ===== 新增：当筛选条件变化时（可选：自动筛选） =====
-        // 如果希望下拉框/输入框变化时自动筛选，可以取消下面注释
-        /*
-        document.getElementById('filterMode').addEventListener('change', applyFilter);
-        document.getElementById('filterResult').addEventListener('change', applyFilter);
-        document.getElementById('filterTime').addEventListener('input', applyFilter);
-        */
+        // ===== 新增：模式下拉框变化时自动更新 =====
+        document.getElementById('filterMode').addEventListener('change', updateDisplay);
     </script>
 </body>
 </html>
