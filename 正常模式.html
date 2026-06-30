@@ -219,10 +219,7 @@
 			var szsj = 10000;
 			var mqms="普通模式";
 			var lscz = true;
-			var hd = false;
-			var ksms = false;
-			var aa = 1;
-			var szsj = 10000;
+
 			
 				try {
 			      hd = JSON.parse(sessionStorage.getItem('hd'));
@@ -494,11 +491,11 @@
 				alert("你的出招：" + lscz1 + "‖对手出招：" + lscz2)
 			}
 			function csh(){
-				if(hd){
+				if(mqms=="额外模式"){
 					ew();
-				}else if(ksms){
+				}else if(mqms=="快速模式"){
 					ksu();
-				}else if(xlms){
+				}else if(mqms=="血量模式"){
 					xl();
 				}else{
 					pt();

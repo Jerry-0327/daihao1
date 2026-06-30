@@ -65,12 +65,17 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,ys_sxjs1,ys_sxjs2,jn1,jn2,cz
 		bz1=0;
 		d1=0;
 		if (jn1[3] === 1) {
-			nl1 = nl1 + 1.5*nlbl;
+			if (cz2!="黑洞"){
+				nl1 = nl1 + 1.5*nlbl;
+			}
 			hn1=1.5*nlbl;
 		}else{
-			nl1 = nl1 + 1*nlbl;
+			if (cz2!="黑洞"){
+				nl1 = nl1 + 1*nlbl;
+			}
 			hn1=1*nlbl;
 		}
+		
 	} else if (cz1 === '防御') {
 		lscz1 += "防御，"
 		lx1 = "防御";
@@ -190,7 +195,9 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,ys_sxjs1,ys_sxjs2,jn1,jn2,cz
 		bz1=0;
 		d1=0;
 		xl1 = xl1 - 0.5;
-		nl1 = nl1 + 2*nlbl;
+		if (cz2!="黑洞"){
+			nl1 = nl1 + 2*nlbl;
+		}
 		hn1=2*nlbl;
 	} else if (cz1 === '损血加伤') {
 		lscz1 += "损血加伤，"
@@ -210,10 +217,14 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,ys_sxjs1,ys_sxjs2,jn1,jn2,cz
 		bz2=0;
 		d2=0;
 		if (jn2[3] === 1) {
-			nl2 = nl2 + 1.5*nlbl;
+			if (cz1!="黑洞"){
+				nl2 = nl2 + 1.5*nlbl;
+			}
 			hn2=1.5*nlbl;
 		}else{
-			nl2 = nl2 + 1*nlbl;
+			if (cz1!="黑洞"){
+				nl2 = nl2 + 1*nlbl;
+			}
 			hn2=1*nlbl;
 		}
 	} else if (cz2 === '防御') {
@@ -335,7 +346,9 @@ function yunsan(xl1,xl2,nl1,nl2,lscz1,lscz2,ft1,ft2,ys_sxjs1,ys_sxjs2,jn1,jn2,cz
 		bz2=0;
 		d2=0;
 		xl2 = xl2 - 0.5;
-		nl2 = nl2 + 2*nlbl;
+		if (cz1!="黑洞"){
+			nl2 = nl2 + 2*nlbl;
+		}
 		hn2=2*nlbl;
 	} else if (cz2 === '损血加伤') {
 		lscz2 += "损血加伤，"
