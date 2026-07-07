@@ -122,6 +122,18 @@
 				document.getElementById("jnjn").style.display = "none";
 				document.getElementById("msms").textContent = '目前模式：能量模式1';
 			}
+			function nlms2(){
+				document.getElementById("h7").style.display = "none";
+				document.getElementById("h10").style.display = "inline-block";
+				document.getElementById("h11").style.display = "inline-block";
+				document.getElementById("h12").style.display = "inline-block";
+				document.getElementById("h13").style.display = "none";
+				document.getElementById("h14").style.display = "none";
+				document.getElementById("h15").style.display = "none";
+				document.getElementById("h16").style.display = "none";
+				document.getElementById("jnjn").style.display = "none";
+				document.getElementById("msms").textContent = '目前模式：能量模式2';
+			}
 			var a1 = 1;
 			var aa1 = 0;
 			var b1 = 0;
@@ -158,12 +170,9 @@
 			var xlms = false;
 			var aa = 999;
 			var szsj = 10000;
-			var mqms="普通模式";
+			var mqms="能量模式1";
 			var lscz = true;
-			var hd = false;
-			var ksms = false;
-			var aa = 999;
-			var szsj = 10000;
+
 			
 				try {
 			      hd = JSON.parse(sessionStorage.getItem('hd'));
@@ -434,6 +443,9 @@
 				if(mqms=="能量模式1"){
 					nlms1();
 				}
+				if(mqms=="能量模式2"){
+					nlms2();
+				}
 			}
 			function ss() {
 				csh();
@@ -519,6 +531,9 @@
 				if(mqms=="能量模式1"){
 					ssss(0);
 				}
+				if(mqms=="能量模式2"){
+					ssss(0);
+				}
 			}
 
 			function ssss(jn1) {
@@ -586,69 +601,143 @@
 			}
 
 			function p(f1) {
-				const choices = ['能量'];
-				if(Math.random() > (0.1+0.02*(b2-b1))){
-					if (b1 >= 1 && Math.random() > (0.7+0.1*(b1-b2))) {
+				if(mqms=="能量模式1"){
+					const choices = ['能量'];
+					
+						if (b1 >= 1 && Math.random() > (0.7+0.1*(b1-b2))) {
+							choices.push('防御');
+							if (c2 >= 1 &&Math.random() > 0.7) {
+								choices.push('反弹');
+							}
+						}
+					
+					if (b2 >= 1 &&Math.random() > 0.8) {
+						choices.push('一发');
+					}
+					if (b1 >= 3 && Math.random() > 0.9) {
+						choices.push('能量防');
+					}
+					if (b2 >= 2&&Math.random() > 0.1) {
+						choices.push('二发');
+					}
+					if (b2 >= 3) {
+						choices.push('炸弹');
+						choices.push('三发');
+					}
+						
+					
+					f2 = choices[Math.floor(Math.random() * choices.length)];
+					if(b2-b1>=4){
+						f2='能量';
+					}
+				}
+				if(mqms=="能量模式2"){
+					const choices = ['能量'];
+					
+					if (b1 >= 1 && Math.random() > (0.4+0.1*(b1-b2))) {
 						choices.push('防御');
 						if (c2 >= 1 &&Math.random() > 0.7) {
 							choices.push('反弹');
 						}
 					}
-				}
-				if (b2 >= 1 &&Math.random() > 0.8) {
-					choices.push('一发');
-				}
-				if (b1 >= 3 && Math.random() > 0.9) {
-					choices.push('能量防');
-				}
-				if (b2 >= 2&&Math.random() > 0.1) {
-					choices.push('二发');
-				}
-				if (b2 >= 3) {
-					choices.push('炸弹');
-					choices.push('三发');
-				}
 					
-				
-				f2 = choices[Math.floor(Math.random() * choices.length)];
-				if(b2-b1>=4){
-					f2='能量';
+					if (b1 >= 3 && Math.random() > 0.9) {
+						choices.push('能量防');
+					}
+					if (b2 >= 2&&Math.random() > 0.3) {
+						choices.push('二发');
+						choices.push('黑洞');
+					}
+					if (b2 >= 3) {
+						choices.push('炸弹');
+						choices.push('三发');
+					}
+					if (b2 >= 4) {
+						choices.push('四发');
+					}
+					if (b2 >= 5) {
+						choices.push('火炮');
+					}
+					
+					f2 = choices[Math.floor(Math.random() * choices.length)];
+					if(b2-b1>=5.5){
+						f2='能量';
+					}
 				}
-				
-				[a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2]=yunsan(a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2,jn3,jn2,f1,f2,1,1,1,"能量模式");
+				if(mqms=="能量模式1"){
+					[a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2]=yunsan(a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2,jn3,jn2,f1,f2,999,999,1,"能量模式");
+				}
+				if(mqms=="能量模式2"){
+					[a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2]=yunsan(a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2,jn3,jn2,f1,f2,999,999,1.5,"能量模式");
+				}
 				f3=f1;
 				g();
 				j();
-				if (b2 >= 5 && b1 < 5) {
-
-					zong++;
-					zong1++;
-					document.getElementById('result').textContent = '你输了';
-let yxjg={模式:mqms,结果:'负',时间:new Date().toLocaleString()};
-lsjlbg.push(yxjg);
-lsjlbg1.push(yxjg); 
-					jz();
-				} else if (b1 >= 5 && b2 < 5) {
-
-					zong++;
-					ying++;
-					zong1++;
-					ying1++;
-					document.getElementById('result').textContent = '你赢了';
-let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
-lsjlbg.push(yxjg);
-lsjlbg1.push(yxjg);
-					jz();
-				} else if (b1 >= 5 && b2 >= 5) {
-
-					zong++;
-					zong1++;
-					document.getElementById('result').textContent = '平局';
-let yxjg={模式:mqms,结果:'平局',时间:new Date().toLocaleString()};
-lsjlbg.push(yxjg);
-lsjlbg1.push(yxjg);
-					jz();
-			}
+				if(mqms=="能量模式1"){
+					if (b2 >= 5 && b1 < 5) {
+					
+										zong++;
+										zong1++;
+										document.getElementById('result').textContent = '你输了';
+					let yxjg={模式:mqms,结果:'负',时间:new Date().toLocaleString()};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg); 
+										jz();
+									} else if (b1 >= 5 && b2 < 5) {
+					
+										zong++;
+										ying++;
+										zong1++;
+										ying1++;
+										document.getElementById('result').textContent = '你赢了';
+					let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
+										jz();
+									} else if (b1 >= 5 && b2 >= 5) {
+					
+										zong++;
+										zong1++;
+										document.getElementById('result').textContent = '平局';
+					let yxjg={模式:mqms,结果:'平局',时间:new Date().toLocaleString()};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
+										jz();
+								}
+				}
+				if(mqms=="能量模式2"){
+					if (b2 >= 7 && b1 < 7) {
+					
+										zong++;
+										zong1++;
+										document.getElementById('result').textContent = '你输了';
+					let yxjg={模式:mqms,结果:'负',时间:new Date().toLocaleString()};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg); 
+										jz();
+									} else if (b1 >= 7 && b2 < 7) {
+					
+										zong++;
+										ying++;
+										zong1++;
+										ying1++;
+										document.getElementById('result').textContent = '你赢了';
+					let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
+										jz();
+									} else if (b1 >= 7 && b2 >= 7) {
+					
+										zong++;
+										zong1++;
+										document.getElementById('result').textContent = '平局';
+					let yxjg={模式:mqms,结果:'平局',时间:new Date().toLocaleString()};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
+										jz();
+								}
+				}
+				
 			}
 			window.onload = ss;
 		</script>

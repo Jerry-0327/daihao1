@@ -67,6 +67,7 @@
 				<button onclick="ksu()" class="bu" id='ms3'>快速模式</button>
 				<button onclick="xl()" class="bu" id='ms4'>血量模式</button>
 				<button onclick="nl1()" class="bu" id='ms5'>能量模式1</button>
+				<button onclick="nl2()" class="bu" id='ms6'>能量模式2</button>
 				 
 				 
 <br>
@@ -79,7 +80,7 @@
 
 <p></p>
 				<input type="number" id="set1" placeholder="设定时间">
-				<button onclick="chec()">确认</button>
+				<button onclick="chec()" id="bsj">确认</button>
 				<p id='jcsj'>基础血量1，基础时间10秒</p>
 				<button onclick="lsjl()">查看历史记录</button>
 				<p></p>
@@ -103,7 +104,7 @@
 	
 		</div>
 <button style="padding: 0px 0px;font-size: 4px;" onclick="hsdwx()">查看作者</button>
-<p class="bb">1.0.0</p>
+<p class="bb">1.1.0</p>
 		<script>
 
 function hsdwx(){
@@ -113,20 +114,20 @@ window.open("https://space.bilibili.com/500196629")
 			const dot = document.getElementById('redDot');
 			function bbgx(){
 				
-				if (!localStorage.getItem('bb100')) {
+				if (!localStorage.getItem('bb110')) {
 				  // 设置默认值
-				  bb100=false
+				  bb110=false
 				} else {
 				  // 安全解析存储的值
 				  try {
-				    bb100 = JSON.parse(localStorage.getItem('bb100'));
+				    bb110 = JSON.parse(localStorage.getItem('bb110'));
 				  } catch {
-				    bb100 = false;
+				    bb110 = false;
 				  }
 				  
 				  }
 				  
-				if(bb100){
+				if(bb110){
 				  			dot.classList.add('hidden');
 				}
 			}
@@ -165,8 +166,8 @@ window.open("https://space.bilibili.com/500196629")
 				
 			}
 			function gx() {
-				bb100=true;
-				localStorage.setItem('bb100', JSON.stringify(bb100));
+				bb110=true;
+				localStorage.setItem('bb110', JSON.stringify(bb110));
 				dot.classList.add('hidden');
 				window.location.href="更新.html";
 			}
@@ -189,11 +190,13 @@ window.open("https://space.bilibili.com/500196629")
 			var bb5 = document.getElementById('ms3');
 			var bb6 = document.getElementById('ms4');
 			var bb7 = document.getElementById('ms5');
+			var bb8 = document.getElementById('ms6');
 			var bb3 = document.getElementById('yc1');
 			var bb4 = document.getElementById('yc2');
 			var bbb1 = document.getElementById('mms1');
 			var bbb2 = document.getElementById('mms2');
 			var bbxl = document.getElementById('bxl');
+			var bbsj = document.getElementById('bsj');
 			bb1.disabled = false;
 			bb2.disabled = true;
 			bb5.disabled = false;
@@ -201,19 +204,26 @@ window.open("https://space.bilibili.com/500196629")
 			bb4.disabled = true;
 			bb6.disabled = false;
 			bb7.disabled = true;
+			bb8.disabled = false;
 			bbxl.disabled = false;
+			bbsj.disabled = false;
 			bbb1.disabled = true;
 			bbb2.disabled = false;
 			bb7.style.display="none";
+			bb8.style.display="none";
 			function ew() {
 				hd = true;
 				ksms = false;
 				xlms=false;
 				bbxl.disabled = false;
+				bbsj.disabled = false;
 				bb1.disabled = true;
 				bb2.disabled = false;
 				bb5.disabled = false;
 				bb6.disabled = false;
+				szsj = 10000;
+				aa=1;
+				jcsj();
 mqms="额外模式";
 			}
 
@@ -222,10 +232,14 @@ mqms="额外模式";
 				ksms = false;
 				xlms=false;
 				bbxl.disabled = false;
+				bbsj.disabled = false;
 				bb1.disabled = false;
 				bb2.disabled = true;
 				bb5.disabled = false;
 				bb6.disabled = false;
+				szsj = 10000;
+				aa=1;
+				jcsj();
 mqms="普通模式";
 			}
 
@@ -234,11 +248,13 @@ mqms="普通模式";
 				ksms = true;
 				xlms=false;
 				bbxl.disabled = true;
+				bbsj.disabled = true;
 				bb1.disabled = false;
 				bb2.disabled = false;
 				bb5.disabled = true;
 				bb6.disabled = false;
 				aa=1;
+				szsj = 5000;
 				jcsj();
 mqms="快速模式";
 			}
@@ -247,11 +263,13 @@ mqms="快速模式";
 							ksms = false;
 							xlms=true;
 							bbxl.disabled = true;
+							bbsj.disabled = false;
 							bb1.disabled = false;
 							bb2.disabled = false;
 							bb5.disabled = false;
 							bb6.disabled = true;
 							aa=2;
+							szsj = 10000;
 							jcsj();
 			mqms="血量模式";
 						}
@@ -259,8 +277,25 @@ mqms="快速模式";
 								hd = false;
 								ksms = false;
 								xlms=false;
+								bbsj.disabled = false;
+								bb7.disabled = true;
+								bb8.disabled = false;
+								aa=1;
+								szsj = 10000;
 								jcsj();
 				mqms="能量模式1";
+			}
+			function nl2() {
+								hd = false;
+								ksms = false;
+								xlms=false;
+								bbsj.disabled = false;
+								bb7.disabled = false;
+								bb8.disabled = true;
+								aa=1;
+								szsj = 10000;
+								jcsj();
+				mqms="能量模式2";
 			}
 			function mms(x){
 				if(x==1){
@@ -268,7 +303,8 @@ mqms="快速模式";
 					bb2.style.display="inline-block";
 					bb5.style.display="inline-block";
 					bb6.style.display="inline-block";
-					bb7.style.display="none"
+					bb7.style.display="none";
+					bb8.style.display="none";
 					bbb1.disabled=true;
 					bbb2.disabled=false;
 					ms=1;
@@ -282,7 +318,8 @@ mqms="快速模式";
 					bb2.style.display="none";
 					bb5.style.display="none";
 					bb6.style.display="none";
-					bb7.style.display="inline-block"
+					bb7.style.display="inline-block";
+					bb8.style.display="inline-block"
 					bbb1.disabled=false;
 					bbb2.disabled=true;
 					ms=2
@@ -350,7 +387,7 @@ mqms="快速模式";
 			function setItem() {
 				sessionStorage.setItem('hd', JSON.stringify(hd)); // 对象→JSON字符串
 				sessionStorage.setItem('ksms', JSON.stringify(ksms));
-				sessionStorage.setItem('bb100', JSON.stringify(bb100));
+				sessionStorage.setItem('bb110', JSON.stringify(bb110));
 				sessionStorage.setItem('aa', String(aa)); // 数字→字符串
 				sessionStorage.setItem('szsj', String(szsj));
 				sessionStorage.setItem('mqms', JSON.stringify(mqms)); // 对象→JSON字符串
@@ -369,7 +406,7 @@ mqms="快速模式";
 			    szsj = 10000;
 			    mqms = "普通模式";
 			    lscz = true;
-				bb100=false;
+				bb110=false;
 			  } else {
 			    // 安全解析存储的值
 			    try {
@@ -396,9 +433,9 @@ mqms="快速模式";
 				  xlms = false;
 				}
 				try {
-				    bb100 = JSON.parse(sessionStorage.getItem('bb100'));
+				    bb110 = JSON.parse(sessionStorage.getItem('bb110'));
 				  } catch {
-				    bb100 = false;
+				    bb110 = false;
 				  }
 			    // 处理数字类型
 			    const storedAa = sessionStorage.getItem('aa');
@@ -429,12 +466,12 @@ mqms="快速模式";
 			  else yck();
 			  
 			  
-			  if (!localStorage.getItem('bb100')) {
-			  	bb100=false;
+			  if (!localStorage.getItem('bb110')) {
+			  	bb110=false;
 			  } else {
 			    // 安全解析存储的值
 			    try {
-			      bb100 = JSON.parse(localStorage.getItem('bb100'));
+			      bb110 = JSON.parse(localStorage.getItem('bb110'));
 			    } catch {
 			      hd = false;
 			    }
