@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>代号一挑战模式</title>
-		<link rel="stylesheet" href="样式.css"/>
+		<link rel="stylesheet" href="样式.css" />
 	</head>
 	<body>
 
@@ -14,6 +14,7 @@
 
 				<p id='msms'></p>
 				<h2 id="ttzms"></h2>
+				<p id="mqhh"></p>
 				<p>请选择：</p>
 				<h4>经济招式</h4>
 				<button onclick="p('能量')" id="h1" style="disabled:true;">能量</button>
@@ -71,7 +72,6 @@
 		</div>
 		<script src="运算逻辑.js"></script>
 		<script>
-			
 			document.getElementById("h10").style.display = "none";
 			document.getElementById("h11").style.display = "none";
 			document.getElementById("h12").style.display = "none";
@@ -90,8 +90,9 @@
 			document.getElementById("j7").style.display = "none";
 			document.getElementById("j8").style.display = "none";
 			document.getElementById("j9").style.display = "none";
-			function zy(){
-				window.location.href="挑战选择.html";
+
+			function zy() {
+				window.location.href = "挑战选择.html";
 			}
 			var t1 = document.getElementById('h1');
 			var t2 = document.getElementById('h2');
@@ -124,18 +125,19 @@
 			document.getElementById("cklscz1").style.display = "block";
 			var a1 = 1;
 			var aa1 = 0;
-			var aaa1=0;
+			var aaa1 = 0;
 			var b1 = 0;
 			var c1 = 1;
 			var d1 = 0;
 			var e1 = 0;
 			var a2 = 1;
 			var aa2 = 0;
-			var aaa2=0;
+			var aaa2 = 0;
 			var b2 = 0;
 			var c2 = 1;
 			var d2 = 0;
 			var e2 = 0;
+			var hh = 1;
 			var f1 = '';
 			var f2 = '';
 			var f3 = '';
@@ -143,7 +145,7 @@
 			var ying = 0;
 			var zong1 = Number(localStorage.getItem('zong1'));
 			var ying1 = Number(localStorage.getItem('ying1'));
-			var cz1 = Number(localStorage.getItem('cz1')) ;
+			var cz1 = Number(localStorage.getItem('cz1'));
 			var cz = 0;
 			var jn1 = 0;
 			var jn2 = new Array(10).fill(0);
@@ -153,8 +155,8 @@
 			var lsjlbg = [];
 			var sxjs1 = true;
 			var sxjs2 = true;
-			var lsjlbg=[];
-			var lsjlbg1=JSON.parse(localStorage.getItem('lsjlbg1')) || [];
+			var lsjlbg = [];
+			var lsjlbg1 = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
 			var hd = false;
 			var ksms = false;
 			var aa = 1;
@@ -164,18 +166,18 @@
 			var ksms = false;
 			var aa = 1;
 			var tzms = Number(localStorage.getItem('tzms'));
-			var mqms ="";
-			   // 处理数字类型
-			    const storedAa = sessionStorage.getItem('aa');
-			    aa = storedAa && !isNaN(storedAa) ? Number(storedAa) : 1;
-				const storedtzms = sessionStorage.getItem('tzms');
-				tzms = storedtzms && !isNaN(storedtzms) ? Number(storedtzms) : 1;
-			    
-			    const storedSzsj = sessionStorage.getItem('szsj');
-			    szsj = storedSzsj && !isNaN(storedSzsj) ? Number(storedSzsj) : 30000;
-				
-			
-			 
+			var mqms = "";
+			// 处理数字类型
+			const storedAa = sessionStorage.getItem('aa');
+			aa = storedAa && !isNaN(storedAa) ? Number(storedAa) : 1;
+			const storedtzms = sessionStorage.getItem('tzms');
+			tzms = storedtzms && !isNaN(storedtzms) ? Number(storedtzms) : 1;
+
+			const storedSzsj = sessionStorage.getItem('szsj');
+			szsj = storedSzsj && !isNaN(storedSzsj) ? Number(storedSzsj) : 30000;
+
+
+
 
 			function millisecondsToSeconds(milliseconds) {
 				return milliseconds / 1000;
@@ -197,7 +199,7 @@
 				zong1 = zong;
 				ying1 = ying;
 				cz1 = cz;
-				lsjlbg1=lsjlbg;
+				lsjlbg1 = lsjlbg;
 			}
 
 
@@ -327,6 +329,7 @@
 				timer.reset();
 				timer.reset();
 				//document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+				document.getElementById("mqhh").textContent = '当前是第' + hh + "回合";
 				document.getElementById("cklscz1").style.display = "block";
 				setItem();
 			}
@@ -399,14 +402,17 @@
 			}
 
 			function j() {
-				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' +aaa2 + ',你能' + b1 + ',敌能' + b2;
+				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' + aaa2 + ',你能' + b1 +
+					',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
+				document.getElementById("mqhh").textContent = '当前是第' + hh + "回合";
 				jnxs();
 				//document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
-				
+
 				timer.reset();
 				timer.start();
 			}
+
 			function cklscz() {
 				alert("你的出招：" + lscz1 + "‖对手出招：" + lscz2)
 			}
@@ -427,6 +433,7 @@
 				jn3 = new Array(10).fill(0);
 				sxjs1 = true;
 				sxjs2 = true;
+				hh = 1;
 				g();
 				j();
 				document.getElementById("result").textContent = '';
@@ -435,8 +442,10 @@
 				cz++;
 				cz1++;
 				setItem()
-				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' +aaa2 + ',你能' + b1 + ',敌能' + b2;
+				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' + aaa2 + ',你能' + b1 +
+					',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
+				document.getElementById("mqhh").textContent = '当前是第' + hh + "回合";
 				jnxs();
 				//document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
 				timer.reset();
@@ -477,21 +486,7 @@
 				jj7.disabled = false;
 				jj8.disabled = false;
 				jj9.disabled = false;
-				if(tzms==1){
-					ssss(0);
-				}
-				if(tzms==2){
-					ssss(0);
-				}
-				if(tzms==3){
-					ssss(0);
-				}
-				if(tzms==4){
-					ssss(0);
-				}
-				if(tzms==5){
-					ssss(0);
-				}
+				ssss(0);
 			}
 
 			function ssss(jn1) {
@@ -511,86 +506,82 @@
 				} else {
 					jn2[Math.floor(Math.random() * 9) + 1] = 1;
 				}
-				if(tzms==4){
-					jn2[0]=0;
-					jn2[1]=1;
-					jn2[2]=1;
-					jn2[3]=1;
+				if (tzms == 4) {
+					jn2[0] = 0;
+					jn2[1] = 1;
+					jn2[2] = 1;
+					jn2[3] = 1;
 				}
 				s();
 			}
-			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0,0,0];
-			function sz(){
-				if (tzms==1)
-				{
-					a1=1;
-					aaa1=1;
-					a2=3;
-					aaa2=3;
-					b1=0;
-					b2=0;
-					c1=1;
-					c2=1;
-					mqms="血量挑战";
-					
+			var tzjg = JSON.parse(localStorage.getItem('tzjg')) || [0, 0, 0, 0, 0, 0, 0];
+
+			function sz() {
+				if (tzms == 1) {
+					a1 = 1;
+					aaa1 = 1;
+					a2 = 3;
+					aaa2 = 3;
+					b1 = 0;
+					b2 = 0;
+					c1 = 1;
+					c2 = 1;
+					mqms = "血量挑战";
+
 				}
-				if (tzms==2)
-				{
-					a1=1;
-					aaa1=1;
-					a2=1;
-					aaa2=1;
-					b1=0;
-					b2=3;
-					c1=0;
-					c2=1;
-					mqms="能量挑战";
+				if (tzms == 2) {
+					a1 = 1;
+					aaa1 = 1;
+					a2 = 1;
+					aaa2 = 1;
+					b1 = 0;
+					b2 = 3;
+					c1 = 0;
+					c2 = 1;
+					mqms = "能量挑战";
 				}
-				if (tzms==3)
-				{
-					a1=1;
-					aaa1=1;
-					a2=1;
-					aaa2=1;
-					b1=0;
-					b2=0;
-					c1=0;
-					c2=1;
+				if (tzms == 3) {
+					a1 = 1;
+					aaa1 = 1;
+					a2 = 1;
+					aaa2 = 1;
+					b1 = 0;
+					b2 = 0;
+					c1 = 0;
+					c2 = 1;
 					document.getElementById("h3").style.display = "none";
 					document.getElementById("h4").style.display = "none";
 					document.getElementById("h5").style.display = "none";
 					document.getElementById("h6").style.display = "none";
 					document.getElementById("h8").style.display = "none";
 					document.getElementById("h9").style.display = "none";
-					mqms="冷兵器挑战";
+					mqms = "冷兵器挑战";
 				}
-				if (tzms==4)
-				{
-					a1=3;
-					aaa1=3;
-					a2=3;
-					aaa2=3;
-					b1=0;
-					b2=1;
-					c1=1;
-					c2=1;
+				if (tzms == 4) {
+					a1 = 3;
+					aaa1 = 3;
+					a2 = 3;
+					aaa2 = 3;
+					b1 = 0;
+					b2 = 1;
+					c1 = 1;
+					c2 = 1;
 					document.getElementById("h4").style.display = "none";
 					document.getElementById("h5").style.display = "none";
 					document.getElementById("h6").style.display = "none";
 					document.getElementById("h7").style.display = "none";
-				
-					mqms="爆炸挑战";
+
+					mqms = "爆炸挑战";
 				}
-				if (tzms==5)
-				{
-					a1=2;
-					aaa1=2;
-					a2=2;
-					aaa2=2;
-					b1=0;
-					b2=0;
-					c1=0;
-					c2=1;
+				if (tzms == 5) {
+					a1 = 2;
+					aaa1 = 2;
+					a2 = 2;
+					aaa2 = 2;
+					b1 = 0;
+					b2 = 0;
+					c1 = 0;
+					c2 = 1;
 					document.getElementById("h3").style.display = "none";
 					document.getElementById("h4").style.display = "none";
 					document.getElementById("h5").style.display = "none";
@@ -598,10 +589,36 @@
 					document.getElementById("h8").style.display = "none";
 					document.getElementById("h9").style.display = "none";
 					document.getElementById("h14").style.display = "inline-block";
-					mqms="冷兵器挑战2";
+					mqms = "冷兵器挑战2";
 				}
-				document.getElementById("ttzms").textContent=mqms;
+				if (tzms == 6) {
+					a1 = 3;
+					aaa1 = 3;
+					a2 = 3;
+					aaa2 = 3;
+					b1 = 0;
+					b2 = 0;
+					c1 = 0;
+					c2 = 1;
+					mqms = "血量挑战";
+					document.getElementById("h1").style.display = "none";
+					document.getElementById("h15").style.display = "inline-block";
+				}
+				if (tzms == 7) {
+					a1 = 1;
+					aaa1 = 1;
+					a2 = 999;
+					aaa2 = 999;
+					b1 = 0;
+					b2 = 0;
+					c1 = 0;
+					c2 = 1;
+					mqms = "回合挑战";
+
+				}
+				document.getElementById("ttzms").textContent = mqms;
 			}
+
 			function s() {
 				d1 = 0;
 				e1 = 0;
@@ -614,6 +631,7 @@
 				jn1 = 0;
 				sxjs1 = true;
 				sxjs2 = true;
+				hh = 1;
 				sz();
 				g();
 				j();
@@ -623,7 +641,7 @@
 			}
 
 			function p(f1) {
-				if(tzms==1 || tzms==2){
+				if (tzms == 1 || tzms == 2 || tzms == 6 || tzms == 7) {
 					const choices = ['能量'];
 					if (a2 > 0.5 && Math.random() > 0.4 && hd === true) {
 						choices.push('损血回能');
@@ -631,13 +649,13 @@
 							choices.push('损血加伤');
 						}
 					}
-					if (b1 >= 1 &&Math.random() > (0.5+0.2*(b2-b1))) {
+					if (b1 >= 1 && Math.random() > (0.5 + 0.2 * (b2 - b1))) {
 						choices.push('防御');
-						if (c2 >= 1 &&Math.random() > 0.7) {
+						if (c2 >= 1 && Math.random() > 0.7) {
 							choices.push('反弹');
 						}
 					}
-					if (b2 >= 1 &&Math.random() > 0.2) {
+					if (b2 >= 1 && Math.random() > 0.2) {
 						choices.push('刀');
 						choices.push('一发');
 						if (ksms === false) {
@@ -649,8 +667,8 @@
 							} else if (b1 >= 3 && Math.random() > 0.7) {
 								choices.push('能量防');
 							}
-					
-							if (b2 >= 2&&Math.random() > 0.1) {
+
+							if (b2 >= 2 && Math.random() > 0.1) {
 								choices.push('二发');
 								if (hd === true) {
 									choices.push('黑洞');
@@ -675,104 +693,133 @@
 								}
 							}
 						}
-					
+
 					}
 					f2 = choices[Math.floor(Math.random() * choices.length)];
-					
+
 				}
-				
-				if (tzms==3){
+
+				if (tzms == 3) {
 					const choices = ['能量'];
-					if(b1>=1&&c2>=1){
+					if (b1 >= 1 && c2 >= 1) {
 						choices.push('反弹');
 					}
-					if(b2>=1){
+					if (b2 >= 1) {
 						choices.push('一发');
 						choices.push('刀');
 					}
-				f2 = choices[Math.floor(Math.random() * choices.length)];
-				
+					f2 = choices[Math.floor(Math.random() * choices.length)];
+
 				}
-				if (tzms==4){
+				if (tzms == 4) {
 					const choices = ['能量'];
-					if (b1 >= 1 &&Math.random() > (0.5+0.2*(b2-b1))) {
+					if (b1 >= 1 && Math.random() > (0.5 + 0.2 * (b2 - b1))) {
 						choices.push('防御');
-						if (c2 >= 1 &&Math.random() > 0.7) {
+						if (c2 >= 1 && Math.random() > 0.7) {
 							choices.push('反弹');
 						}
 					}
 					if (b2 >= 1) {
-						
-							if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
-								choices.push('绷带');
-							}
-							
-					
-							if (b2 >= 2 && jn2[1] === 1) {
-								choices.push('炸弹');
-							}
-							if (b2 >= 3) {
-								choices.push('炸弹');
-							}
-						
-					
+
+						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0)) {
+							choices.push('绷带');
+						}
+
+
+						if (b2 >= 2 && jn2[1] === 1) {
+							choices.push('炸弹');
+						}
+						if (b2 >= 3) {
+							choices.push('炸弹');
+						}
+
+
 					}
-				f2 = choices[Math.floor(Math.random() * choices.length)];
-				
+					f2 = choices[Math.floor(Math.random() * choices.length)];
+
 				}
-				if (tzms==5){
+				if (tzms == 5) {
 					const choices = ['能量'];
-					if(b1>=1&&c2>=1){
+					if (b1 >= 1 && c2 >= 1) {
 						choices.push('反弹');
 					}
-					if(b2>=1){
+					if (b2 >= 1) {
 						choices.push('一发');
 						choices.push('刀');
 					}
-					if(b2>=2){
+					if (b2 >= 2) {
 						choices.push('二发');
 						choices.push('剑');
 					}
-				f2 = choices[Math.floor(Math.random() * choices.length)];
-				
+					f2 = choices[Math.floor(Math.random() * choices.length)];
+
 				}
-				[a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2]=yunsan(a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2,jn3,jn2,f1,f2,aaa1,aaa2,1,"正常模式");
-				f3=f1;
-				
+				[a1, a2, b1, b2, lscz1, lscz2, c1, c2, sxjs1, sxjs2] = yunsan(a1, a2, b1, b2, lscz1, lscz2, c1, c2, sxjs1, sxjs2,
+					jn3, jn2, f1, f2, aaa1, aaa2, 1, "正常模式");
+				f3 = f1;
+				hh = hh + 1;
 				g();
 				j();
-				if (a1 <= 0 && a2>0) {
-				
-									zong++;
-									zong1++;
-									document.getElementById('result').textContent = '你输了';
-				let yxjg={模式:mqms,结果:'负',时间:new Date().toLocaleString()};
-				lsjlbg.push(yxjg);
-				lsjlbg1.push(yxjg);
-									jz();
-								} else if (a2 <= 0 && a1 > 0) {
-				
-									zong++;
-									ying++;
-									zong1++;
-									ying1++;
-									tzjg[tzms-1]=1;
-									localStorage.setItem('tzjg', JSON.stringify(tzjg));
-									document.getElementById('result').textContent = '你赢了';
-				let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
-				lsjlbg.push(yxjg);
-				lsjlbg1.push(yxjg);
-									jz();
-								}else if (a2 <= 0 && a1 <= 0) {
-				
-									zong++;
-									zong1++;
-									document.getElementById('result').textContent = '平局';
-				let yxjg={模式:mqms,结果:'平局',时间:new Date().toLocaleString()};
-				lsjlbg.push(yxjg);
-				lsjlbg1.push(yxjg);
-									jz();
-								}
+				if (a1 <= 0 && a2 > 0) {
+
+					zong++;
+					zong1++;
+					document.getElementById('result').textContent = '你输了';
+					let yxjg = {
+						模式: mqms,
+						结果: '负',
+						时间: new Date().toLocaleString()
+					};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
+					jz();
+				} else if (a2 <= 0 && a1 > 0) {
+
+					zong++;
+					ying++;
+					zong1++;
+					ying1++;
+					tzjg[tzms - 1] = 1;
+					localStorage.setItem('tzjg', JSON.stringify(tzjg));
+					document.getElementById('result').textContent = '你赢了';
+					let yxjg = {
+						模式: mqms,
+						结果: '胜',
+						时间: new Date().toLocaleString()
+					};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
+					jz();
+				} else if (a2 <= 0 && a1 <= 0) {
+
+					zong++;
+					zong1++;
+					document.getElementById('result').textContent = '平局';
+					let yxjg = {
+						模式: mqms,
+						结果: '平局',
+						时间: new Date().toLocaleString()
+					};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
+					jz();
+				} else if (hh >= 15 && tzms == 7) {
+					zong++;
+					ying++;
+					zong1++;
+					ying1++;
+					tzjg[tzms - 1] = 1;
+					localStorage.setItem('tzjg', JSON.stringify(tzjg));
+					document.getElementById('result').textContent = '你赢了';
+					let yxjg = {
+						模式: mqms,
+						结果: '胜',
+						时间: new Date().toLocaleString()
+					};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
+					jz();
+				}
 			}
 			window.onload = ss;
 		</script>

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>代号一</title>
-		<link rel="stylesheet" href="样式.css"/>
+		<link rel="stylesheet" href="样式.css" />
 	</head>
 	<body>
 
@@ -13,6 +13,7 @@
 			<div id='yx'>
 
 				<p id='msms'></p>
+				<p id='mqhh'></p>
 				<p>请选择：</p>
 				<h4>经济招式</h4>
 				<button onclick="p('能量')" id="h1" style="disabled:true;">能量</button>
@@ -70,7 +71,6 @@
 		</div>
 		<script src="运算逻辑.js"></script>
 		<script>
-
 			document.getElementById("h10").style.display = "none";
 			document.getElementById("h11").style.display = "none";
 			document.getElementById("h12").style.display = "none";
@@ -79,8 +79,9 @@
 			document.getElementById("h16").style.display = "none";
 			document.getElementById("content").style.display = "block";
 			document.getElementById("yx").style.display = "block";
-			function zy(){
-				window.location.href="主页.html";
+
+			function zy() {
+				window.location.href = "主页.html";
 			}
 			var t1 = document.getElementById('h1');
 			var t2 = document.getElementById('h2');
@@ -108,7 +109,9 @@
 			var jj7 = document.getElementById('j7');
 			var jj8 = document.getElementById('j8');
 			var jj9 = document.getElementById('j9');
+
 			document.getElementById("cklscz1").style.display = "block";
+
 			function ew() {
 				document.getElementById("h4").style.display = "inline-block";
 				document.getElementById("h5").style.display = "inline-block";
@@ -117,9 +120,9 @@
 				document.getElementById("h10").style.display = "inline-block";
 				document.getElementById("h11").style.display = "inline-block";
 				document.getElementById("h12").style.display = "inline-block";
-				if(aa>=3){
+				if (aa >= 3) {
 					document.getElementById("h13").style.display = "inline-block";
-				}else{
+				} else {
 					document.getElementById("h13").style.display = "none";
 				}
 				document.getElementById("h14").style.display = "inline-block";
@@ -134,9 +137,9 @@
 				document.getElementById("h5").style.display = "inline-block";
 				document.getElementById("h6").style.display = "inline-block";
 				document.getElementById("h8").style.display = "inline-block";
-				if(aa>=3){
+				if (aa >= 3) {
 					document.getElementById("h13").style.display = "inline-block";
-				}else{
+				} else {
 					document.getElementById("h13").style.display = "none";
 				}
 				document.getElementById("h10").style.display = "none";
@@ -164,12 +167,13 @@
 				document.getElementById("jnjn").style.display = "none";
 				document.getElementById("msms").textContent = '目前模式：快速模式';
 			}
+
 			function xl() {
 				document.getElementById("h4").style.display = "none";
 				document.getElementById("h5").style.display = "none";
 				document.getElementById("h6").style.display = "none";
 				document.getElementById("h8").style.display = "none";
-				
+
 				document.getElementById("h10").style.display = "none";
 				document.getElementById("h11").style.display = "none";
 				document.getElementById("h12").style.display = "none";
@@ -181,14 +185,14 @@
 			}
 			var a1 = 1;
 			var aa1 = 0;
-			var aaa1=0;
+			var aaa1 = 0;
 			var b1 = 0;
 			var c1 = 1;
 			var d1 = 0;
 			var e1 = 0;
 			var a2 = 1;
 			var aa2 = 0;
-			var aaa2=0;
+			var aaa2 = 0;
 			var b2 = 0;
 			var c2 = 1;
 			var d2 = 0;
@@ -200,7 +204,7 @@
 			var ying = 0;
 			var zong1 = Number(localStorage.getItem('zong1'));
 			var ying1 = Number(localStorage.getItem('ying1'));
-			var cz1 = Number(localStorage.getItem('cz1')) ;
+			var cz1 = Number(localStorage.getItem('cz1'));
 			var cz = 0;
 			var jn1 = 0;
 			var jn2 = new Array(10).fill(0);
@@ -210,53 +214,53 @@
 			var lsjlbg = [];
 			var sxjs1 = true;
 			var sxjs2 = true;
-			var lsjlbg=[];
-			var lsjlbg1=JSON.parse(localStorage.getItem('lsjlbg1')) || [];
+			var lsjlbg = [];
+			var lsjlbg1 = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
 			var hd = false;
 			var ksms = false;
 			var xlms = false;
 			var aa = 1;
 			var szsj = 10000;
-			var mqms="普通模式";
+			var mqms = "普通模式";
 			var lscz = true;
+			var hh = 1;
 
-			
-				try {
-			      hd = JSON.parse(sessionStorage.getItem('hd'));
-			    } catch {
-			      hd = false;
-			    }
-			    
-			    try {
-			      ksms = JSON.parse(sessionStorage.getItem('ksms'));
-			    } catch {
-			      ksms = false;
-			    }
-			    try {
-			      xlms = JSON.parse(sessionStorage.getItem('xlms'));
-			    } catch {
-			      xlms = false;
-			    }
-				
-			    try {
-			      lscz = JSON.parse(sessionStorage.getItem('lscz'));
-			    } catch {
-			      lscz = true;
-			    }
-			    
-			    // 处理数字类型
-			    const storedAa = sessionStorage.getItem('aa');
-			    aa = storedAa && !isNaN(storedAa) ? Number(storedAa) : 1;
-			    
-			    const storedSzsj = sessionStorage.getItem('szsj');
-			    szsj = storedSzsj && !isNaN(storedSzsj) ? Number(storedSzsj) : 10000;
-			    
-			    // 处理字符串类型
-			    try {
-			      mqms = JSON.parse(sessionStorage.getItem('mqms'));
-			    } catch {
-			      mqms = "普通模式";
-			    }
+			try {
+				hd = JSON.parse(sessionStorage.getItem('hd'));
+			} catch {
+				hd = false;
+			}
+
+			try {
+				ksms = JSON.parse(sessionStorage.getItem('ksms'));
+			} catch {
+				ksms = false;
+			}
+			try {
+				xlms = JSON.parse(sessionStorage.getItem('xlms'));
+			} catch {
+				xlms = false;
+			}
+
+			try {
+				lscz = JSON.parse(sessionStorage.getItem('lscz'));
+			} catch {
+				lscz = true;
+			}
+
+			// 处理数字类型
+			const storedAa = sessionStorage.getItem('aa');
+			aa = storedAa && !isNaN(storedAa) ? Number(storedAa) : 1;
+
+			const storedSzsj = sessionStorage.getItem('szsj');
+			szsj = storedSzsj && !isNaN(storedSzsj) ? Number(storedSzsj) : 10000;
+
+			// 处理字符串类型
+			try {
+				mqms = JSON.parse(sessionStorage.getItem('mqms'));
+			} catch {
+				mqms = "普通模式";
+			}
 
 			function millisecondsToSeconds(milliseconds) {
 				return milliseconds / 1000;
@@ -277,7 +281,7 @@
 				zong1 = zong;
 				ying1 = ying;
 				cz1 = cz;
-				lsjlbg1=lsjlbg;
+				lsjlbg1 = lsjlbg;
 			}
 
 
@@ -407,6 +411,7 @@
 				timer.reset();
 				timer.reset();
 				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+
 				document.getElementById("cklscz1").style.display = "block";
 				setItem();
 			}
@@ -479,28 +484,32 @@
 			}
 
 			function j() {
-				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' +aaa2 + ',你能' + b1 + ',敌能' + b2;
+				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' + aaa2 + ',你能' + b1 +
+					',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
 				jnxs();
 				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
-				
+				document.getElementById("mqhh").textContent = '当前是第' + hh + "回合";
 				timer.reset();
 				timer.start();
 			}
+
 			function cklscz() {
 				alert("你的出招：" + lscz1 + "‖对手出招：" + lscz2)
 			}
-			function csh(){
-				if(mqms=="额外模式"){
+
+			function csh() {
+				if (mqms == "额外模式") {
 					ew();
-				}else if(mqms=="快速模式"){
+				} else if (mqms == "快速模式") {
 					ksu();
-				}else if(mqms=="血量模式"){
+				} else if (mqms == "血量模式") {
 					xl();
-				}else{
+				} else {
 					pt();
 				}
 			}
+
 			function ss() {
 				csh();
 				var lsjlbg = [];
@@ -510,8 +519,8 @@
 				d1 = 0;
 				e1 = 0;
 				a2 = aa;
-				aaa1=aa;
-				aaa2=aa;
+				aaa1 = aa;
+				aaa2 = aa;
 				b2 = 0;
 				c2 = 1;
 				d2 = 0;
@@ -520,6 +529,7 @@
 				f3 = '';
 				lscz1 = "";
 				lscz2 = "";
+				hh = 1;
 				jn1 = 0;
 				jn2 = new Array(10).fill(0);
 				jn3 = new Array(10).fill(0);
@@ -533,10 +543,12 @@
 				cz++;
 				cz1++;
 				setItem()
-				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' +aaa2 + ',你能' + b1 + ',敌能' + b2;
+				document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' + aaa2 + ',你能' + b1 +
+					',敌能' + b2;
 				document.getElementById("sj1").textContent = '你的出招:' + f3 + ',对方出招:' + f2;
 				jnxs();
 				document.getElementById("sjj").textContent = '本次局数' + zong + '你赢了' + ying + '局重置' + cz + '次';
+				document.getElementById("mqhh").textContent = '当前是第' + hh + "回合";
 				timer.reset();
 				t1.disabled = true;
 				t2.disabled = true;
@@ -631,6 +643,7 @@
 				lscz1 = "";
 				lscz2 = "";
 				jn1 = 0;
+				hh = 1;
 				sxjs1 = true;
 				sxjs2 = true;
 				if (jn3[2] === 1) {
@@ -668,17 +681,17 @@
 						choices.push('损血加伤');
 					}
 				}
-				if (b1 >= 1 &&Math.random() > (0.5+0.2*(b2-b1))) {
+				if (b1 >= 1 && Math.random() > (0.5 + 0.2 * (b2 - b1))) {
 					choices.push('防御');
-					if (c2 >= 1 &&Math.random() > 0.7) {
+					if (c2 >= 1 && Math.random() > 0.7) {
 						choices.push('反弹');
 					}
 				}
-				if (b2 >= 1 &&Math.random() > 0.2) {
+				if (b2 >= 1 && Math.random() > 0.2) {
 					choices.push('刀');
 					choices.push('一发');
 					if (ksms === false) {
-						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0) && aa>=3) {
+						if (a2 < aa && (jn2[4] == 0 && jn2[6] == 0) && aa >= 3) {
 							choices.push('绷带');
 						}
 						if (b1 >= 2 && jn3[1] === 1 && Math.random() > 0.7) {
@@ -687,7 +700,7 @@
 							choices.push('能量防');
 						}
 
-						if (b2 >= 2&&Math.random() > 0.1) {
+						if (b2 >= 2 && Math.random() > 0.1) {
 							choices.push('二发');
 							if (hd === true) {
 								choices.push('黑洞');
@@ -714,7 +727,7 @@
 					}
 				}
 				f2 = choices[Math.floor(Math.random() * choices.length)];
-				if(xlms){
+				if (xlms) {
 					const choices = ['能量'];
 					if (a2 > 0.5 && Math.random() > 0.5) {
 						choices.push('损血回能');
@@ -724,7 +737,7 @@
 					}
 					if (b1 >= 1) {
 						choices.push('防御');
-						if (c2 >= 1 &&Math.random() > 0.7) {
+						if (c2 >= 1 && Math.random() > 0.7) {
 							choices.push('反弹');
 						}
 					}
@@ -737,8 +750,10 @@
 					}
 					f2 = choices[Math.floor(Math.random() * choices.length)];
 				}
-				[a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2]=yunsan(a1,a2,b1,b2,lscz1,lscz2,c1,c2,sxjs1,sxjs2,jn3,jn2,f1,f2,aaa1,aaa2,1,"正常模式");
-				f3=f1;
+				[a1, a2, b1, b2, lscz1, lscz2, c1, c2, sxjs1, sxjs2] = yunsan(a1, a2, b1, b2, lscz1, lscz2, c1, c2, sxjs1, sxjs2,
+					jn3, jn2, f1, f2, aaa1, aaa2, 1, "正常模式");
+				f3 = f1;
+				hh = hh + 1;
 				g();
 				j();
 				if (a2 <= 0 && a1 > 0) {
@@ -748,27 +763,39 @@
 					zong1++;
 					ying1++;
 					document.getElementById('result').textContent = '你赢了';
-let yxjg={模式:mqms,结果:'胜',时间:new Date().toLocaleString()};
-lsjlbg.push(yxjg);
-lsjlbg1.push(yxjg);
+					let yxjg = {
+						模式: mqms,
+						结果: '胜',
+						时间: new Date().toLocaleString()
+					};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
 					jz();
 				} else if (a1 <= 0 && a2 > 0) {
 
 					zong++;
 					zong1++;
 					document.getElementById('result').textContent = '你输了';
-let yxjg={模式:mqms,结果:'负',时间:new Date().toLocaleString()};
-lsjlbg.push(yxjg);
-lsjlbg1.push(yxjg);
+					let yxjg = {
+						模式: mqms,
+						结果: '负',
+						时间: new Date().toLocaleString()
+					};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
 					jz();
 				} else if (a2 <= 0 && a1 <= 0) {
 
 					zong++;
 					zong1++;
 					document.getElementById('result').textContent = '平局';
-let yxjg={模式:mqms,结果:'平局',时间:new Date().toLocaleString()};
-lsjlbg.push(yxjg);
-lsjlbg1.push(yxjg);
+					let yxjg = {
+						模式: mqms,
+						结果: '平局',
+						时间: new Date().toLocaleString()
+					};
+					lsjlbg.push(yxjg);
+					lsjlbg1.push(yxjg);
 					jz();
 				}
 			}

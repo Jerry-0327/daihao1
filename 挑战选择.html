@@ -3,15 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title>挑战选择</title>
-		<link rel="stylesheet" href="样式.css"/>
+		<link rel="stylesheet" href="样式.css" />
 		<style>
-
-			div{
+			div {
 				display: block;
 				border: 1px solid #000000;
-				
+
 				background-color: #e9e9e9;
-				
+
 			}
 		</style>
 	</head>
@@ -58,67 +57,91 @@
 			<button onclick="tz(4)">开始挑战</button>
 			<p></p>
 		</div>
-		
+		<p></p>
+		<div>
+			<h1>血量挑战</h1>
+			<p style="color: red;display: none;" id="t6">已挑战成功</p>
+			<p>在此模式下，将你的“能量”换为“损血加能”，双方开局三血</p>
+			<button onclick="tz(6)">开始挑战</button>
+			<p></p>
+		</div>
+		<p></p>
+		<div>
+			<h1>回合挑战</h1>
+			<p style="color: red;display: none;" id="t7">已挑战成功</p>
+			<p>在此模式下，你需要撑过15个回合，对方有999血</p>
+			<button onclick="tz(7)">开始挑战</button>
+			<p></p>
+		</div>
 		<p></p>
 		<button onclick="zy()" class="login-btn">返回主页</button>
 		<script>
-			var tzjg=JSON.parse(localStorage.getItem('tzjg')) || [0,0,0,0,0];
-			var tzms=0;
-			if(tzjg[0]==1){
+			var tzjg = JSON.parse(localStorage.getItem('tzjg')) || [0, 0, 0, 0, 0, 0, 0];
+			var tzms = 0;
+			if (tzjg[0] == 1) {
 				document.getElementById("t1").style.display = "block";
 			}
-			if(tzjg[1]==1){
+			if (tzjg[1] == 1) {
 				document.getElementById("t2").style.display = "block";
 			}
-			if(tzjg[2]==1){
+			if (tzjg[2] == 1) {
 				document.getElementById("t3").style.display = "block";
 				document.getElementById("lbqtz2").style.display = "block";
 			}
-			if(tzjg[3]==1){
+			if (tzjg[3] == 1) {
 				document.getElementById("t4").style.display = "block";
-				
+
 			}
-			if(tzjg[4]==1){
+			if (tzjg[4] == 1) {
 				document.getElementById("t5").style.display = "block";
 			}
+			if (tzjg[5] == 1) {
+				document.getElementById("t6").style.display = "block";
+			}
+			if (tzjg[6] == 1) {
+				document.getElementById("t7").style.display = "block";
+			}
+
 			function setItem() {
 				sessionStorage.setItem('tzms', String(tzms));
 			}
-			function zy(){
-				window.location.href="主页.html";
+
+			function zy() {
+				window.location.href = "主页.html";
 			}
-			function tz(x){
-				tzms=x;
+
+			function tz(x) {
+				tzms = x;
 				setItem();
-				window.location.href="挑战模式.html";
+				window.location.href = "挑战模式.html";
 			}
 			const pressedKeys = new Set();
-			
+
 			document.addEventListener('keydown', (event) => {
-			    // 1. 忽略长按导致的重复触发
-			    if (event.repeat) return;
-			
-			    // 2. 记录按下的物理按键（推荐使用 code）
-			    pressedKeys.add(event.code);
-			
-			    // 3. 判断是否同时按下了 T 和 Z
-			    if (pressedKeys.has('KeyT') && pressedKeys.has('KeyZ')) {
-			        // 触发后立即清空，防止按住不放时疯狂弹窗
-			        pressedKeys.clear();
-			        
-			        // 阻止浏览器可能的默认行为（通常 T/Z 没默认行为，但加着无妨）
-			        event.preventDefault();
-			        
-			        // ★ 在这里写下你要执行的业务逻辑 ★
-			        tzjg=[1,1,1,1,1];
+				// 1. 忽略长按导致的重复触发
+				if (event.repeat) return;
+
+				// 2. 记录按下的物理按键（推荐使用 code）
+				pressedKeys.add(event.code);
+
+				// 3. 判断是否同时按下了 T 和 Z
+				if (pressedKeys.has('KeyT') && pressedKeys.has('KeyZ')) {
+					// 触发后立即清空，防止按住不放时疯狂弹窗
+					pressedKeys.clear();
+
+					// 阻止浏览器可能的默认行为（通常 T/Z 没默认行为，但加着无妨）
+					event.preventDefault();
+
+					// ★ 在这里写下你要执行的业务逻辑 ★
+					tzjg = [1, 1, 1, 1, 1, 1, 1];
 					localStorage.setItem('tzjg', JSON.stringify(tzjg));
 					location.reload();
-			    }
+				}
 			});
-			
+
 			document.addEventListener('keyup', (event) => {
-			    // 手指松开时，从集合中移除该键
-			    pressedKeys.delete(event.code);
+				// 手指松开时，从集合中移除该键
+				pressedKeys.delete(event.code);
 			});
 		</script>
 	</body>
