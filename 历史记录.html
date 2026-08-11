@@ -1,312 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>历史记录</title>
-    <style>
-        /* ===== 原有样式（未做任何修改） ===== */
-        #lsjl {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 15px 0;
-            border: 1px solid #eee;
-        }
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>历史记录</title>
+		<style>
+			/* ===== 原有样式（未做任何修改） ===== */
+			#lsjl {
+				background: rgba(255, 255, 255, 0.9);
+				/* 设置背景为半透明白色 */
+				border-radius: 10px;
+				/* 设置边框圆角为10像素 */
+				padding: 20px;
+				/* 设置内边距为20像素 */
+				margin: 15px 0;
+				/* 设置上下外边距为15像素 */
+				border: 1px solid #eee;
+				/* 设置边框为1像素的浅灰色实线 */
+			}
 
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
+			body {
+				font-family: Arial, sans-serif;
+				/* 设置字体为Arial无衬线字体 */
+				text-align: center;
+				/* 文本居中对齐 */
+				padding: 20px;
+				/* 设置内边距为20像素 */
+			}
 
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .bu {
-            padding: 5px 10px;
-            font-size: 8px;
-            cursor: pointer;
-        }
+			button {
+				padding: 10px 20px;
+				/* 设置按钮内边距 */
+				font-size: 16px;
+				/* 设置按钮字体大小 */
+				cursor: pointer;
+				/* 鼠标悬停时显示手型指针 */
+			}
 
-        .login-btn {
-            background: linear-gradient(45deg, #00a3ff, #0066ff);
-            color: white;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
+			.bu {
+				padding: 5px 10px;
+				/* 设置小按钮内边距 */
+				font-size: 8px;
+				/* 设置小按钮字体大小 */
+				cursor: pointer;
+				/* 鼠标悬停时显示手型指针 */
+			}
 
-        /* ===== 新增：筛选控件样式（不影响任何原有样式） ===== */
-        .filter-area {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-            margin: 10px 0 15px 0;
-            padding: 12px 16px;
-            background: rgba(240, 248, 255, 0.7);
-            border-radius: 8px;
-            border: 1px solid #e0e8f0;
-        }
-        .filter-area select,
-        .filter-area input {
-            padding: 6px 12px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            font-family: Arial, sans-serif;
-            background: white;
-            outline: none;
-            min-width: 100px;
-        }
-        .filter-area select:focus,
-        .filter-area input:focus {
-            border-color: #0066ff;
-            box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.15);
-        }
-        .filter-area input {
-            min-width: 140px;
-        }
-        .filter-btn {
-            padding: 6px 20px;
-            background: linear-gradient(45deg, #00a3ff, #0066ff);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            font-family: Arial, sans-serif;
-            transition: opacity 0.2s;
-        }
-        .filter-btn:hover {
-            opacity: 0.85;
-        }
-        .filter-reset-btn {
-            padding: 6px 20px;
-            background: #f0f0f0;
-            color: #333;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            font-family: Arial, sans-serif;
-            transition: background 0.2s;
-        }
-        .filter-reset-btn:hover {
-            background: #e0e0e0;
-        }
-        .filter-label {
-            font-size: 14px;
-            color: #555;
-            font-weight: bold;
-            margin-right: 2px;
-        }
-        .filter-stats {
-            font-size: 13px;
-            color: #888;
-            margin-left: 6px;
-        }
+			.login-btn {
+				background: linear-gradient(45deg, #00a3ff, #0066ff);
+				/* 设置渐变背景色 */
+				color: white;
+				/* 文字颜色为白色 */
+				width: 100%;
+				/* 宽度占满父容器 */
+				padding: 12px;
+				/* 设置内边距 */
+				border: none;
+				/* 无边框 */
+				border-radius: 5px;
+				/* 设置边框圆角 */
+				font-size: 16px;
+				/* 设置字体大小 */
+				cursor: pointer;
+				/* 鼠标悬停时显示手型指针 */
+				transition: opacity 0.3s;
+				/* 添加透明度过渡效果 */
+			}
 
-        /* 让表格更美观（不改变原有样式，仅对表格内容做微调） */
-        #tableContainer table {
-            border-collapse: collapse;
-            width: 100%;
-            font-size: 14px;
-        }
-        #tableContainer th {
-            background: #f0f6ff;
-            font-weight: bold;
-            padding: 8px;
-        }
-        #tableContainer td {
-            padding: 6px 8px;
-        }
-        #tableContainer tr:nth-child(even) {
-            background: #fafcff;
-        }
+			/* ===== 新增：筛选控件样式（不影响任何原有样式） ===== */
+			.filter-area {
+				display: flex;
+				/* 使用弹性布局 */
+				flex-wrap: wrap;
+				/* 允许换行 */
+				gap: 10px;
+				/* 设置元素间距 */
+				align-items: center;
+				/* 垂直居中对齐 */
+				justify-content: center;
+				/* 水平居中对齐 */
+				margin: 10px 0 15px 0;
+				/* 设置上下外边距 */
+				padding: 12px 16px;
+				/* 设置内边距 */
+				background: rgba(240, 248, 255, 0.7);
+				/* 设置淡蓝色半透明背景 */
+				border-radius: 8px;
+				/* 设置边框圆角 */
+				border: 1px solid #e0e8f0;
+				/* 设置边框颜色 */
+			}
 
-        /* ===== 新增：胜率显示样式 ===== */
-        #shenglv {
-            margin: 6px 0 0 0;
-            font-size: 15px;
-            color: #1a3c6e;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-        /* ===== 新增样式结束 ===== */
-    </style>
-</head>
-<body>
-    <h1>☠️代号一☠️</h1>
+			.filter-area select,
+			.filter-area input {
+				padding: 6px 12px;
+				/* 设置内边距 */
+				border-radius: 5px;
+				/* 设置边框圆角 */
+				border: 1px solid #ccc;
+				/* 设置边框颜色 */
+				font-size: 14px;
+				/* 设置字体大小 */
+				font-family: Arial, sans-serif;
+				/* 设置字体 */
+				background: white;
+				/* 设置背景色 */
+				outline: none;
+				/* 移除轮廓线 */
+				min-width: 100px;
+				/* 设置最小宽度 */
+			}
 
-    <div id="lsjl">
-        <p id="sjjjj" style="display: inline-block; width: 400px;"></p>
-        <!--<button onclick="removeItem()" class="bu">清除</button>-->
+			.filter-area select:focus,
+			.filter-area input:focus {
+				border-color: #0066ff;
+				/* 聚焦时边框颜色变为蓝色 */
+				box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.15);
+				/* 添加蓝色阴影效果 */
+			}
 
-        <!-- ===== 新增：胜率显示（位于统计信息下方） ===== -->
-        <p id="shenglv">当前模式胜率: 0% (0/0)</p>
+			.filter-area input {
+				min-width: 140px;
+				/* 设置输入框最小宽度 */
+			}
 
-        <!-- ===== 修改后的筛选区：只保留模式 ===== -->
-        <div class="filter-area" id="filterArea">
-            <span class="filter-label">模式</span>
-            <select id="filterMode">
-                <option value="">全部</option>
-            </select>
-            <span class="filter-stats" id="filterStats">共 0 条</span>
-        </div>
+			.filter-btn {
+				padding: 6px 20px;
+				/* 设置按钮内边距 */
+				background: linear-gradient(45deg, #00a3ff, #0066ff);
+				/* 设置渐变背景色 */
+				color: white;
+				/* 文字颜色为白色 */
+				border: none;
+				/* 无边框 */
+				border-radius: 5px;
+				/* 设置边框圆角 */
+				cursor: pointer;
+				/* 鼠标悬停时显示手型指针 */
+				font-size: 14px;
+				/* 设置字体大小 */
+				font-family: Arial, sans-serif;
+				/* 设置字体 */
+				transition: opacity 0.2s;
+				/* 添加透明度过渡效果 */
+			}
 
-        <div id="tableContainer"></div>
-        <p></p>
-        <button onclick="fh()" class="login-btn">返回</button>
-    </div>
+			.filter-btn:hover {
+				opacity: 0.85;
+				/* 鼠标悬停时降低透明度 */
+			}
 
-    <script>
-        // ===== 原有全局变量 =====
-        var zong1 = Number(localStorage.getItem('zong1'));
-        var ying1 = Number(localStorage.getItem('ying1'));
-        var cz1 = Number(localStorage.getItem('cz1'));
-        var lsjlbg1 = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
+			.filter-reset-btn {
+				padding: 6px 20px;
+				/* 设置按钮内边距 */
+				background: #f0f0f0;
+				/* 设置背景色 */
+				color: #333;
+				/* 设置文字颜色 */
+				border: 1px solid #ccc;
+				/* 设置边框 */
+				border-radius: 5px;
+				/* 设置边框圆角 */
+				cursor: pointer;
+				/* 鼠标悬停时显示手型指针 */
+				font-size: 14px;
+				/* 设置字体大小 */
+				font-family: Arial, sans-serif;
+				/* 设置字体 */
+				transition: background 0.2s;
+				/* 添加背景色过渡效果 */
+			}
 
-        // ===== 新增：用于筛选的数据副本 =====
-        var allData = []; // 原始数据（只读）
-        var filteredData = []; // 筛选后的数据
+			.filter-reset-btn:hover {
+				background: #e0e0e0;
+				/* 鼠标悬停时改变背景色 */
+			}
 
-        // ===== 原有函数（未修改） =====
-        function removeItem() {
-            localStorage.removeItem('zong1');
-            localStorage.removeItem('ying1');
-            localStorage.removeItem('cz1');
-            localStorage.removeItem('lsjlbg1');
-            window.location.href = "历史记录.html";
-        }
+			.filter-label {
+				font-size: 14px;
+				/* 设置字体大小 */
+				color: #555;
+				/* 设置文字颜色 */
+				font-weight: bold;
+				/* 设置字体粗细 */
+				margin-right: 2px;
+				/* 设置右边距 */
+			}
 
-        function fh() {
-            window.location.href = "主页.html";
-        }
+			.filter-stats {
+				font-size: 13px;
+				/* 设置字体大小 */
+				color: #888;
+				/* 设置文字颜色 */
+				margin-left: 6px;
+				/* 设置左边距 */
+			}
 
-        // ===== 新增：渲染表格（支持传入数据） =====
-        function renderTable(data) {
-            var container = document.getElementById("tableContainer");
-            container.innerHTML = "";
+			/* 让表格更美观（不改变原有样式，仅对表格内容做微调） */
+			#tableContainer table {
+				border-collapse: collapse;
+				/* 合并边框 */
+				width: 100%;
+				/* 宽度占满父容器 */
+				font-size: 14px;
+				/* 设置字体大小 */
+			}
 
-            if (!data || data.length === 0) {
-                container.innerHTML = "<p style='color:#999;padding:20px 0;'>暂无匹配的记录</p>";
-                document.getElementById("filterStats").textContent = "共 0 条";
-                return;
-            }
+			#tableContainer th {
+				background: #f0f6ff;
+				/* 设置表头背景色 */
+				font-weight: bold;
+				/* 设置字体粗细 */
+				padding: 8px;
+				/* 设置内边距 */
+			}
 
-            var table = document.createElement("table");
-            table.border = "1";
-            table.style.width = "100%";
+			#tableContainer td {
+				padding: 6px 8px;
+			}
 
-            // 表头
-            var thead = table.createTHead();
-            var headerRow = thead.insertRow();
-            ["模式", "结果", "时间"].forEach(function(headerText) {
-                var th = document.createElement("th");
-                th.textContent = headerText;
-                headerRow.appendChild(th);
-            });
+			#tableContainer tr:nth-child(even) {
+				background: #fafcff;
+			}
 
-            // 数据行
-            var tbody = table.createTBody();
-            data.forEach(function(item) {
-                var row = tbody.insertRow();
-                [item.模式, item.结果, item.时间].forEach(function(value) {
-                    var cell = row.insertCell();
-                    cell.textContent = value || "-";
-                });
-            });
+			/* ===== 新增：胜率显示样式 ===== */
+			#shenglv {
+				margin: 6px 0 0 0;
+				font-size: 15px;
+				color: #1a3c6e;
+				font-weight: bold;
+				letter-spacing: 0.5px;
+			}
 
-            container.appendChild(table);
-            document.getElementById("filterStats").textContent = "共 " + data.length + " 条";
-        }
+			/* ===== 新增样式结束 ===== */
+		</style>
+	</head>
+	<body>
+		<h1>☠️代号一☠️</h1>
 
-        // ===== 新增：初始化模式下拉选项（只保留模式） =====
-        function initFilterOptions() {
-            var modeSet = new Set();
-            allData.forEach(function(item) {
-                if (item.模式) modeSet.add(item.模式);
-            });
+		<div id="lsjl">
+			<p id="sjjjj" style="display: inline-block; width: 400px;"></p>
+			<!--<button onclick="removeItem()" class="bu">清除</button>-->
 
-            var modeSelect = document.getElementById("filterMode");
-            modeSelect.innerHTML = '<option value="">全部</option>';
+			<!-- ===== 新增：胜率显示（位于统计信息下方） ===== -->
+			<p id="shenglv">当前模式胜率: 0% (0/0)</p>
 
-            var sortedModes = Array.from(modeSet).sort();
-            sortedModes.forEach(function(m) {
-                var opt = document.createElement("option");
-                opt.value = m;
-                opt.textContent = m;
-                modeSelect.appendChild(opt);
-            });
-        }
+			<!-- ===== 修改后的筛选区：只保留模式 ===== -->
+			<div class="filter-area" id="filterArea">
+				<span class="filter-label">模式</span>
+				<select id="filterMode">
+					<option value="">全部</option>
+				</select>
+				<span class="filter-stats" id="filterStats">共 0 条</span>
+			</div>
 
-        // ===== 新增：计算并更新胜率 =====
-        function updateShenglv(mode) {
-            var data = allData;
-            if (mode !== "") {
-                data = data.filter(function(item) {
-                    return item.模式 === mode;
-                });
-            }
-            var total = data.length;
-            var win = data.filter(function(item) {
-                return item.结果 === "胜";
-            }).length;
-            var rate = total === 0 ? 0 : (win / total * 100);
-            var modeDisplay = mode === "" ? "全部" : mode;
-            document.getElementById("shenglv").textContent =
-                "当前模式胜率: " + rate.toFixed(1) + "% (" + win + "/" + total + ")";
-        }
+			<div id="tableContainer"></div>
+			<p></p>
+			<button onclick="fh()" class="login-btn">返回</button>
+		</div>
 
-        // ===== 新增：统一更新显示（筛选 + 表格 + 胜率） =====
-        function updateDisplay() {
-            var mode = document.getElementById("filterMode").value;
+		<script>
+			// ===== 原有全局变量 =====
+			var zong1 = Number(localStorage.getItem('zong1'));
+			var ying1 = Number(localStorage.getItem('ying1'));
+			var cz1 = Number(localStorage.getItem('cz1'));
+			var lsjlbg1 = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
 
-            // 筛选数据
-            filteredData = allData.filter(function(item) {
-                return mode === "" || item.模式 === mode;
-            });
+			// ===== 新增：用于筛选的数据副本 =====
+			var allData = []; // 原始数据（只读）
+			var filteredData = []; // 筛选后的数据
 
-            // 渲染表格
-            renderTable(filteredData);
+			// ===== 原有函数（未修改） =====
+			function removeItem() {
+				localStorage.removeItem('zong1');
+				localStorage.removeItem('ying1');
+				localStorage.removeItem('cz1');
+				localStorage.removeItem('lsjlbg1');
+				window.location.href = "历史记录.html";
+			}
 
-            // 更新胜率
-            updateShenglv(mode);
-        }
+			function fh() {
+				window.location.href = "主页.html";
+			}
+			// ===== 稳健的日期解析函数（兼容各种格式） =====
+			function parseDate(str) {
+				if (!str) return 0;
+				// 尝试直接构造Date
+				let d = new Date(str);
+				if (!isNaN(d.getTime())) return d.getTime();
 
-        // ===== 改造后的 cjbg（保持原有统计信息显示，增加筛选初始化） =====
-        function cjbg() {
-            // 1. 更新统计信息（原有逻辑）
-            document.getElementById("sjjjj").textContent = '总局数' + zong1 + '局,你赢了' + ying1 + '局，共重置' + cz1 + '次';
+				// 手动解析：格式如 "2026/7/9 下午9:00:29" 或 "2026/7-20 下午2:35:46"
+				// 先统一替换分隔符：将 '-' 替换为 '/'
+				let s = str.replace(/-/g, '/');
+				// 提取日期部分和时间部分
+				let parts = s.split(' ');
+				if (parts.length < 2) return 0;
+				let datePart = parts[0]; // "2026/7/9"
+				let timePart = parts.slice(1).join(' '); // "下午9:00:29" 或 "上午2:13:59"
 
-            // 2. 读取数据（原有逻辑）
-            allData = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
+				// 解析日期
+				let dateArr = datePart.split('/');
+				if (dateArr.length !== 3) return 0;
+				let year = parseInt(dateArr[0], 10);
+				let month = parseInt(dateArr[1], 10) - 1; // 月份从0开始
+				let day = parseInt(dateArr[2], 10);
 
-            // 3. 初始化下拉选项
-            initFilterOptions();
+				// 解析时间
+				let hour = 0,
+					minute = 0,
+					second = 0;
+				let timeStr = timePart.trim();
+				// 处理上午/下午
+				let isPM = false;
+				if (timeStr.includes('下午')) {
+					isPM = true;
+					timeStr = timeStr.replace('下午', '').trim();
+				} else if (timeStr.includes('上午')) {
+					timeStr = timeStr.replace('上午', '').trim();
+				} else if (timeStr.includes('AM') || timeStr.includes('am')) {
+					timeStr = timeStr.replace(/AM|am/, '').trim();
+				} else if (timeStr.includes('PM') || timeStr.includes('pm')) {
+					isPM = true;
+					timeStr = timeStr.replace(/PM|pm/, '').trim();
+				}
 
-            // 4. 默认显示全部数据
-            filteredData = allData.slice();
-            renderTable(filteredData);
+				let timeArr = timeStr.split(':');
+				if (timeArr.length >= 2) {
+					hour = parseInt(timeArr[0], 10);
+					minute = parseInt(timeArr[1], 10);
+					if (timeArr.length >= 3) second = parseInt(timeArr[2], 10);
+				}
+				// 调整12小时制
+				if (isPM && hour < 12) hour += 12;
+				if (!isPM && hour === 12) hour = 0; // 12:xx 上午应视为0点
 
-            // 5. 更新胜率
-            updateShenglv("");
-        }
+				let dt = new Date(year, month, day, hour, minute, second);
+				return dt.getTime();
+			}
 
-        // ===== 页面加载时执行 =====
-        window.onload = cjbg;
+			// ===== 新增：渲染表格（支持传入数据） =====
+			function renderTable(data) {
+				var container = document.getElementById("tableContainer");
+				container.innerHTML = "";
 
-        // ===== 新增：模式下拉框变化时自动更新 =====
-        document.getElementById('filterMode').addEventListener('change', updateDisplay);
-    </script>
-</body>
+				if (!data || data.length === 0) {
+					container.innerHTML = "<p style='color:#999;padding:20px 0;'>暂无匹配的记录</p>";
+					document.getElementById("filterStats").textContent = "共 0 条";
+					return;
+				}
+
+				var table = document.createElement("table");
+				table.border = "1";
+				table.style.width = "100%";
+
+				// 表头
+				var thead = table.createTHead();
+				var headerRow = thead.insertRow();
+				["模式", "结果", "时间", "隐藏"].forEach(function(headerText) {
+					var th = document.createElement("th");
+					th.textContent = headerText;
+					headerRow.appendChild(th);
+				});
+
+				// 数据行
+				var tbody = table.createTBody();
+				data.forEach(function(item) {
+					var row = tbody.insertRow();
+					[item.模式, item.结果, item.时间, item.隐藏].forEach(function(value) {
+						var cell = row.insertCell();
+						cell.textContent = value || "-";
+					});
+				});
+
+				container.appendChild(table);
+				document.getElementById("filterStats").textContent = "共 " + data.length + " 条";
+			}
+
+			// ===== 新增：初始化模式下拉选项（只保留模式） =====
+			function initFilterOptions() {
+				var modeSet = new Set();
+				allData.forEach(function(item) {
+					if (item.模式) modeSet.add(item.模式);
+				});
+
+				var modeSelect = document.getElementById("filterMode");
+				modeSelect.innerHTML = '<option value="">全部</option>';
+
+				var sortedModes = Array.from(modeSet).sort();
+				sortedModes.forEach(function(m) {
+					var opt = document.createElement("option");
+					opt.value = m;
+					opt.textContent = m;
+					modeSelect.appendChild(opt);
+				});
+			}
+
+			// ===== 新增：计算并更新胜率 =====
+			function updateShenglv(mode) {
+				var data = allData;
+				if (mode !== "") {
+					data = data.filter(function(item) {
+						return item.模式 === mode;
+					});
+				}
+				var total = data.length;
+				var win = data.filter(function(item) {
+					return item.结果 === "胜";
+				}).length;
+				var rate = total === 0 ? 0 : (win / total * 100);
+				var modeDisplay = mode === "" ? "全部" : mode;
+				document.getElementById("shenglv").textContent =
+					"当前模式胜率: " + rate.toFixed(1) + "% (" + win + "/" + total + ")";
+			}
+
+			// ===== 新增：统一更新显示（筛选 + 表格 + 胜率） =====
+			function updateDisplay() {
+				var mode = document.getElementById("filterMode").value;
+
+				// 筛选数据
+				filteredData = allData.filter(function(item) {
+					return mode === "" || item.模式 === mode;
+				});
+
+				// 渲染表格
+				renderTable(filteredData);
+
+				// 更新胜率
+				updateShenglv(mode);
+			}
+
+			// ===== 改造后的 cjbg（增加排序：按时间倒序，新纪录在上） =====
+			function cjbg() {
+				// 1. 更新统计信息（原有逻辑）
+				document.getElementById("sjjjj").textContent = '总局数' + zong1 + '局,你赢了' + ying1 + '局，共重置' + cz1 + '次';
+
+				// 2. 读取数据（原有逻辑）
+				allData = JSON.parse(localStorage.getItem('lsjlbg1')) || [];
+
+				// 3. 【新增】按时间倒序排序（新纪录在上）
+				// ===== 使用稳健的日期解析进行倒序排序 =====
+				allData.sort(function(a, b) {
+					var tA = parseDate(a.时间);
+					var tB = parseDate(b.时间);
+					// 如果都解析失败，回退到字符串比较（倒序）
+					if (tA === 0 && tB === 0) {
+						return String(b.时间).localeCompare(String(a.时间));
+					}
+					// 如果其中一个解析失败，认为它更旧（排在后面）
+					if (tA === 0) return 1;
+					if (tB === 0) return -1;
+					return tB - tA; // 倒序
+				});
+
+				// 4. 初始化下拉选项
+				initFilterOptions();
+
+				// 5. 默认显示全部数据
+				filteredData = allData.slice();
+				renderTable(filteredData);
+
+				// 6. 更新胜率
+				updateShenglv("");
+			}
+
+			// ===== 页面加载时执行 =====
+			window.onload = cjbg;
+
+			// ===== 新增：模式下拉框变化时自动更新 =====
+			document.getElementById('filterMode').addEventListener('change', updateDisplay);
+		</script>
+	</body>
 </html>

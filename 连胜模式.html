@@ -63,8 +63,9 @@
 					<button onclick="ssss(9)" id="j9">能量刀</button>
 				</div>
 				<p></p>
+				<!--
 				<button onclick="ss()">重置</button>
-
+				-->
 				<p id="sjj"></p>
 				<button onclick="zy()" class="login-btn">返回主页</button>
 			</div>
@@ -165,7 +166,7 @@
 				document.getElementById("h15").style.display = "none";
 				document.getElementById("h16").style.display = "none";
 				document.getElementById("jnjn").style.display = "none";
-				document.getElementById("msms").textContent = '目前模式：快速模式';
+				document.getElementById("msms").textContent = '目前模式：快速模式连胜';
 			}
 
 			function xl() {
@@ -183,7 +184,7 @@
 				document.getElementById("jnjn").style.display = "none";
 				document.getElementById("msms").textContent = '目前模式：血量模式';
 			}
-			var a1 = 1;
+			var a1 = 3;
 			var aa1 = 0;
 			var aaa1 = 0;
 			var b1 = 0;
@@ -221,10 +222,10 @@
 			var xlms = false;
 			var aa = 1;
 			var szsj = 10000;
-			var mqms = "普通模式";
+			var mqms = "快速模式连胜";
 			var lscz = true;
 			var hh = 1;
-
+			var jis = 0;
 			try {
 				hd = JSON.parse(sessionStorage.getItem('hd'));
 			} catch {
@@ -264,7 +265,7 @@
 			try {
 				mqms = JSON.parse(sessionStorage.getItem('mqms'));
 			} catch {
-				mqms = "普通模式";
+				mqms = "快速模式连胜";
 			}
 
 			function millisecondsToSeconds(milliseconds) {
@@ -306,7 +307,7 @@
 						display.textContent = "0.00"; // 倒计时结束
 						// 可以在这里添加其他倒计时结束后的逻辑
 						// ...
-						document.getElementById('result').textContent = '你输了';
+						document.getElementById('result').textContent = '你死了，最终击杀数：' + jis;
 						jz();
 					}
 				}
@@ -504,11 +505,11 @@
 			}
 
 			function csh() {
-				if (mqms == "额外模式") {
+				if (mqms == "额外模式连胜") {
 					ew();
-				} else if (mqms == "快速模式") {
+				} else if (mqms == "快速模式连胜") {
 					ksu();
-				} else if (mqms == "血量模式") {
+				} else if (mqms == "血量模式连胜") {
 					xl();
 				} else {
 					pt();
@@ -518,14 +519,14 @@
 			function ss() {
 				csh();
 				var lsjlbg = [];
-				a1 = aa;
+				a1 = 3;
 				b1 = 0;
 				c1 = 1;
 				d1 = 0;
 				e1 = 0;
-				a2 = aa;
-				aaa1 = aa;
-				aaa2 = aa;
+				a2 = 1;
+				aaa1 = 3;
+				aaa2 = 1;
 				b2 = 0;
 				c2 = 1;
 				d2 = 0;
@@ -540,6 +541,7 @@
 				jn3 = new Array(10).fill(0);
 				sxjs1 = true;
 				sxjs2 = true;
+				jis = 0;
 				g();
 				j();
 				document.getElementById("result").textContent = '';
@@ -601,12 +603,7 @@
 					document.getElementById("cklscz1").style.display = "block";
 					document.getElementById("sj").style.display = "block";
 				}
-				if (ksms) {
-					ssss(0);
-				}
-				if (xlms) {
-					ssss(0);
-				}
+				ssss(0);
 			}
 
 			function ssss(jn1) {
@@ -631,14 +628,14 @@
 
 			function s() {
 
-				a1 = aa;
-				aaa1 = aa;
+				a1 = 3;
+				aaa1 = 3;
 				b1 = 0;
 				c1 = 1;
 				d1 = 0;
 				e1 = 0;
-				a2 = aa;
-				aaa2 = aa;
+				a2 = 1;
+				aaa2 = 1;
 				b2 = 0;
 				c2 = 1;
 				d2 = 0;
@@ -649,6 +646,7 @@
 				lscz2 = "";
 				jn1 = 0;
 				hh = 1;
+				jis = 0;
 				sxjs1 = true;
 				sxjs2 = true;
 				if (jn3[2] === 1) {
@@ -763,48 +761,32 @@
 				j();
 				if (a2 <= 0 && a1 > 0) {
 
-					zong++;
-					ying++;
-					zong1++;
-					ying1++;
-					document.getElementById('result').textContent = '你赢了';
-					let yxjg = {
-						模式: mqms,
-						结果: '胜',
-						时间: new Date().toLocaleString(),
-						隐藏: yc
-					};
-					lsjlbg.push(yxjg);
-					lsjlbg1.push(yxjg);
-					jz();
-				} else if (a1 <= 0 && a2 > 0) {
+					jis = jis + 1;
+					a2 = 1;
+					aaa2 = 1;
+					b2 = 0;
+					c2 = 1;
+					d2 = 0;
+					e2 = 0;
+					document.getElementById("sj").textContent = '你血' + a1 + '/' + aaa1 + ',敌血' + a2 + '/' + aaa2 + ',你能' + b1 +
+						',敌能' + b2;
+					document.getElementById('result').textContent = '新增一击杀，目前击杀数：' + jis;
+				} else if (a1 <= 0) {
 
 					zong++;
 					zong1++;
-					document.getElementById('result').textContent = '你输了';
+					document.getElementById('result').textContent = '你死了，最终击杀数：' + jis;
 					let yxjg = {
 						模式: mqms,
-						结果: '负',
+						结果: jis,
 						时间: new Date().toLocaleString(),
 						隐藏: yc
 					};
 					lsjlbg.push(yxjg);
 					lsjlbg1.push(yxjg);
 					jz();
-				} else if (a2 <= 0 && a1 <= 0) {
-
-					zong++;
-					zong1++;
-					document.getElementById('result').textContent = '平局';
-					let yxjg = {
-						模式: mqms,
-						结果: '平局',
-						时间: new Date().toLocaleString(),
-						隐藏: yc
-					};
-					lsjlbg.push(yxjg);
-					lsjlbg1.push(yxjg);
-					jz();
+				} else {
+					document.getElementById('result').textContent = '目前击杀数：' + jis;
 				}
 			}
 			window.onload = ss;

@@ -71,6 +71,8 @@
 				<p>主模式选择</p>
 				<button onclick="mms(1)" class="bu" id='mms1'>正常模式</button>
 				<button onclick="mms(2)" class="bu" id='mms2'>能量模式</button>
+				<button onclick="mms(3)" class="bu" id='mms3'>连胜模式</button>
+				<p></p>
 				<button onclick="tz()" class="bu">挑战模式</button>
 				<p>子模式选择</p>
 				<button onclick="pt()" class="bu" id='ms2'>普通模式</button>
@@ -79,6 +81,7 @@
 				<button onclick="xl()" class="bu" id='ms4'>血量模式</button>
 				<button onclick="nl1()" class="bu" id='ms5'>能量模式1</button>
 				<button onclick="nl2()" class="bu" id='ms6'>能量模式2</button>
+				<button onclick="ls1()" class="bu" id='ms7'>快速模式连胜</button>
 
 
 				<br>
@@ -91,8 +94,10 @@
 				</div>
 
 				<p></p>
-				<input type="number" id="set1" placeholder="设定时间">
-				<button onclick="chec()" id="bsj">确认</button>
+				<div id="sdsj">
+					<input type="number" id="set1" placeholder="设定时间">
+					<button onclick="chec()" id="bsj">确认</button>
+				</div>
 				<p id='jcsj'>基础血量1，基础时间10秒</p>
 				<button onclick="lsjl()">查看历史记录</button>
 				<p></p>
@@ -116,7 +121,7 @@
 
 		</div>
 		<button style="padding: 0px 0px;font-size: 4px;" onclick="hsdwx()">查看作者</button>
-		<p class="bb">1.2.0</p>
+		<p class="bb">1.3.0</p>
 		<script>
 			function hsdwx() {
 				window.open("https://space.bilibili.com/500196629")
@@ -126,20 +131,20 @@
 
 			function bbgx() {
 
-				if (!localStorage.getItem('bb120')) {
+				if (!localStorage.getItem('bb130')) {
 					// 设置默认值
-					bb120 = false
+					bb130 = false
 				} else {
 					// 安全解析存储的值
 					try {
-						bb120 = JSON.parse(localStorage.getItem('bb120'));
+						bb130 = JSON.parse(localStorage.getItem('bb130'));
 					} catch {
-						bb120 = false;
+						bb130 = false;
 					}
 
 				}
 
-				if (bb120) {
+				if (bb130) {
 					dot.classList.add('hidden');
 				}
 			}
@@ -169,7 +174,9 @@
 				if (ms == 2) {
 					window.location.href = "能量模式.html"
 				}
-
+				if (ms == 3) {
+					window.location.href = "连胜模式.html"
+				}
 			}
 
 			function gz() {
@@ -181,8 +188,8 @@
 			}
 
 			function gx() {
-				bb120 = true;
-				localStorage.setItem('bb120', JSON.stringify(bb120));
+				bb130 = true;
+				localStorage.setItem('bb130', JSON.stringify(bb130));
 				dot.classList.add('hidden');
 				window.location.href = "更新.html";
 			}
@@ -206,10 +213,12 @@
 			var bb6 = document.getElementById('ms4');
 			var bb7 = document.getElementById('ms5');
 			var bb8 = document.getElementById('ms6');
+			var bb9 = document.getElementById('ms7');
 			var bb3 = document.getElementById('yc1');
 			var bb4 = document.getElementById('yc2');
 			var bbb1 = document.getElementById('mms1');
 			var bbb2 = document.getElementById('mms2');
+			var bbb3 = document.getElementById('mms3');
 			var bbxl = document.getElementById('bxl');
 			var bbsj = document.getElementById('bsj');
 			bb1.disabled = false;
@@ -220,19 +229,22 @@
 			bb6.disabled = false;
 			bb7.disabled = true;
 			bb8.disabled = false;
+			bb9.disabled = true;
 			bbxl.disabled = false;
 			bbsj.disabled = false;
 			bbb1.disabled = true;
 			bbb2.disabled = false;
+			bbb3.disabled = false;
 			bb7.style.display = "none";
 			bb8.style.display = "none";
+			bb9.style.display = "none";
 
 			function ew() {
 				hd = true;
 				ksms = false;
 				xlms = false;
-				bbxl.disabled = false;
-				bbsj.disabled = false;
+				document.getElementById('sdxl').style.display = "block";
+				document.getElementById("sdsj").style.display = 'block';
 				bb1.disabled = true;
 				bb2.disabled = false;
 				bb5.disabled = false;
@@ -247,8 +259,8 @@
 				hd = false;
 				ksms = false;
 				xlms = false;
-				bbxl.disabled = false;
-				bbsj.disabled = false;
+				document.getElementById('sdxl').style.display = "block";
+				document.getElementById("sdsj").style.display = 'block';
 				bb1.disabled = false;
 				bb2.disabled = true;
 				bb5.disabled = false;
@@ -263,8 +275,8 @@
 				hd = false;
 				ksms = true;
 				xlms = false;
-				bbxl.disabled = true;
-				bbsj.disabled = true;
+				document.getElementById('sdxl').style.display = "none";
+				document.getElementById("sdsj").style.display = 'none';
 				bb1.disabled = false;
 				bb2.disabled = false;
 				bb5.disabled = true;
@@ -279,8 +291,8 @@
 				hd = false;
 				ksms = false;
 				xlms = true;
-				bbxl.disabled = true;
-				bbsj.disabled = false;
+				document.getElementById('sdxl').style.display = "none";
+				document.getElementById("sdsj").style.display = 'block';
 				bb1.disabled = false;
 				bb2.disabled = false;
 				bb5.disabled = false;
@@ -317,6 +329,22 @@
 				mqms = "能量模式2";
 			}
 
+			function ls1() {
+				hd = false;
+				ksms = true;
+				xlms = false;
+				bbxl.disabled = true;
+				bbsj.disabled = true;
+				bb1.disabled = false;
+				bb2.disabled = false;
+				bb5.disabled = true;
+				bb6.disabled = false;
+				aa = 1;
+				szsj = 5000;
+				jcsj();
+				mqms = "快速模式连胜";
+			}
+
 			function mms(x) {
 				if (x == 1) {
 					bb1.style.display = "inline-block";
@@ -325,11 +353,14 @@
 					bb6.style.display = "inline-block";
 					bb7.style.display = "none";
 					bb8.style.display = "none";
+					bb9.style.display = "none";
 					bbb1.disabled = true;
 					bbb2.disabled = false;
+					bbb3.disabled = false;
 					ms = 1;
 
 					document.getElementById('sdxl').style.display = "block";
+					document.getElementById("sdsj").style.display = 'block';
 					pt();
 					jcsj();
 				}
@@ -339,15 +370,38 @@
 					bb5.style.display = "none";
 					bb6.style.display = "none";
 					bb7.style.display = "inline-block";
-					bb8.style.display = "inline-block"
+					bb8.style.display = "inline-block";
+					bb9.style.display = "none";
 					bbb1.disabled = false;
 					bbb2.disabled = true;
-					ms = 2
+					bbb3.disabled = false;
+					ms = 2;
 
 					//alert("能量模式规则请在选择能量模式的情况下点击查看规则查看")
 					nl1();
 					document.getElementById("jcsj").textContent = '基础时间' + szsj / 1000 + '秒';
 					document.getElementById('sdxl').style.display = "none";
+					document.getElementById("sdsj").style.display = 'block';
+				}
+				if (x == 3) {
+					bb1.style.display = "none";
+					bb2.style.display = "none";
+					bb5.style.display = "none";
+					bb6.style.display = "none";
+					bb7.style.display = "none";
+					bb8.style.display = "none";
+					bb9.style.display = "inline-block";
+					bbb1.disabled = false;
+					bbb2.disabled = false;
+					bbb3.disabled = true;
+					ms = 3;
+
+					//alert("能量模式规则请在选择能量模式的情况下点击查看规则查看")
+					ls1();
+					jcsj();
+					document.getElementById("jcsj").textContent = '基础时间' + szsj / 1000 + '秒';
+					document.getElementById('sdxl').style.display = "none";
+					document.getElementById("sdsj").style.display = 'none';
 				}
 			}
 
@@ -410,7 +464,7 @@
 			function setItem() {
 				sessionStorage.setItem('hd', JSON.stringify(hd)); // 对象→JSON字符串
 				sessionStorage.setItem('ksms', JSON.stringify(ksms));
-				sessionStorage.setItem('bb120', JSON.stringify(bb120));
+				sessionStorage.setItem('bb130', JSON.stringify(bb130));
 				sessionStorage.setItem('aa', String(aa)); // 数字→字符串
 				sessionStorage.setItem('szsj', String(szsj));
 				sessionStorage.setItem('mqms', JSON.stringify(mqms)); // 对象→JSON字符串
@@ -429,7 +483,7 @@
 					szsj = 10000;
 					mqms = "普通模式";
 					lscz = true;
-					bb120 = false;
+					bb130 = false;
 				} else {
 					// 安全解析存储的值
 					try {
@@ -456,9 +510,9 @@
 						xlms = false;
 					}
 					try {
-						bb120 = JSON.parse(sessionStorage.getItem('bb120'));
+						bb130 = JSON.parse(sessionStorage.getItem('bb130'));
 					} catch {
-						bb120 = false;
+						bb130 = false;
 					}
 					// 处理数字类型
 					const storedAa = sessionStorage.getItem('aa');
@@ -489,12 +543,12 @@
 				else yck();
 
 
-				if (!localStorage.getItem('bb120')) {
-					bb120 = false;
+				if (!localStorage.getItem('bb130')) {
+					bb130 = false;
 				} else {
 					// 安全解析存储的值
 					try {
-						bb120 = JSON.parse(localStorage.getItem('bb120'));
+						bb130 = JSON.parse(localStorage.getItem('bb130'));
 					} catch {
 						hd = false;
 					}
