@@ -74,7 +74,6 @@
 				<button onclick="mms(3)" class="bu" id='mms3'>连胜模式</button>
 				<p></p>
 				<button onclick="tz()" class="bu">挑战模式</button>
-				<button onclick="lx()" class="bu">联机模式</button>
 				<p>子模式选择</p>
 				<button onclick="pt()" class="bu" id='ms2'>普通模式</button>
 				<button onclick="ew()" class="bu" id='ms1'>额外模式</button>
@@ -424,10 +423,6 @@
 				window.location.href = "挑战选择.html";
 			}
 
-			function lx() {
-				window.location.href = "联机模式.html";
-			}
-
 			function check() {
 				aa = parseFloat(document.getElementById('set').value);
 				if (isNaN(aa) || aa <= 0) {
@@ -622,6 +617,32 @@
 
 
 			// 假设我们有一个倒计时，从3000毫秒（即3秒）开始
+			const pressedKeys = new Set();
+
+			document.addEventListener('keydown', (event) => {
+				// 1. 忽略长按导致的重复触发
+				if (event.repeat) return;
+
+				// 2. 记录按下的物理按键（推荐使用 code）
+				pressedKeys.add(event.code);
+
+				// 3. 判断是否同时按下了 T 和 Z
+				if (pressedKeys.has('KeyT') && pressedKeys.has('KeyR')) {
+					// 触发后立即清空，防止按住不放时疯狂弹窗
+					pressedKeys.clear();
+
+					// 阻止浏览器可能的默认行为（通常 T/Z 没默认行为，但加着无妨）
+					event.preventDefault();
+
+					// ★ 在这里写下你要执行的业务逻辑 ★
+					window.open('https://jerry-0327.github.io/daihao1try');
+				}
+			});
+
+			document.addEventListener('keyup', (event) => {
+				// 手指松开时，从集合中移除该键
+				pressedKeys.delete(event.code);
+			});
 		</script>
 
 	</body>
